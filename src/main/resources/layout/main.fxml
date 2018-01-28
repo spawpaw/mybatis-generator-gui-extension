@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="720.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.121"
+      fx:controller="com.spawpaw.mybatis.generator.gui.controller.MainController">
+    <SplitPane dividerPositions="0.1">
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <HBox alignment="CENTER_LEFT" minHeight="60.0" prefHeight="64.0" prefWidth="0.0">
+                <JFXButton fx:id="btn_new_connection" minWidth="120.0" text="新建连接" textFill="#4d66cc">
+                    <HBox.margin>
+                        <Insets left="8.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </HBox>
+            <JFXTreeView fx:id="lv_connections" minWidth="255.0" prefHeight="10000.0" prefWidth="500.0"/>
+        </VBox>
+        <VBox>
+
+            <HBox alignment="CENTER" maxHeight="64.0" minWidth="64.0" prefHeight="64.0">
+
+                <JFXComboBox fx:id="cb_load_saved_project_config" labelFloat="true" minWidth="150.0"
+                             promptText="使用已保存的配置">
+                    <opaqueInsets>
+                        <Insets/>
+                    </opaqueInsets>
+                    <HBox.margin>
+                        <Insets left="8.0"/>
+                    </HBox.margin>
+                </JFXComboBox>
+                <JFXButton onMouseClicked="#openCustomColumnDialog" minWidth="120.0" text="自定义列属性" textFill="#4d66cc">
+                    <HBox.margin>
+                        <Insets left="8.0" right="8.0"/>
+                    </HBox.margin>
+                </JFXButton>
+                <HBox prefWidth="10000.0"/>
+                <JFXToggleButton fx:id="btn_show_advanced_settings" minWidth="160.0" selected="true" text="简洁模式"/>
+            </HBox>
+            <VBox fx:id="main_container" prefHeight="100000.0" prefWidth="100000.0">
+
+            </VBox>
+
+            <HBox alignment="CENTER" minHeight="56.0" prefHeight="130.0" prefWidth="200.0">
+                <HBox prefHeight="100.0" prefWidth="10000.0"/>
+
+                <JFXButton onMouseClicked="#runMybatisGenerator" minWidth="120.0" styleClass="button-raised"
+                           text="生成代码">
+                    <HBox.margin>
+                        <Insets left="8.0" right="8.0"/>
+                    </HBox.margin>
+                </JFXButton>
+
+                <JFXButton fx:id="btn_save_config" minWidth="120.0" styleClass="button-raised" text="保存配置">
+                    <HBox.margin>
+                        <Insets right="8.0"/>
+                    </HBox.margin>
+                </JFXButton>
+            </HBox>
+        </VBox>
+    </SplitPane>
+    <stylesheets>
+        <URL value="@/style/jfoenix-components.css"/>
+        <URL value="@/style/jfoenix-main-demo.css"/>
+        <URL value="@/style/style.css"/>
+    </stylesheets>
+</VBox>

@@ -1,0 +1,45 @@
+/**
+ * Base
+ */
+.root {
+    /*-fx-background-color: #ffffff;*/
+    -fx-font-size: 14px;
+}
+
+.button-raised {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: rgb(77, 102, 204);
+    -fx-pref-width: 120;
+    -fx-text-fill: WHITE;
+
+}
+
+.button-raised-small {
+    /*-fx-padding: 0.7em 0.57em;*/
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-background-color: rgb(77, 102, 204);
+    -fx-pref-width: 120;
+    -fx-text-fill: WHITE;
+
+}
+
+.button-raised-secondary {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -jfx-button-type: RAISED;
+    -fx-pref-width: 120;
+    -fx-text-fill: WHITE;
+
+}
+
+.tab-label {
+    -fx-background-color: rgb(77, 102, 204);
+    -fx-min-height: 36;
+}
+
+.tab-header-background {
+    -fx-background-color: rgb(77, 102, 204);
+}
