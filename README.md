@@ -12,10 +12,18 @@
 - 可开启简洁模式，隐藏不常用的配置(开关在右上角)
 
 ## 如何使用
+### 方法一：下载源代码
+点击右上角**Clone or download**或用git拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
 
-直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
+用IDE打开项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
 
-本项目目前仅支持JDK1.8+和MySQL数据库，将尽快添加其他主流数据库的支持
+
+### 方法二：下载jar包
+当前为预览版，功能还未完善，暂不提供jar包
+可以执行`mvn: jfx:jar` 自助构建
+
+> 请保证您的JDK版本为1.8u60以上
+> 目前仅支持Mysql数据库，将尽快添加其他数据库的支持
 
 
 ## 贡献&&交流
