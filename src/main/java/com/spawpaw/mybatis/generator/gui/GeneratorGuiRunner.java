@@ -27,7 +27,7 @@ public class GeneratorGuiRunner extends Application {
         GeneratorGuiRunner.primaryStage = primaryStage;
         BaseController.setPrimaryStage(primaryStage);
         primaryStage.setTitle(Constants.ui.MAIN_WINDOW_TITLE);
-        primaryStage.setScene(new Scene(BaseController.loadView(this, "main.fxml", Locale.CHINA), 976, 720));
+        primaryStage.setScene(new Scene(BaseController.loadView("main.fxml", Locale.CHINA), 976, 720));
         primaryStage.setMinWidth(1024);
         primaryStage.setMinHeight(720);
         primaryStage.show();

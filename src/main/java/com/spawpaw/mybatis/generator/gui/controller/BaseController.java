@@ -33,22 +33,16 @@ public class BaseController {
     public transient static MainController mainWindowController;
     protected static transient ProjectConfig projectConfig;
 
-    public static <T> Parent loadView(T context, String resourceLocation, Locale locale) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setResources(ResourceBundle.getBundle(i18nPackage, locale));
-            return fxmlLoader.load(context.getClass().getResource("/layout/" + resourceLocation).openStream());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        return null;
+    public static FXMLLoader getFxmlLoader(String fxmlFileName) {
+        return new FXMLLoader(Thread.currentThread().getContextClassLoader().getResource("layout/" + fxmlFileName));
+
     }
 
-    public static Parent loadView(String resourceLocation, Locale locale) {
+    public static Parent loadView(String fxmlFileName, Locale locale) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
+            FXMLLoader fxmlLoader = getFxmlLoader(fxmlFileName);
             fxmlLoader.setResources(ResourceBundle.getBundle(i18nPackage, locale));
-            return fxmlLoader.load(BaseController.class.getResource("/layout/" + resourceLocation).openStream());
+            return fxmlLoader.load();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -91,10 +85,10 @@ public class BaseController {
         BaseController.primaryStage = primaryStage;
     }
 
-    public <T extends BaseController> T showWindow(String title, String fxmlPage) {
+    public <T extends BaseController> T showWindow(String title, String fxmlFileName) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(BaseController.class.getResource("/layout/" + fxmlPage).openStream());
+            FXMLLoader fxmlLoader = getFxmlLoader(fxmlFileName);
+            Parent root = fxmlLoader.load();
             T controller = fxmlLoader.getController();
             Stage stage = new Stage();
             stage.setTitle(title);
