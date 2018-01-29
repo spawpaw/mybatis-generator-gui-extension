@@ -3,3 +3,4 @@
 *.iml
 data/
 /target
+dependency-reduced-pom.xml
