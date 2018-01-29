@@ -186,9 +186,9 @@ public class DatabaseConfig extends BaseController implements Serializable {
 
         HBox hBox = new HBox();
         HBox spacer = new HBox();
-        hBox.getStylesheets().add("style/jfoenix-components.css");
-        hBox.getStylesheets().add("style/jfoenix-main-demo.css");
-        hBox.getStylesheets().add("style/style.css");
+        vBox.getStylesheets().add("style/jfoenix-components.css");
+        vBox.getStylesheets().add("style/jfoenix-main-demo.css");
+        vBox.getStylesheets().add("style/style.css");
         spacer.setPrefWidth(120);
         btn_test_connection.setMinWidth(120);
         btn_save_connection.setMinWidth(80);
