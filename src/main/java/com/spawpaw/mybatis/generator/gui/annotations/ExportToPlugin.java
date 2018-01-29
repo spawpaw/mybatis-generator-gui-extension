@@ -1,6 +1,5 @@
 package com.spawpaw.mybatis.generator.gui.annotations;
 
-import org.springframework.core.annotation.AliasFor;
 
 import java.lang.annotation.*;
 
@@ -20,7 +19,6 @@ public @interface ExportToPlugin {
     /**
      * 要导出到插件的全名
      */
-    @AliasFor("value")
     String plugin() default "";
 
     /**

@@ -1,6 +1,5 @@
 package com.spawpaw.mybatis.generator.gui.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.spawpaw.mybatis.generator.gui.config.ChoiceBoxConfig;
@@ -226,8 +225,6 @@ public class DatabaseConfig extends BaseController implements Serializable {
                 FileUtil.writeStringToFile(String.format("data/connection/%s.json", savedName.getValue()), s);
                 showMessage("保存成功");
             }
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
