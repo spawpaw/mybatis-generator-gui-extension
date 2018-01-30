@@ -19,8 +19,9 @@
 
 
 ### 方法二：下载jar包
-当前为预览版，功能还未完善，暂不提供jar包
-可以执行`mvn: jfx:jar` 自助构建
+已经打包好了jar、exe两种可执行文件，[前往下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>
+
+也可以选择执行`mvn: jfx:jar` 自助构建  
 
 > 请保证您的JDK版本为1.8u60以上
 > 目前仅支持Mysql数据库，将尽快添加其他数据库的支持
