@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="520.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spawpaw.mybatis.generator.gui.controller.MainCompactController">
+   <children>
+      <HBox minHeight="48.0">
+         <children>
+            <Button mnemonicParsing="false" text="Button" />
+         </children></HBox>
+      <HBox prefHeight="10000.0">
+         <children>
+            <VBox minWidth="255.0" />
+            <VBox prefWidth="10000.0">
+               <children>
+                  <VBox prefHeight="10000.0" />
+                  <HBox alignment="CENTER_RIGHT" minHeight="48.0">
+                     <children>
+                        <Button mnemonicParsing="false" text="Button" />
+                        <Button mnemonicParsing="false" text="Button" />
+                     </children></HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
