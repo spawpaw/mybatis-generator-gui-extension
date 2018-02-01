@@ -3,6 +3,9 @@
 ## 简介
 **mybatis-generator-gui-extension**是一个为MybatisGenerator编写的图形化界面，集成了几乎所有`mybatis generator`的默认配置。
 
+[查看更多预览图片](./wiki/PREVIEW.md)
+
+
 ![示例图片](./wiki/images/main_window.png)
 ## 特性
 - 省去繁琐的让人眼花缭乱的XML配置，在图形化界面中轻松生成代码
