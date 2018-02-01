@@ -25,7 +25,7 @@
 
 
 ### 方法二：下载jar包
-可以执行`mvn: jfx:jar` 自助构建
+可以执行`mvn: jfx:jar` 自助构建  
 或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>
 > 请保证您的JDK版本为1.8u60以上
 
