@@ -1,8 +1,10 @@
 package com.spawpaw.mybatis.generator.gui.controls;
 
+import com.spawpaw.mybatis.generator.gui.util.Constants;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 
 import java.util.ArrayList;
@@ -14,32 +16,56 @@ import java.util.List;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public abstract class IControl<T> {
+    protected static final int MIN_WIDTH_LEFT = 150;
+    protected static final int MIN_WIDTH_RIGHT = 150;
     private static List<IControl> controls = new ArrayList<>();
-
+    protected String _testRegex = "";
+    protected String _onValidateFailure = "";
+    protected StringProperty labelTextProperty = new SimpleStringProperty("");
+    protected StringProperty promptTextProperty = new SimpleStringProperty("");
+    protected StringProperty helpTextProperty = new SimpleStringProperty("");
+    protected StringProperty onValidateFailureTextProperty = new SimpleStringProperty("");
+    protected Property<T> value;
+    protected HBox layout = new HBox();
+    protected Tooltip tooltip = new Tooltip();
+    protected Tooltip onValidateFailureToolTip = new Tooltip();
     private String _labelText = "";
     private String _promptText = "";
     private String _helpText = "";
-    private String visibleGroup = "";
-    protected String testRegex = "";
-    protected String onValidateFailure = "";
-
-    protected StringProperty labelText = new SimpleStringProperty();
-    protected StringProperty promptText = new SimpleStringProperty();
-    protected StringProperty helpText = new SimpleStringProperty();
-    protected Property<T> value;
-    protected HBox layout = new HBox();
+    private String _visibleGroup = "";
 
     protected IControl() {
-        System.out.println("IControl:构造函数");
+        tooltip.textProperty().bindBidirectional(helpTextProperty);
+        tooltip.setStyle("-fx-font-size:14");
+        onValidateFailureToolTip.textProperty().bindBidirectional(onValidateFailureTextProperty);
         controls.add(this);
+        refreshLabel();
     }
+
+    /**
+     * 刷新所有控件的label
+     */
+    public static void refreshLabels() {
+        for (IControl control : controls) {
+            control.refreshLabel();
+        }
+    }
+
+    /**
+     * 根据Locale更新显示的字符
+     */
+    private void refreshLabel() {
+        labelTextProperty.setValue(Constants.getI18nStr(_labelText));
+        promptTextProperty.setValue(Constants.getI18nStr(_promptText));
+        helpTextProperty.setValue(Constants.getI18nStr(_helpText));
+    }
+
 
     private void initialize() {
         initView();
         bindProperties();
         refreshLabel();
     }
-
 
     protected abstract void initView();
 
@@ -48,24 +74,10 @@ public abstract class IControl<T> {
     public HBox getLayout() {
         if (layout == null || layout.getChildren().size() == 0)
             initialize();
+        layout.setPadding(Constants.ui.DEFAULT_CTL_INSETS);
         return layout;
     }
 
-    /**
-     * 根据Locale更新显示的字符
-     */
-    public static void refreshLabels() {
-        for (IControl control : controls) {
-            control.refreshLabel();
-        }
-    }
-
-    private void refreshLabel() {
-        labelText.setValue(_labelText);
-        promptText.setValue(_promptText);
-        helpText.setValue(_helpText);
-
-    }
 
     public void set_labelText(String _labelText) {
         this._labelText = _labelText;
@@ -79,20 +91,20 @@ public abstract class IControl<T> {
         this._helpText = _helpText;
     }
 
-    public void setVisibleGroup(String visibleGroup) {
-        this.visibleGroup = visibleGroup;
+    public void set_visibleGroup(String _visibleGroup) {
+        this._visibleGroup = _visibleGroup;
     }
 
-    public void setTestRegex(String testRegex) {
-        this.testRegex = testRegex;
+    public void set_testRegex(String _testRegex) {
+        this._testRegex = _testRegex;
     }
 
-    public void setOnValidateFailure(String onValidateFailure) {
-        this.onValidateFailure = onValidateFailure;
+    public void set_onValidateFailure(String _onValidateFailure) {
+        this._onValidateFailure = _onValidateFailure;
     }
 
-    public void setValue(T value) {
-        this.value.setValue(value);
+    public void setValue(Property<T> value) {
+        this.value = value;
     }
 
     /**

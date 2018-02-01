@@ -8,10 +8,11 @@ import javafx.scene.control.CheckBox;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class CheckableTextAreaControl extends TextAreaControl {
-    CheckBox checkBox = new CheckBox();
+    CheckBox checkBox;
 
     @Override
     public void initView() {
+        checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
         super.initView();
     }
@@ -19,6 +20,11 @@ public class CheckableTextAreaControl extends TextAreaControl {
     @Override
     protected void bindProperties() {
         super.bindProperties();
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue)
+                value.setValue("");
+            textArea.setDisable(!newValue);
+        });
     }
 
     @Override

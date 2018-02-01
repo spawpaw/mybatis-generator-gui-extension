@@ -1,6 +1,5 @@
 package com.spawpaw.mybatis.generator.gui.controls;
 
-import com.spawpaw.mybatis.generator.gui.annotations.Config;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
@@ -16,14 +15,12 @@ import java.util.Map;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class RootController {
-    @Config(
-
-    )
     public transient static Stage primaryStage;
 
 
     public transient static Map<RootController, Stage> controllers = new HashMap<>();
-//    public transient static MainController mainWindowController;
+
+    //    public transient static MainController mainWindowController;
     public static URL getFxmlURL(String fxmlFileName) {
         return Thread.currentThread().getContextClassLoader().getResource("layout/" + fxmlFileName);
     }

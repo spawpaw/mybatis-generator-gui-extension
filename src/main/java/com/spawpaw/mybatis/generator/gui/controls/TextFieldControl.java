@@ -9,19 +9,24 @@ import javafx.scene.control.TextField;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class TextFieldControl extends IControl<String> {
-    private TextField textField = new TextField();
-    private Label label = new Label();
+    protected TextField textField;
+    private Label label;
 
 
     @Override
     public void initView() {
+        textField = new TextField();
+        label = new Label();
         layout.getChildren().addAll(label, textField);
+        textField.setTooltip(tooltip);
     }
 
     @Override
     protected void bindProperties() {
-        this.textField.promptTextProperty().bindBidirectional(this.promptText);
+        label.setMinWidth(MIN_WIDTH_LEFT);
+        textField.setMinWidth(MIN_WIDTH_RIGHT);
+        this.textField.promptTextProperty().bindBidirectional(this.promptTextProperty);
         this.textField.textProperty().bindBidirectional(value);
-        this.label.textProperty().bindBidirectional(this.labelText);
+        this.label.textProperty().bindBidirectional(this.labelTextProperty);
     }
 }

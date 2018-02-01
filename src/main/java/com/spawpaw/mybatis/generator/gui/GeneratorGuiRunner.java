@@ -2,9 +2,6 @@ package com.spawpaw.mybatis.generator.gui;
 
 import com.spawpaw.mybatis.generator.gui.controller.BaseController;
 import com.spawpaw.mybatis.generator.gui.util.Constants;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.util.Locale;
 
@@ -15,22 +12,12 @@ import java.util.Locale;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class GeneratorGuiRunner extends Application {
-    public static Stage primaryStage;
-
+public class GeneratorGuiRunner {
     public static void main(String[] args) {
-        launch(args);
+        //set your language(only supports CHINESE or ENGLISH)
+        Constants.setLocale(Locale.getDefault());
+//        Constants.setLocale(Locale.CHINA);
+//        Constants.setLocale(Locale.ENGLISH);
+        BaseController.launchWindow(args);
     }
-
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        GeneratorGuiRunner.primaryStage = primaryStage;
-        BaseController.setPrimaryStage(primaryStage);
-        primaryStage.setTitle(Constants.ui.MAIN_WINDOW_TITLE);
-        primaryStage.setScene(new Scene(BaseController.loadView("main.fxml", Locale.CHINA), 976, 720));
-        primaryStage.setMinWidth(1024);
-        primaryStage.setMinHeight(720);
-        primaryStage.show();
-    }
-
 }

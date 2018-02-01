@@ -9,17 +9,22 @@ import javafx.scene.control.TextArea;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class TextAreaControl extends IControl<String> {
-    private Label label = new Label();
-    private TextArea textArea = new TextArea();
+    protected TextArea textArea;
+    private Label label;
 
     @Override
     protected void initView() {
+
+        label = new Label();
+        textArea = new TextArea();
         layout.getChildren().addAll(label, textArea);
     }
 
     @Override
     protected void bindProperties() {
-        label.textProperty().bindBidirectional(this.labelText);
+        label.setMinWidth(MIN_WIDTH_LEFT);
+        textArea.setMinWidth(MIN_WIDTH_RIGHT);
+        label.textProperty().bindBidirectional(this.labelTextProperty);
         textArea.textProperty().bindBidirectional(this.value);
     }
 }

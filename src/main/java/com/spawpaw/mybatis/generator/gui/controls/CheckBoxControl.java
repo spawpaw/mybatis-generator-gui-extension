@@ -8,16 +8,17 @@ import javafx.scene.control.CheckBox;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class CheckBoxControl extends IControl<Boolean> {
-    CheckBox checkBox = new CheckBox();
+    CheckBox checkBox;
 
     @Override
     protected void initView() {
+        checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
     }
 
     @Override
     protected void bindProperties() {
         checkBox.selectedProperty().bindBidirectional(value);
-        checkBox.textProperty().bindBidirectional(this.labelText);
+        checkBox.textProperty().bindBidirectional(this.labelTextProperty);
     }
 }

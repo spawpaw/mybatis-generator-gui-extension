@@ -6,40 +6,68 @@
     -fx-font-size: 14px;
 }
 
-.button-raised {
-    -fx-padding: 0.7em 0.57em;
-    -fx-font-size: 14px;
-    -jfx-button-type: RAISED;
-    -fx-background-color: rgb(77, 102, 204);
-    -fx-pref-width: 120;
-    -fx-text-fill: WHITE;
+.button {
 
 }
 
-.button-raised-small {
+.button-default {
     /*-fx-padding: 0.7em 0.57em;*/
     -fx-font-size: 14px;
-    -jfx-button-type: RAISED;
     -fx-background-color: rgb(77, 102, 204);
     -fx-pref-width: 120;
     -fx-text-fill: WHITE;
-
 }
 
-.button-raised-secondary {
+.button-primary {
     -fx-padding: 0.7em 0.57em;
     -fx-font-size: 14px;
-    -jfx-button-type: RAISED;
+    -fx-background-color: rgb(77, 102, 204);
     -fx-pref-width: 120;
     -fx-text-fill: WHITE;
+}
 
+.button-primary:hover {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-background-color: rgb(95, 123, 255);
+    -fx-pref-width: 120;
+    -fx-text-fill: WHITE;
+}
+
+.link-button {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-pref-width: 120;
+    -fx-text-fill: #4d66cc;
+}
+
+.link-button:hover {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-pref-width: 120;
+    -fx-text-fill: #6da1ff;
+}
+
+.tab {
+    -fx-font-size: 16;
+    -fx-base: rgb(77, 102, 204);
 }
 
 .tab-label {
-    -fx-background-color: rgb(77, 102, 204);
-    -fx-min-height: 36;
+    -fx-text-fill: rgba(255, 255, 255, 0.78);
 }
+
 
 .tab-header-background {
     -fx-background-color: rgb(77, 102, 204);
+}
+
+.toggle-button {
+    -fx-base: skyblue;
+}
+
+.toggle-button:selected {
+    -fx-base: gray;
 }

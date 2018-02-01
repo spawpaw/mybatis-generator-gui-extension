@@ -19,7 +19,7 @@ public @interface ExportToPlugin {
     /**
      * 要导出到插件的全名
      */
-    String plugin() default "";
+    String plugin();
 
     /**
      * 该项配置的键

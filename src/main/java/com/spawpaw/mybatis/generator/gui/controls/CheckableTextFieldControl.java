@@ -8,10 +8,11 @@ import javafx.scene.control.CheckBox;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class CheckableTextFieldControl extends TextFieldControl {
-    CheckBox checkBox = new CheckBox();
+    CheckBox checkBox;
 
     @Override
     public void initView() {
+        checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
         super.initView();
     }
@@ -19,6 +20,12 @@ public class CheckableTextFieldControl extends TextFieldControl {
     @Override
     protected void bindProperties() {
         super.bindProperties();
+        checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue)
+                value.setValue("");
+            textField.setDisable(!newValue);
+        });
+        textField.setDisable(!checkBox.selectedProperty().getValue());
     }
 
     @Override
@@ -26,4 +33,6 @@ public class CheckableTextFieldControl extends TextFieldControl {
         checkBox.setSelected(this.value.toString().isEmpty());
         return checkBox.selectedProperty().getValue() && super.isValid();
     }
+
+
 }

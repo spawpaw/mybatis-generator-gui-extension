@@ -10,7 +10,10 @@
 - 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 - 配置全面，包含几乎所有mybatis-generator的配置
 - 可开启简洁模式，隐藏不常用的配置(开关在右上角)
-
+- 鼠标悬停即可显示帮助信息，方便快捷
+    ![示例图片](./wiki/images/tooltip_example.png)
+- 可以选择语言（目前支持中英两种语言）
+    
 ## 如何使用
 ### 方法一：下载源代码
 点击右上角**Clone or download**或用git拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
@@ -19,11 +22,9 @@
 
 
 ### 方法二：下载jar包
-当前为预览版，功能还未完善，暂不提供jar包
 可以执行`mvn: jfx:jar` 自助构建
-
+或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>
 > 请保证您的JDK版本为1.8u60以上
-> 目前仅支持Mysql数据库，将尽快添加其他数据库的支持
 
 
 ## 贡献&&交流

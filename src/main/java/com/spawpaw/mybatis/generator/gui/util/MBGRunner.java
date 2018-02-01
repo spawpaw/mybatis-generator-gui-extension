@@ -1,10 +1,11 @@
 package com.spawpaw.mybatis.generator.gui.util;
 
+import com.spawpaw.mybatis.generator.gui.DatabaseConfig;
 import com.spawpaw.mybatis.generator.gui.ProjectConfig;
 import com.spawpaw.mybatis.generator.gui.annotations.EnablePlugin;
 import com.spawpaw.mybatis.generator.gui.annotations.ExportToPlugin;
-import com.spawpaw.mybatis.generator.gui.config.Config;
-import com.spawpaw.mybatis.generator.gui.controller.TableColumnMetaData;
+import com.spawpaw.mybatis.generator.gui.entity.TableColumnMetaData;
+import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
 import javafx.beans.property.Property;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
@@ -27,22 +28,27 @@ import java.util.*;
 public class MBGRunner {
     private static boolean overwrite = true;
     private ProjectConfig projectConfig;
+    private DatabaseConfig databaseConfig;
+
     private Set<String> enabledPlugins = new HashSet<>();
     private HashMap<String, HashMap<String, String>> pluginConfigs = new HashMap<>();
     private Configuration config;
     private Context context;
 
-    public MBGRunner(ProjectConfig projectConfig) {
+    public MBGRunner(ProjectConfig projectConfig, DatabaseConfig databaseConfig) {
         this.projectConfig = projectConfig;
+        this.databaseConfig = databaseConfig;
     }
 
 
     public void generate() {
         config = new Configuration();
         //default model type
-        if (projectConfig.generateSeparateEntityForBlob.getValue())
+        if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("CONDITIONAL"))
             context = new Context(ModelType.CONDITIONAL);
-        else context = new Context(ModelType.FLAT);
+        else if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("FLAT"))
+            context = new Context(ModelType.FLAT);
+        else context = new Context(ModelType.HIERARCHICAL);
 
 
         context.setId("mybatis generator gui extension");//id
@@ -57,11 +63,11 @@ public class MBGRunner {
         //====================================================================================================注释生成器
         if (projectConfig.enableComment.getValue()) {
             CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
-            commentGeneratorConfiguration.setConfigurationType(Constants.plugins.CommentPlugin);
+            commentGeneratorConfiguration.setConfigurationType(DeclaredPlugins.CommentPlugin);
 //            commentGeneratorConfiguration.addProperty("suppressDate", "false");
 //            commentGeneratorConfiguration.addProperty("suppressAllComments", "true");
-            if (pluginConfigs.containsKey(Constants.plugins.CommentPlugin)) {
-                HashMap<String, String> pluginProperties = pluginConfigs.get(Constants.plugins.CommentPlugin);
+            if (pluginConfigs.containsKey(DeclaredPlugins.CommentPlugin)) {
+                HashMap<String, String> pluginProperties = pluginConfigs.get(DeclaredPlugins.CommentPlugin);
                 for (String key : pluginProperties.keySet())
                     commentGeneratorConfiguration.addProperty(key, pluginProperties.get(key));
             }
@@ -70,10 +76,10 @@ public class MBGRunner {
 
         //==============================================================================================jdbc connection
         JDBCConnectionConfiguration jdbcConnectionConfiguration = new JDBCConnectionConfiguration();
-        jdbcConnectionConfiguration.setDriverClass(projectConfig.selectedDatabaseConfig.driver());
-        jdbcConnectionConfiguration.setConnectionURL(projectConfig.selectedDatabaseConfig.connectionUrl());
-        jdbcConnectionConfiguration.setUserId(projectConfig.selectedDatabaseConfig.username.getValue());
-        jdbcConnectionConfiguration.setPassword(projectConfig.selectedDatabaseConfig.password.getValue());
+        jdbcConnectionConfiguration.setDriverClass(databaseConfig.driver());
+        jdbcConnectionConfiguration.setConnectionURL(databaseConfig.connectionUrl());
+        jdbcConnectionConfiguration.setUserId(databaseConfig.userName.getValue());
+        jdbcConnectionConfiguration.setPassword(databaseConfig.password.getValue());
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
 
         //=============================================================================================javaTypeResolver
@@ -83,7 +89,7 @@ public class MBGRunner {
 
         //========================================================================================================model
         JavaModelGeneratorConfiguration javaModelGeneratorConfiguration = new JavaModelGeneratorConfiguration();
-        javaModelGeneratorConfiguration.setTargetPackage(projectConfig.entityPackage.getValue());
+        javaModelGeneratorConfiguration.setTargetPackage(projectConfig.entityPackage.getValue().replace(" ", ""));
         javaModelGeneratorConfiguration.setTargetProject(projectDir() + projectConfig.entityDir.getValue());
         javaModelGeneratorConfiguration.addProperty("enableSubPackages", "true");
         javaModelGeneratorConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());
@@ -109,16 +115,16 @@ public class MBGRunner {
 
         //========================================================================================================table
         TableConfiguration tableConfiguration = new TableConfiguration(context);
-        tableConfiguration.setTableName(projectConfig.selectedDatabaseConfig.selectedTable.getValue());
-        tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue());
-        tableConfiguration.setMapperName(projectConfig.daoObjName.getValue());
+        tableConfiguration.setTableName(projectConfig.selectedTable.getValue());
+        tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ",""));
+        tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ",""));
 
         tableConfiguration.setInsertStatementEnabled(projectConfig.enableInsert.getValue());
         tableConfiguration.setSelectByPrimaryKeyStatementEnabled(projectConfig.enableSelectByPrimaryKey.getValue());
         tableConfiguration.setSelectByExampleStatementEnabled(projectConfig.enableSelectByExample.getValue());
-        if (projectConfig.selectByPrimaryKeyQueryId.isChecked())
+        if (projectConfig.selectByPrimaryKeyQueryId.getValue().isEmpty())
             tableConfiguration.setSelectByPrimaryKeyQueryId(projectConfig.selectByPrimaryKeyQueryId.getValue());
-        if (projectConfig.selectByExampleQueryId.isChecked())
+        if (!projectConfig.selectByExampleQueryId.getValue().isEmpty())
             tableConfiguration.setSelectByExampleQueryId(projectConfig.selectByExampleQueryId.getValue());
         tableConfiguration.setUpdateByPrimaryKeyStatementEnabled(projectConfig.enableUpdateByPrimaryKey.getValue());
         tableConfiguration.setUpdateByExampleStatementEnabled(projectConfig.enableUpdateByExample.getValue());
@@ -132,20 +138,19 @@ public class MBGRunner {
             tableConfiguration.setGeneratedKey(new GeneratedKey(projectConfig.primaryKey.getValue(), "JDBC", true, null));
 
         //添加忽略列/列覆写
-        if (projectConfig.selectedDatabaseConfig.columns != null)
-            for (TableColumnMetaData column : projectConfig.selectedDatabaseConfig.columns) {
-                if (!column.getChecked()) {
-                    System.out.println("忽略的列：" + column.getColumnName());
-                    tableConfiguration.addIgnoredColumn(new IgnoredColumn(column.getColumnName()));
-                } else {
-                    ColumnOverride columnOverride = new ColumnOverride(column.getColumnName());
-                    columnOverride.setJavaProperty(column.getPropertyName());
-                    columnOverride.setJavaType(column.getJavaType());
-                    columnOverride.setJdbcType(column.getJdbcType());
-                    columnOverride.setTypeHandler(column.getTypeHandle());
-                    tableConfiguration.addColumnOverride(columnOverride);
-                }
+        for (TableColumnMetaData column : databaseConfig.tableConfigs.get(projectConfig.selectedTable.getValue())) {
+            if (!column.getChecked()) {
+                System.out.println("忽略的列：" + column.getColumnName());
+                tableConfiguration.addIgnoredColumn(new IgnoredColumn(column.getColumnName()));
+            } else {
+                ColumnOverride columnOverride = new ColumnOverride(column.getColumnName());
+                columnOverride.setJavaProperty(column.getPropertyName());
+                columnOverride.setJavaType(column.getJavaType());
+                columnOverride.setJdbcType(column.getJdbcType());
+                columnOverride.setTypeHandler(column.getTypeHandle());
+                tableConfiguration.addColumnOverride(columnOverride);
             }
+        }
 
         context.addTableConfiguration(tableConfiguration);
 
@@ -176,14 +181,11 @@ public class MBGRunner {
             for (Field field : ProjectConfig.class.getFields()) {
                 String valueOfField;
                 //获取配置项的值
-                if (field.get(projectConfig) instanceof Config)
-                    valueOfField = ((Config) field.get(projectConfig)).getValue().toString();
-                else if (field.get(projectConfig) instanceof Property)
+                if (field.get(projectConfig) instanceof Property)
                     valueOfField = ((Property) field.get(projectConfig)).getValue().toString();
                 else {
-                    System.out.println(String.format("initPluginConfigs:不支持的配置:%s,将调用该配置的toString方法", field.getName()));
-                    valueOfField = field.get(projectConfig).toString();
-//                    continue;
+                    System.out.println(String.format("initPluginConfigs:不支持的配置:%s,类型不是Property", field.getName()));
+                    continue;
                 }
                 //如果该配置项设置了启动某个Plugin的Trigger，将启用指定的plugin
                 for (EnablePlugin enablePlugin : field.getAnnotationsByType(EnablePlugin.class)) {
@@ -191,7 +193,7 @@ public class MBGRunner {
                         enabledPlugins.add(enablePlugin.value());
                     }
                 }
-                //将配置项的值加入到plugin的properties中
+                //将配置项的值加入到plugin的properties中,如果没有指定key，则使用变量名称
                 for (ExportToPlugin exportToPlugin : field.getAnnotationsByType(ExportToPlugin.class)) {
                     System.out.printf("配置:%s,值：%s,,plugin:%s   key:%s  \n", field.getName(), valueOfField, exportToPlugin.plugin(), exportToPlugin.key());
                     pluginConfigs.putIfAbsent(exportToPlugin.plugin(), new HashMap<>());
