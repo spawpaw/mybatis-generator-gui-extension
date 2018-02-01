@@ -1,7 +1,6 @@
-package com.spawpaw.mybatis.generator.gui.controller;
+package com.spawpaw.mybatis.generator.gui.entity;
 
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,7 +13,7 @@ import javafx.beans.property.StringProperty;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class TableColumnMetaData extends RecursiveTreeObject<TableColumnMetaData> {
+public class TableColumnMetaData  {
 
     private BooleanProperty checked = new SimpleBooleanProperty(true);
 

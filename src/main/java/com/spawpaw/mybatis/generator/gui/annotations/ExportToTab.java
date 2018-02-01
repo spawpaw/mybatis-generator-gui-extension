@@ -1,7 +1,5 @@
 package com.spawpaw.mybatis.generator.gui.annotations;
 
-import com.spawpaw.mybatis.generator.gui.util.Constants;
-
 import java.lang.annotation.*;
 
 import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.BASIC_SETTINGS;
@@ -19,7 +17,7 @@ import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.BASIC_SETTIN
 @Repeatable(ExportToTabs.class)
 public @interface ExportToTab {
 
-    Constants.tabs layer() default BASIC_SETTINGS;
+    String tabName() default BASIC_SETTINGS;
 
     int index() default 1000;
 }

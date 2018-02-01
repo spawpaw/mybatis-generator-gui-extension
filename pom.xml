@@ -34,13 +34,6 @@
             <version>2.8.2</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.jfoenix</groupId>
-            <artifactId>jfoenix</artifactId>
-            <version>${java.language.level}.0.1</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>

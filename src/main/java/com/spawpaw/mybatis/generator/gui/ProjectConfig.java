@@ -1,25 +1,14 @@
 package com.spawpaw.mybatis.generator.gui;
 
 import com.google.common.base.CaseFormat;
-import com.google.gson.Gson;
-import com.spawpaw.mybatis.generator.gui.annotations.AdvancedConfig;
-import com.spawpaw.mybatis.generator.gui.annotations.EnablePlugin;
-import com.spawpaw.mybatis.generator.gui.annotations.ExportToPlugin;
-import com.spawpaw.mybatis.generator.gui.annotations.ExportToTab;
-import com.spawpaw.mybatis.generator.gui.config.*;
-import com.spawpaw.mybatis.generator.gui.controller.BaseController;
-import com.spawpaw.mybatis.generator.gui.controller.DatabaseConfig;
-import com.spawpaw.mybatis.generator.gui.controller.MainController;
+import com.spawpaw.mybatis.generator.gui.annotations.*;
+import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
 import com.spawpaw.mybatis.generator.gui.util.Constants;
-import com.spawpaw.mybatis.generator.gui.util.Constants.plugins;
 import com.spawpaw.mybatis.generator.gui.util.Constants.tabs;
-import com.spawpaw.mybatis.generator.gui.util.FileUtil;
-import org.hildan.fxgson.FxGson;
-
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DATA_ACCESS_OBJECT;
 import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DOMAIN_OBJECT;
@@ -27,94 +16,135 @@ import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DOMAIN_OBJEC
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
  * Description:
+ * 默认的MBG配置
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-
-
 public class ProjectConfig {
-    public DatabaseConfig selectedDatabaseConfig;
+    public StringProperty selectedTable = new SimpleStringProperty("");
     /****基本配置******************************************************************************************************/
-    @ExportToTab(layer = tabs.BASIC_SETTINGS, index = 1)
-    public TextFieldConfig savedName = new TextFieldConfig("保存名称", "untitled");
-    public FileChooserConfig projectDir = new FileChooserConfig("项目所在目录", "");
-    public TextFieldConfig basePackage = new TextFieldConfig("basePackage", "com.example.ssm");
-    public ChoiceBoxConfig javaClientMapperType = new ChoiceBoxConfig("mapper类型", "XMLMAPPER", Constants.javaClientGeneratorMapperType);
-    public TextFieldConfig reduceTablePrefix = new TextFieldConfig("表名去前缀", "");
+    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
+    @Config(bundle = "project.savedName", helpText = "保存的名称")
+    public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
+    @Config(bundle = "project.projectDir", type = ConfigType.DirChooser)
+    public SimpleStringProperty projectDir = new SimpleStringProperty("");
+    @Config(bundle = "project.basePackage")
+    public SimpleStringProperty basePackage = new SimpleStringProperty("");
+    @Config(bundle = "project.reduceTablePrefix")
+    public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
     @AdvancedConfig
-    public TextFieldConfig daoObjSuffix = new TextFieldConfig("Mapper后缀", "Mapper");
+    @Config(bundle = "project.daoObjSuffix")
+    public SimpleStringProperty daoObjSuffix = new SimpleStringProperty("Mapper");
     @AdvancedConfig
-    public TextFieldConfig daoPackageSuffix = new TextFieldConfig("dao层包后缀", "dao");
+    @Config(bundle = "project.daoPackageSuffix")
+    public SimpleStringProperty daoPackageSuffix = new SimpleStringProperty("dao");
     @AdvancedConfig
-    public TextFieldConfig entityObjSuffix = new TextFieldConfig("实体后缀", "");
+    @Config(bundle = "project.entityObjSuffix")
+    public SimpleStringProperty entityObjSuffix = new SimpleStringProperty("");
     @AdvancedConfig
-    public TextFieldConfig exampleObjSuffix = new TextFieldConfig("Example后缀", "Example");
+    @Config(bundle = "project.exampleObjSuffix")
+    public SimpleStringProperty exampleObjSuffix = new SimpleStringProperty("Example");
     @AdvancedConfig
-    public TextFieldConfig entityPackageSuffix = new TextFieldConfig("实体包后缀", "entity");
-
-    @ExportToTab(layer = tabs.COMMENT)
-    @ExportToPlugin(plugin = plugins.CommentPlugin, key = "fileHeader")
-    public TextAreaConfig fileHeader = new TextAreaConfig("fileHeader", "/**\n * Created by MBG-gui-extension 2018.1.1\n * ${tableComment}\n *\n * @author \n **/");
-    public CheckBoxConfig enableComment = new CheckBoxConfig("为实体域生成注释", true);
-
+    @Config(bundle = "project.entityPackageSuffix")
+    public SimpleStringProperty entityPackageSuffix = new SimpleStringProperty("entity");
 
     /****DAO层配置******************************************************************************************************/
-    @ExportToTab(layer = DATA_ACCESS_OBJECT, index = 1)
-    public TextFieldConfig mapperDir = new TextFieldConfig("mapper所在目录", "src/main/resources");
-    public TextFieldConfig mapperPackage = new TextFieldConfig("mapper包名", "mapper");
-    public TextFieldConfig daoDir = new TextFieldConfig("接口所在目录", "src/main/java");
-    public TextFieldConfig daoPackage = new TextFieldConfig("接口包名", "");
-    public TextFieldConfig daoObjName = new TextFieldConfig("Mapper名称", "");
-    @EnablePlugin(plugins.PagePlugin)
-    public CheckBoxConfig enablePagePlugin = new CheckBoxConfig("启用分页插件", true);
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @Config(bundle = "project.javaClientMapperType", type = ConfigType.ChoiceBox, testRegex = "ANNOTATEDMAPPER|MIXEDMAPPER|XMLMAPPER")
+    public SimpleStringProperty javaClientMapperType = new SimpleStringProperty("XMLMAPPER");
+    @Config(bundle = "project.mapperDir", type = ConfigType.TextField)
+    public SimpleStringProperty mapperDir = new SimpleStringProperty("src/main/resources");
+    @Config(bundle = "project.mapperPackage", type = ConfigType.TextField)
+    public SimpleStringProperty mapperPackage = new SimpleStringProperty("mapper");
+    @Config(bundle = "project.daoDir", type = ConfigType.TextField)
+    public SimpleStringProperty daoDir = new SimpleStringProperty("src/main/java");
+    @Config(bundle = "project.daoPackage", type = ConfigType.TextField)
+    public SimpleStringProperty daoPackage = new SimpleStringProperty("");
+    @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
+    public SimpleStringProperty daoObjName = new SimpleStringProperty("");
+    @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableInsert = new CheckBoxConfig("enableInsert", true);
+    @Config(bundle = "project.enableInsert", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableInsert = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableSelectByPrimaryKey = new CheckBoxConfig("enableSelectByPrimaryKey", true);
+    @Config(bundle = "project.enableSelectByPrimaryKey", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableSelectByPrimaryKey = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableSelectByExample = new CheckBoxConfig("enableSelectByExample", true);
+    @Config(bundle = "project.enableSelectByExample", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableSelectByExample = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableUpdateByPrimaryKey = new CheckBoxConfig("enableUpdateByPrimaryKey", true);
+    @Config(bundle = "project.enableUpdateByPrimaryKey", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableUpdateByPrimaryKey = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableDeleteByPrimaryKey = new CheckBoxConfig("enableDeleteByPrimaryKey", true);
+    @Config(bundle = "project.enableDeleteByPrimaryKey", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableDeleteByPrimaryKey = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableDeleteByExample = new CheckBoxConfig("enableDeleteByExample", true);
+    @Config(bundle = "project.enableDeleteByExample", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableDeleteByExample = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableCountByExample = new CheckBoxConfig("enableCountByExample", true);
+    @Config(bundle = "project.enableCountByExample", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableCountByExample = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckBoxConfig enableUpdateByExample = new CheckBoxConfig("enableUpdateByExample", true);
+    @Config(bundle = "project.enableUpdateByExample", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableUpdateByExample = new SimpleBooleanProperty(true);
     @AdvancedConfig
-    public CheckableTextFieldConfig selectByPrimaryKeyQueryId = new CheckableTextFieldConfig("selectByPrimaryKeyQueryId", "", false);
+    @Config(bundle = "project.selectByPrimaryKeyQueryId", type = ConfigType.CheckableTextField)
+    public SimpleStringProperty selectByPrimaryKeyQueryId = new SimpleStringProperty("");
     @AdvancedConfig
-    public CheckableTextFieldConfig selectByExampleQueryId = new CheckableTextFieldConfig("selectByExampleQueryId", "", false);
+    @Config(bundle = "project.selectByExampleQueryId", type = ConfigType.CheckableTextField)
+    public SimpleStringProperty selectByExampleQueryId = new SimpleStringProperty("");
 
 
     /****Entity层配置***************************************************************************************************/
-    @ExportToTab(layer = DOMAIN_OBJECT, index = 1)
-    public TextFieldConfig entityDir = new TextFieldConfig("entity所在目录", "src/main/java");
-    public TextFieldConfig entityPackage = new TextFieldConfig("entity包名", "entity");
-    public TextFieldConfig entityObjName = new TextFieldConfig("entity名称", "");
-    public TextFieldConfig exampleObjName = new TextFieldConfig("Example名称", "");
-    public TextFieldConfig primaryKey = new TextFieldConfig("主键", "");
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @Config(bundle = "project.defaultModelType", type = ConfigType.ChoiceBox, testRegex = "conditional|flat|hierarchical")
+    public StringProperty defaultModelType = new SimpleStringProperty("conditional");
+    @Config(bundle = "project.entityDir", type = ConfigType.TextField)
+    public SimpleStringProperty entityDir = new SimpleStringProperty("src/main/java");
+    @Config(bundle = "project.entityPackage", type = ConfigType.TextField)
+    public SimpleStringProperty entityPackage = new SimpleStringProperty("entity");
+    @Config(bundle = "project.entityObjName", type = ConfigType.TextField)
+    public SimpleStringProperty entityObjName = new SimpleStringProperty("");
+    @Config(bundle = "project.exampleObjName", type = ConfigType.TextField)
+    public SimpleStringProperty exampleObjName = new SimpleStringProperty("");
+    @Config(bundle = "project.primaryKey", type = ConfigType.CheckableTextField)
+    public SimpleStringProperty primaryKey = new SimpleStringProperty("");
 
-    @EnablePlugin(plugins.ToStringPlugin)
-    public CheckBoxConfig generateToString = new CheckBoxConfig("生成toString方法", true);
-    @EnablePlugin(plugins.EqualsHashCodePlugin)
-    public CheckBoxConfig generateHashcodeEquals = new CheckBoxConfig("生成hashCode/equals方法", true);
-    @EnablePlugin(plugins.SerializablePlugin)
-    public CheckBoxConfig implementsSerializable = new CheckBoxConfig("实体域继承Serializable接口", true);
-    public CheckBoxConfig generateSeparateEntityForBlob = new CheckBoxConfig("当包含Blob类型时，生成单独实体", false);
-    @ExportToPlugin(plugin = plugins.CommentPlugin, key = "generateJPA")
-    public CheckBoxConfig generateJPA = new CheckBoxConfig("生成JPA注解", false);
-    public CheckBoxConfig useActualColumnNames = new CheckBoxConfig("使用实际的列名（如不勾选，将使用骆驼峰形式）", false);
+    @EnablePlugin(DeclaredPlugins.ToStringPlugin)
+    @Config(bundle = "project.generateToString", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty generateToString = new SimpleBooleanProperty(true);
+    @EnablePlugin(DeclaredPlugins.EqualsHashCodePlugin)
+    @Config(bundle = "project.generateHashcodeEquals", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty generateHashcodeEquals = new SimpleBooleanProperty(true);
+    @EnablePlugin(DeclaredPlugins.SerializablePlugin)
+    @Config(bundle = "project.implementsSerializable", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty implementsSerializable = new SimpleBooleanProperty(true);
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
+    @Config(bundle = "project.generateJPA", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
+    @Config(bundle = "project.useActualColumnNames", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty useActualColumnNames = new SimpleBooleanProperty(true);
+
+
+
+    @ExportToTab(tabName = tabs.COMMENT)
+    @Config(bundle = "project.enableComment", type = ConfigType.CheckBox)
+    public BooleanProperty enableComment = new SimpleBooleanProperty(true);
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
+    @Config(bundle = "project.fileHeader", type = ConfigType.TextArea)
+    public SimpleStringProperty fileHeader = new SimpleStringProperty("/**\n" +
+            " * Created By MBG-GUI-EXTENSION https://github.com/spawpaw/mybatis-generator-gui-extension\n" +
+            " * Description:\n * ${tableComment}\n *\n * @author \n */");
+
 
 //    /****Service层配置**************************************************************************************************/
-//    @ExportToTab(layer = tabs.SERVICE)
+//    @ExportToTab(tabName = tabs.SERVICE)
 //    @EnablePlugin(plugins.SerializablePlugin)
-//    public CheckBoxConfig enableRestServicePlugin = new CheckBoxConfig("启用示例RestfulService插件", false);
+//    public String enableRestServicePlugin ="";
 //
-//    public TextFieldConfig serviceDir = new TextFieldConfig("service所在路径", "src/main/java");
-//    public TextFieldConfig servicePackage = new TextFieldConfig("service所在包", "service");
+//    public String serviceDir ="";
+//    public String servicePackage ="";
 //
 //    @ExportToPlugin(plugin = plugins.DemoServicePlugin, key = "restServiceDir")
 //    public String getServiceDir() {
@@ -125,32 +155,17 @@ public class ProjectConfig {
     /*===方法s========================================================================================================*/
 
     /**
-     * 初始化UI，由于Gson并不能反序列化各类UI控件，需手动初始化带控件的配置项
-     */
-    public void initialize() {
-        for (Field field : ProjectConfig.class.getFields()) {
-            try {
-                if (field.get(this) instanceof Config)
-                    ((Config) field.get(this)).initialize();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-        bindProperties();
-    }
-
-    /**
+     * 初始化
      * 绑定Property，在初始化控件完成之后，为控件的值添加监听
      */
-    private void bindProperties() {
-        reduceTablePrefix.valueProperty().addListener(((observable, oldValue, newValue) -> updateClassName()));
-        daoObjSuffix.valueProperty().addListener(((observable, oldValue, newValue) -> updateClassName()));
-        entityObjSuffix.valueProperty().addListener(((observable, oldValue, newValue) -> updateClassName()));
-        selectedDatabaseConfig.selectedTable.addListener(((observable, oldValue, newValue) -> updateClassName()));
+    public void initialize() {
+        reduceTablePrefix.addListener(((observable, oldValue, newValue) -> updateClassName()));
+        daoObjSuffix.addListener(((observable, oldValue, newValue) -> updateClassName()));
+        entityObjSuffix.addListener(((observable, oldValue, newValue) -> updateClassName()));
 
-        basePackage.valueProperty().addListener(((observable, oldValue, newValue) -> updatePackageName()));
-        daoPackageSuffix.valueProperty().addListener(((observable, oldValue, newValue) -> updatePackageName()));
-        entityPackageSuffix.valueProperty().addListener(((observable, oldValue, newValue) -> updatePackageName()));
+        basePackage.addListener(((observable, oldValue, newValue) -> updatePackageName()));
+        daoPackageSuffix.addListener(((observable, oldValue, newValue) -> updatePackageName()));
+        entityPackageSuffix.addListener(((observable, oldValue, newValue) -> updatePackageName()));
     }
 
     /**
@@ -175,7 +190,7 @@ public class ProjectConfig {
      * @return 表名的大骆驼峰形式
      */
     private String getUpperCamelTableName() {
-        String rawTableName = selectedDatabaseConfig.selectedTable.getValue();
+        String rawTableName = selectedTable.getValue();
         return getUpperCamel(rawTableName.replaceAll(String.format("^(%s)", reduceTablePrefix.getValue()), ""));
     }
 
@@ -187,24 +202,4 @@ public class ProjectConfig {
     }
 
 
-    /**
-     * 保存当前配置
-     */
-    public String save(MainController context) {
-        String msg = "保存成功";
-        Gson fxGson = FxGson.create();
-        String s = null;
-        try {
-            s = fxGson.toJson(this);
-            System.out.println("save project config: \n" + s);
-            if (Files.exists(Paths.get(String.format("data/config/%s.json", savedName.getValue()))))
-                msg = "保存成功（已覆盖同名文件）";
-            FileUtil.writeStringToFile(String.format("data/config/%s.json", savedName.getValue()), s);
-        } catch (IOException e) {
-            e.printStackTrace();
-            msg = "保存失败";
-        }
-        BaseController.mainWindowController.refreshConnectionsList();
-        return msg;
-    }
 }

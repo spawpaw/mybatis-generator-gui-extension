@@ -18,12 +18,13 @@ import java.util.Properties;
  */
 public class CommentPlugin implements CommentGenerator {
     public boolean generateJPA = false;
-    public boolean enableColumnComments = false;
     public String fileHeader = "";
 
     @Override
     public void addConfigurationProperties(Properties properties) {
         Utils.injectFieldsFromProperties(this, properties);
+        System.out.println("file header");
+        System.out.println(fileHeader);
     }
 
     @Override
