@@ -26,12 +26,12 @@
 
 ### 方法二：下载jar包
 可以执行`mvn: jfx:jar` 自助构建  
-或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>
+或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
 > 请保证您的JDK版本为1.8u60以上
 
 
 ## 贡献&&交流
-项目地址 https://github.com/spawpaw/mybatis-generator-gui-extension
+项目地址 https://github.com/spawpaw/mybatis-generator-gui-extension  
 如果您在使用过程中遇到了BUG，或者想让软件添加某些功能，请挂issue或者联系作者：<spawpaw@hotmail.com>
 
 QQ交流群：171209016
