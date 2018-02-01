@@ -18,6 +18,7 @@ public class CheckBoxControl extends IControl<Boolean> {
 
     @Override
     protected void bindProperties() {
+        checkBox.setTooltip(tooltip);
         checkBox.selectedProperty().bindBidirectional(value);
         checkBox.textProperty().bindBidirectional(this.labelTextProperty);
     }

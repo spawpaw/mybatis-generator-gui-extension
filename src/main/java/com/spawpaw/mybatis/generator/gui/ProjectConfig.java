@@ -111,6 +111,9 @@ public class ProjectConfig {
     @Config(bundle = "project.primaryKey", type = ConfigType.CheckableTextField)
     public SimpleStringProperty primaryKey = new SimpleStringProperty("");
 
+    @EnablePlugin(DeclaredPlugins.FluentBuilderMethodsPlugin)
+    @Config(bundle = "project.enableFluentBuilderMethodsPlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableFluentBuilderMethodsPlugin = new SimpleBooleanProperty(true);
     @EnablePlugin(DeclaredPlugins.ToStringPlugin)
     @Config(bundle = "project.generateToString", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateToString = new SimpleBooleanProperty(true);
@@ -136,6 +139,7 @@ public class ProjectConfig {
     public SimpleStringProperty fileHeader = new SimpleStringProperty("/**\n" +
             " * Created By MBG-GUI-EXTENSION https://github.com/spawpaw/mybatis-generator-gui-extension\n" +
             " * Description:\n * ${tableComment}\n *\n * @author \n */");
+
 
 
 //    /****Service层配置**************************************************************************************************/
