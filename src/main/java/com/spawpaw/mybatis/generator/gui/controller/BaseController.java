@@ -31,6 +31,7 @@ public class BaseController extends Application {
     public transient static Stage tableColumnEditorStage;
     public transient static TableColumnEditorController tableColumnEditorStageController;
 
+    public transient static Stage aboutStage;
 
     public static transient ProjectConfig selectedProjectConfig;
     public static transient DatabaseConfig selectedDatabaseConfig = new DatabaseConfig();
@@ -76,11 +77,13 @@ public class BaseController extends Application {
             FXMLLoader primaryStageLoader = getFxmlLoader("main.fxml");
             FXMLLoader customize_columns_editor_loader = getFxmlLoader("table_columns_editor.fxml");
             FXMLLoader database_config_editor_loader = getFxmlLoader("database_config_editor.fxml");
+            FXMLLoader about_loader = getFxmlLoader("About.fxml");
 
             //load fxml
             Parent primary_stage_scene = primaryStageLoader.load();
             Parent customize_columns_editor_scene = customize_columns_editor_loader.load();
             Parent database_config_editor_scene = database_config_editor_loader.load();
+            Parent about = about_loader.load();
 
             //set controller
             primaryStageController = primaryStageLoader.getController();
@@ -99,6 +102,11 @@ public class BaseController extends Application {
             tableColumnEditorStage.setScene(new Scene(customize_columns_editor_scene));
             tableColumnEditorStage.initOwner(primaryStage);
             tableColumnEditorStage.initModality(Modality.APPLICATION_MODAL);
+
+            aboutStage = new Stage();
+            aboutStage.setScene(new Scene(about));
+            aboutStage.initOwner(primaryStage);
+            aboutStage.initModality(Modality.APPLICATION_MODAL);
 
         } catch (IOException e) {
             e.printStackTrace();

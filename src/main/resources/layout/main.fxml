@@ -60,6 +60,7 @@
             <HBox alignment="CENTER" minHeight="56.0" prefHeight="130.0" prefWidth="200.0">
                 <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="10000.0">
                     <children>
+                  <Button fx:id="btn_about" mnemonicParsing="false" styleClass="link-button" text="About" />
                         <Button minWidth="240.0" onMouseClicked="#showEditTableColumnsDialog" styleClass="link-button" text="%ui.customizeColumn">
                             <HBox.margin>
                                 <Insets left="8.0" right="8.0" />

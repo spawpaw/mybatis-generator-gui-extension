@@ -39,6 +39,7 @@ public class MainController extends BaseController implements Initializable {
     public TreeItem<String> rootItem;
     public ChoiceBox<String> cb_select_language;
     public ToggleButton btn_show_advanced_settings;
+    public Button btn_about;
 
     Map<TreeItem<String>, DatabaseConfig> databaseConfigHashMap;
     private Map<String, List<ConfigWrapper>> configs;
@@ -57,6 +58,7 @@ public class MainController extends BaseController implements Initializable {
             }
         });
         cb_select_language.setTooltip(new Tooltip("you can change the launch language in `GeneratorGuiRunner.class`"));
+        btn_about.setOnMouseClicked(event -> aboutStage.showAndWait());
     }
 
     public void setSelectedProjectConfig(ProjectConfig projectConfig) {
