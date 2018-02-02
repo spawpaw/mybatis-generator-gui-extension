@@ -69,6 +69,11 @@ public class ProjectConfig {
     public SimpleBooleanProperty enableCaseInsensitiveLikePlugin = new SimpleBooleanProperty(true);
 
     @AdvancedConfig
+    @EnablePlugin(DeclaredPlugins.MapperAnnotationPlugin)
+    @Config(bundle = "project.enableMapperAnnotationPlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableMapperAnnotationPlugin = new SimpleBooleanProperty(true);
+
+    @AdvancedConfig
     @Config(bundle = "project.enableInsert", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableInsert = new SimpleBooleanProperty(true);
     @AdvancedConfig

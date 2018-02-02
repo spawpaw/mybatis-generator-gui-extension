@@ -26,6 +26,7 @@
     - `缓存插件`：为生成的XML添加 <cache> 标签
     - `虚拟主键插件`：指定某些列作为主键
     - `CaseInsensitiveLike插件`：为Example类生成CaseInsensitiveLike方法
+    - `MapperAnnotationPlugin`：为java接口添加@Mapper注解
     
 ## 如何使用
 ### 方法一：下载源代码

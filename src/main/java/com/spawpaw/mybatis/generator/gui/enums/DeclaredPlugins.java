@@ -11,6 +11,7 @@ public class DeclaredPlugins {
     public static final String EqualsHashCodePlugin = "org.mybatis.generator.plugins.EqualsHashCodePlugin";
     public static final String FluentBuilderMethodsPlugin = "org.mybatis.generator.plugins.FluentBuilderMethodsPlugin";
     public static final String MapperConfigPlugin = "org.mybatis.generator.plugins.MapperConfigPlugin";
+    public static final String MapperAnnotationPlugin = "org.mybatis.generator.plugins.MapperAnnotationPlugin";
     public static final String RenameExampleClassPlugin = "org.mybatis.generator.plugins.RenameExampleClassPlugin";
     public static final String RowBoundsPlugin = "org.mybatis.generator.plugins.RowBoundsPlugin";
     public static final String SerializablePlugin = "org.mybatis.generator.plugins.SerializablePlugin";
