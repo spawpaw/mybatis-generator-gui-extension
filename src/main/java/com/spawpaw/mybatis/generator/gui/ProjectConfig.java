@@ -145,14 +145,19 @@ public class ProjectConfig {
     @EnablePlugin(DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.enableCachePlugin", type = ConfigType.CheckBox)
     public BooleanProperty enableCachePlugin = new SimpleBooleanProperty(false);
+    @ExportToPlugin(plugin = DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.cache_eviction", type = ConfigType.TextField)
     public SimpleStringProperty cache_eviction = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.cache_flushInterval", type = ConfigType.TextField)
     public SimpleStringProperty cache_flushInterval = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.cache_readOnly", type = ConfigType.TextField)
     public SimpleStringProperty cache_readOnly = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.cache_size", type = ConfigType.TextField)
     public SimpleStringProperty cache_size = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.CachePlugin)
     @Config(bundle = "project.cache_type", type = ConfigType.TextField)
     public SimpleStringProperty cache_type = new SimpleStringProperty("");
 
