@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TableColumn?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="653.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/8.0.121"
-      fx:controller="com.spawpaw.mybatis.generator.gui.controller.TableColumnEditorController">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spawpaw.mybatis.generator.gui.controller.TableColumnEditorController">
     <HBox alignment="CENTER" minHeight="56.0">
-        <Label text="如果要忽略某列，请取消该字段对应的复选框&#10;如需更改字段的数据类型/字段名/自动类型转换，双击即可编辑">
+        <Label text="%ui.customizeColumns.prompt">
 
         </Label>
-        <HBox prefHeight="36.0" prefWidth="223.0"/>
-        <TextField fx:id="tf_filter" minWidth="300.0" promptText="搜索列"/>
+        <HBox prefHeight="36.0" prefWidth="223.0" />
+        <TextField fx:id="tf_filter" minWidth="300.0" promptText="搜索列" />
     </HBox>
-    <TableView fx:id="table_view" editable="true" prefHeight="660.0" prefWidth="922.0"
-                      AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                      AnchorPane.topAnchor="100.0">
+    <TableView fx:id="table_view" editable="true" prefHeight="660.0" prefWidth="922.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
-            <TableColumn fx:id="c_checked" text="选中"/>
-            <TableColumn fx:id="c_column_name" prefWidth="165.0" text="column name"/>
-            <TableColumn fx:id="c_jdbc_type" prefWidth="161.0" text="JDBC type"/>
-            <TableColumn fx:id="c_java_type" prefWidth="160.0" text="java type"/>
-            <TableColumn fx:id="c_property_name" prefWidth="194.0" text="property name"/>
-            <TableColumn fx:id="c_type_handler" prefWidth="176.0" text="type handler"/>
+            <TableColumn fx:id="c_checked" text="%ui.customizeColumns.column.checked" />
+            <TableColumn fx:id="c_column_name" prefWidth="165.0" text="%ui.customizeColumns.column.name" />
+            <TableColumn fx:id="c_jdbc_type" prefWidth="161.0" text="%ui.customizeColumns.column.jdbcType" />
+            <TableColumn fx:id="c_java_type" prefWidth="160.0" text="%ui.customizeColumns.column.javaType" />
+            <TableColumn fx:id="c_property_name" prefWidth="194.0" text="%ui.customizeColumns.column.propertyName" />
+            <TableColumn fx:id="c_type_handler" prefWidth="176.0" text="%ui.customizeColumns.column.typeHandler" />
         </columns>
     </TableView>
     <HBox alignment="CENTER_RIGHT">
-        <Button focusTraversable="false" layoutX="642.0" layoutY="453.0" mnemonicParsing="false"
-                   onAction="#on_btn_confirm_clicked" prefHeight="27.0" prefWidth="59.0" styleClass="button-raised"
-                   text="确认" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="29.0">
+        <Button focusTraversable="false" layoutX="642.0" layoutY="453.0" mnemonicParsing="false" onAction="#on_btn_confirm_clicked" prefHeight="27.0" prefWidth="59.0" styleClass="button-raised" text="确认" AnchorPane.bottomAnchor="13.0" AnchorPane.rightAnchor="29.0">
             <HBox.margin>
-                <Insets bottom="8.0" right="8.0" top="8.0"/>
+                <Insets bottom="8.0" right="8.0" top="8.0" />
             </HBox.margin>
         </Button>
     </HBox>
     <stylesheets>
-        <URL value="@/style/style.css"/>
+        <URL value="@/style/style.css" />
     </stylesheets>
 </VBox>
