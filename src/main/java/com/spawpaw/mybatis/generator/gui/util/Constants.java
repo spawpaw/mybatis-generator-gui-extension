@@ -61,12 +61,12 @@ public class Constants {
 
     //选项卡，当配置过多时，将分为多个选项卡显示，在这里统一管理选项卡的名称
     public static class tabs {
-        public static final String BASIC_SETTINGS = "ui.tab.BASIC_SETTINGS";
-        public static final String DATA_ACCESS_OBJECT = "ui.tab.DATA_ACCESS_OBJECT";
-        public static final String DOMAIN_OBJECT = "ui.tab.DOMAIN_OBJECT";
-        public static final String SERVICE = "ui.tab.SERVICE";
-        public static final String COMMENT = "ui.tab.COMMENT";
-        public static final String CACHE = "ui.tab.CACHE";
+        public static final String BASIC_SETTINGS = "ui.tab.1.BASIC_SETTINGS";
+        public static final String DATA_ACCESS_OBJECT = "ui.tab.2.DATA_ACCESS_OBJECT";
+        public static final String DOMAIN_OBJECT = "ui.tab.3.DOMAIN_OBJECT";
+        public static final String SERVICE = "ui.tab.4.SERVICE";
+        public static final String COMMENT = "ui.tab.5.COMMENT";
+        public static final String CACHE = "ui.tab.6.CACHE";
     }
 
     //与UI有关的常量

@@ -102,7 +102,7 @@ public class MainController extends BaseController implements Initializable {
      * 将所有的配置导出到GUI中
      */
     private void loadExposedConfigs() {
-        configs = new HashMap<>();
+        configs = new TreeMap<>(Comparator.naturalOrder());
         ExportToTab[] defaultTargetLayer = ProjectConfig.class.getAnnotationsByType(ExportToTab.class);
 
         for (Field field : ProjectConfig.class.getFields()) {
@@ -257,7 +257,7 @@ public class MainController extends BaseController implements Initializable {
             msg += "\n" + Constants.getI18nStr("msg.error.NoTableSelected");
         }
         if (!msg.isEmpty()) {
-            showMessage(Constants.getI18nStr("msg.error.configHasProblems") ,msg);
+            showMessage(Constants.getI18nStr("msg.error.configHasProblems"), msg);
             return;
         }
         tableColumnEditorStageController.setColumns(selectedDatabaseConfig.tableConfigs.get(selectedProjectConfig.selectedTable.getValue()));
@@ -293,7 +293,7 @@ public class MainController extends BaseController implements Initializable {
                 msg += "\n" + Constants.getI18nStr("msg.error.EntityObjNameNotConfigured");
         }
         if (!msg.isEmpty()) {
-            showMessage(Constants.getI18nStr("msg.error.configHasProblems") , msg);
+            showMessage(Constants.getI18nStr("msg.error.configHasProblems"), msg);
             return;
         }
         new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate();
