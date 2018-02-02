@@ -55,3 +55,5 @@ QQ group: 171209016
 
 ## Others:
 If you feels that this project helpful to you ,please give it a `star`  (ﾉ*･ω･)ﾉ
+
+[Donate](./wiki/donate.md)
