@@ -141,6 +141,21 @@ public class ProjectConfig {
             " * Description:\n * ${tableComment}\n *\n * @author \n */");
 
 
+    @ExportToTab(tabName = tabs.CACHE)
+    @EnablePlugin(DeclaredPlugins.CachePlugin)
+    @Config(bundle = "project.enableCachePlugin", type = ConfigType.CheckBox)
+    public BooleanProperty enableCachePlugin = new SimpleBooleanProperty(false);
+    @Config(bundle = "project.cache_eviction", type = ConfigType.TextField)
+    public SimpleStringProperty cache_eviction = new SimpleStringProperty("");
+    @Config(bundle = "project.cache_flushInterval", type = ConfigType.TextField)
+    public SimpleStringProperty cache_flushInterval = new SimpleStringProperty("");
+    @Config(bundle = "project.cache_readOnly", type = ConfigType.TextField)
+    public SimpleStringProperty cache_readOnly = new SimpleStringProperty("");
+    @Config(bundle = "project.cache_size", type = ConfigType.TextField)
+    public SimpleStringProperty cache_size = new SimpleStringProperty("");
+    @Config(bundle = "project.cache_type", type = ConfigType.TextField)
+    public SimpleStringProperty cache_type = new SimpleStringProperty("");
+
 
 //    /****Service层配置**************************************************************************************************/
 //    @ExportToTab(tabName = tabs.SERVICE)
