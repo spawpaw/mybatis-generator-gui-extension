@@ -11,16 +11,19 @@
       <padding>
          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
       </padding></VBox>
+      <Label fx:id="lb_msg">
+      <VBox.margin>
+         <Insets left="8.0" />
+      </VBox.margin>
+   </Label>
     <HBox alignment="CENTER_LEFT" minHeight="48.0">
-        <Button minWidth="80.0" mnemonicParsing="false" onMouseClicked="#onTestConnectionClicked" text="%ui.testConnection" />
-        <HBox alignment="CENTER_LEFT" prefWidth="1000.0">
-            <Label fx:id="lb_msg" />
-        </HBox>
-        <Button minWidth="60.0" mnemonicParsing="false" onMouseClicked="#onCancelClicked" text="%ui.cancel">
+        <Button minWidth="132.0" mnemonicParsing="false" onMouseClicked="#onTestConnectionClicked" text="%ui.testConnection" />
+        <HBox alignment="CENTER_LEFT" prefWidth="1000.0" />
+        <Button minWidth="72.0" mnemonicParsing="false" onMouseClicked="#onCancelClicked" text="%ui.cancel">
          <HBox.margin>
             <Insets right="8.0" />
          </HBox.margin></Button>
-        <Button minWidth="60.0" mnemonicParsing="false" onMouseClicked="#onSaveClicked" text="%ui.save" />
+        <Button minWidth="72.0" mnemonicParsing="false" onMouseClicked="#onSaveClicked" text="%ui.save" />
       <padding>
          <Insets left="8.0" right="8.0" />
       </padding>

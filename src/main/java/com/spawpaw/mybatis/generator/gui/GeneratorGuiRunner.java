@@ -17,7 +17,7 @@ public class GeneratorGuiRunner {
         //set your language(only supports CHINESE or ENGLISH)
         Constants.setLocale(Locale.getDefault());
 //        Constants.setLocale(Locale.CHINA);
-//        Constants.setLocale(Locale.ENGLISH);
+        Constants.setLocale(Locale.ENGLISH);
         BaseController.launchWindow(args);
     }
 }

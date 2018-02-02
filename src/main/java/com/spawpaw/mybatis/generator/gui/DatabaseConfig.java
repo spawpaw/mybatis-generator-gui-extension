@@ -5,6 +5,7 @@ import com.spawpaw.mybatis.generator.gui.annotations.ConfigType;
 import com.spawpaw.mybatis.generator.gui.controls.ControlsFactory;
 import com.spawpaw.mybatis.generator.gui.entity.TableColumnMetaData;
 import com.spawpaw.mybatis.generator.gui.enums.DatabaseType;
+import com.spawpaw.mybatis.generator.gui.util.Constants;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TreeItem;
@@ -25,30 +26,22 @@ import java.util.Map;
  */
 public class DatabaseConfig implements Serializable {
     public transient Map<String, List<TableColumnMetaData>> tableConfigs;
-    @Config(label = "保存名称")
+    @Config(bundle = "database.savedName")
     public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
 
-    @Config(
-            label = "数据库类型",
-            testRegex = "MySQL|Oracle|PostgreSQL|SQLServer",
-            type = ConfigType.ChoiceBox
-    )
+    @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle|PostgreSQL|SQLServer", type = ConfigType.ChoiceBox)
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
-    @Config(label = "数据库名称")
+    @Config(bundle = "database.dbName")
     public SimpleStringProperty dbName = new SimpleStringProperty("hn");
-    @Config(label = "host")
+    @Config(bundle = "database.host")
     public SimpleStringProperty host = new SimpleStringProperty("localhost");
-    @Config(label = "port")
+    @Config(bundle = "database.port")
     public SimpleStringProperty port = new SimpleStringProperty("3306");
-    @Config(label = "userName")
+    @Config(bundle = "database.userName")
     public SimpleStringProperty userName = new SimpleStringProperty("root");
-    @Config(label = "password")
+    @Config(bundle = "database.password")
     public SimpleStringProperty password = new SimpleStringProperty("123456");
-    @Config(
-            label = "encoding",
-            testRegex = "utf8",
-            type = ConfigType.ChoiceBox
-    )
+    @Config(bundle = "database.encoding", testRegex = "utf8", type = ConfigType.ChoiceBox)
     public SimpleStringProperty encoding = new SimpleStringProperty("utf8");
     private transient TreeItem<String> rootItem;
 
@@ -131,8 +124,7 @@ public class DatabaseConfig implements Serializable {
                 rs = meta.getTables(null, null, "%", types);
                 break;
             default:
-                System.out.println("不支持的数据库");
-                throw new RuntimeException("不支持的数据库");
+                throw new RuntimeException(Constants.getI18nStr("msg.unsupportedDatabase"));
         }
         while (rs.next()) {
             tableConfigs.put(rs.getString(3), new ArrayList<>());
@@ -169,7 +161,7 @@ public class DatabaseConfig implements Serializable {
                 if (field.getAnnotation(Config.class) != null && field.get(this) instanceof Property) {
                     vBox.getChildren().addAll(ControlsFactory.getLayout(field.getAnnotation(Config.class), (Property) field.get(this)));
                 } else {
-                    System.out.println("数据库设置有非法域");
+                    System.out.println(Constants.getI18nStr("msg.dbConfigInvalid"));
                 }
             }
         } catch (IllegalAccessException e) {

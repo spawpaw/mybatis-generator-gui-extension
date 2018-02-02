@@ -54,9 +54,9 @@ public class DatabaseConfigEditorController extends BaseController implements In
             FileUtil.writeJsonObjToFile(Constants.CONNECTION_SAVE_PATH + databaseConfig.savedName.getValue() + ".json", databaseConfig);
             primaryStageController.refreshDatabaseConfigList();
             databaseEditorStage.close();
-            showMessage("保存成功");
+            showMessage("msg.error.SaveSuccess");
         } catch (IOException e) {
-            showMessage("保存失败，错误信息：\n" + e.getMessage());
+            showMessage(Constants.getI18nStr("msg.error.SaveFailure")+"\n" + e.getMessage());
             e.printStackTrace();
         }
 
