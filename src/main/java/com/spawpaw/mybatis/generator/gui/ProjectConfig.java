@@ -131,9 +131,19 @@ public class ProjectConfig {
     @EnablePlugin(DeclaredPlugins.ToStringPlugin)
     @Config(bundle = "project.generateToString", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateToString = new SimpleBooleanProperty(true);
+    @ExportToPlugin(plugin = DeclaredPlugins.ToStringPlugin,key = "useToStringFromRoot")
+    @Config(bundle = "project.useToStringFromRoot", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty useToStringFromRoot = new SimpleBooleanProperty(false);
+
+
     @EnablePlugin(DeclaredPlugins.EqualsHashCodePlugin)
     @Config(bundle = "project.generateHashcodeEquals", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateHashcodeEquals = new SimpleBooleanProperty(true);
+
+    @ExportToPlugin(plugin = DeclaredPlugins.EqualsHashCodePlugin,key = "useEqualsHashCodeFromRoot")
+    @Config(bundle = "project.useEqualsHashCodeFromRoot", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty useEqualsHashCodeFromRoot = new SimpleBooleanProperty(false);
+
     @EnablePlugin(DeclaredPlugins.SerializablePlugin)
     @Config(bundle = "project.implementsSerializable", type = ConfigType.CheckBox)
     public SimpleBooleanProperty implementsSerializable = new SimpleBooleanProperty(true);
