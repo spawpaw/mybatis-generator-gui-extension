@@ -56,6 +56,7 @@ public class MainController extends BaseController implements Initializable {
                 Constants.setLocale(Locale.ENGLISH);
             }
         });
+        cb_select_language.setTooltip(new Tooltip("you can change the launch language in `GeneratorGuiRunner.class`"));
     }
 
     public void setSelectedProjectConfig(ProjectConfig projectConfig) {
