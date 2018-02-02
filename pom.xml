@@ -66,9 +66,9 @@
 
         <!-- https://mvnrepository.com/artifact/OJDBC/ojdbc -->
         <!--<dependency>-->
-            <!--<groupId>OJDBC</groupId>-->
-            <!--<artifactId>ojdbc</artifactId>-->
-            <!--<version>14</version>-->
+        <!--<groupId>OJDBC</groupId>-->
+        <!--<artifactId>ojdbc</artifactId>-->
+        <!--<version>14</version>-->
         <!--</dependency>-->
 
 
@@ -86,7 +86,6 @@
         </dependency>
 
 
-
     </dependencies>
     <build>
         <plugins>
@@ -99,6 +98,31 @@
                     <target>1.${java.language.level}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <!-- 此处指定main方法入口的class -->
+                            <mainClass>${exec.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>assembly</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>com.zenjava</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
