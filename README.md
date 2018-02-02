@@ -9,13 +9,22 @@
 ![示例图片](./wiki/images/main_window.png)
 ## 特性
 - 省去繁琐的让人眼花缭乱的XML配置，在图形化界面中轻松生成代码
-- 内置基本插件，如`toString`/`添加分页`/`添加字段注释` 等
-- 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 - 配置全面，包含几乎所有mybatis-generator的配置
+- 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 - 可开启简洁模式，隐藏不常用的配置(开关在右上角)
 - 鼠标悬停即可显示帮助信息，方便快捷
     ![示例图片](./wiki/images/tooltip_example.png)
 - 可以选择语言（目前支持中英两种语言）
+- 内置丰富插件：
+    - `toString插件`。为实体生成toString方法
+    - `分页插件`。生成基于limit/offset的分页查询
+    - `注释插件`：为字段和类生成注释（来自表和字段的注释）
+    - `流式构建插件`：  方便的对实体进行链式调用。例如：    
+            ```
+            User user = new User().withUserName("uName"").withPassword("pwd"");
+            ```  
+    - `缓存插件`：为生成的XML添加 <cache> 标签
+    - `虚拟主键插件`：指定某些列作为主键
     
 ## 如何使用
 ### 方法一：下载源代码
