@@ -3,7 +3,6 @@ package com.spawpaw.mybatis.generator.gui;
 import com.google.common.base.CaseFormat;
 import com.spawpaw.mybatis.generator.gui.annotations.*;
 import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
-import com.spawpaw.mybatis.generator.gui.util.Constants;
 import com.spawpaw.mybatis.generator.gui.util.Constants.tabs;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -111,6 +110,11 @@ public class ProjectConfig {
     @Config(bundle = "project.primaryKey", type = ConfigType.CheckableTextField)
     public SimpleStringProperty primaryKey = new SimpleStringProperty("");
 
+    @EnablePlugin(DeclaredPlugins.VirtualPrimaryKeyPlugin)
+    @ExportToPlugin(plugin = DeclaredPlugins.VirtualPrimaryKeyPlugin, key = "virtualKeyColumns")
+    @Config(bundle = "project.enableVirtualPrimaryKeyPlugin", type = ConfigType.CheckableTextField)
+    public StringProperty enableVirtualPrimaryKeyPlugin = new SimpleStringProperty("");
+
     @EnablePlugin(DeclaredPlugins.FluentBuilderMethodsPlugin)
     @Config(bundle = "project.enableFluentBuilderMethodsPlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableFluentBuilderMethodsPlugin = new SimpleBooleanProperty(true);
@@ -128,7 +132,6 @@ public class ProjectConfig {
     public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
     @Config(bundle = "project.useActualColumnNames", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useActualColumnNames = new SimpleBooleanProperty(true);
-
 
 
     @ExportToTab(tabName = tabs.COMMENT)
