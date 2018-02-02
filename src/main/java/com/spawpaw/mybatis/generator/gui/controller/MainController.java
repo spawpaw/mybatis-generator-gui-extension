@@ -76,7 +76,7 @@ public class MainController extends BaseController implements Initializable {
 
         TabPane tabPane = new TabPane();
         for (String key : configs.keySet()) {
-            Tab tab = new Tab(key);
+            Tab tab = new Tab(Constants.getI18nStr(key));
             VBox vBox = new VBox();
             List<ConfigWrapper> configs = this.configs.get(key);
             configs.sort(Comparator.comparingInt(a -> a.index));
