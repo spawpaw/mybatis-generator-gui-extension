@@ -63,6 +63,11 @@ public class ProjectConfig {
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(true);
+
+    @EnablePlugin(DeclaredPlugins.CaseInsensitiveLikePlugin)
+    @Config(bundle = "project.enableCaseInsensitiveLikePlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableCaseInsensitiveLikePlugin = new SimpleBooleanProperty(true);
+
     @AdvancedConfig
     @Config(bundle = "project.enableInsert", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableInsert = new SimpleBooleanProperty(true);
