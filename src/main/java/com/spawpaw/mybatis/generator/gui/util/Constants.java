@@ -66,6 +66,7 @@ public class Constants {
         public static final String DOMAIN_OBJECT = "实体域设置";
         public static final String SERVICE = "Service";
         public static final String COMMENT = "注释设置";
+        public static final String CACHE = "缓存";
     }
 
     //与UI有关的常量

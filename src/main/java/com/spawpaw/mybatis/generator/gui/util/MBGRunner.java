@@ -116,8 +116,8 @@ public class MBGRunner {
         //========================================================================================================table
         TableConfiguration tableConfiguration = new TableConfiguration(context);
         tableConfiguration.setTableName(projectConfig.selectedTable.getValue());
-        tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ",""));
-        tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ",""));
+        tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ", ""));
+        tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ", ""));
 
         tableConfiguration.setInsertStatementEnabled(projectConfig.enableInsert.getValue());
         tableConfiguration.setSelectByPrimaryKeyStatementEnabled(projectConfig.enableSelectByPrimaryKey.getValue());
@@ -132,6 +132,9 @@ public class MBGRunner {
         tableConfiguration.setDeleteByExampleStatementEnabled(projectConfig.enableDeleteByExample.getValue());
         tableConfiguration.setCountByExampleStatementEnabled(projectConfig.enableCountByExample.getValue());
         tableConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());//使用小骆驼峰替代原列名
+
+        if (!projectConfig.enableVirtualPrimaryKeyPlugin.getValue().isEmpty())
+            tableConfiguration.addProperty("virtualKeyColumns", projectConfig.enableVirtualPrimaryKeyPlugin.getValue());
 
         //see http://www.mybatis.org/generator/configreference/generatedKey.html  ,JDBC is a database independent method of obtaining the value from identity columns,only for Mybatis3+
         if (!projectConfig.primaryKey.getValue().isEmpty())
@@ -169,6 +172,7 @@ public class MBGRunner {
     /**
      * 获取项目的绝对路径前缀
      */
+
     private String projectDir() {
         return projectConfig.projectDir.getValue().isEmpty() ? "" : projectConfig.projectDir.getValue() + "/";
     }
