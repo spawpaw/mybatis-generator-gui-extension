@@ -1,59 +1,60 @@
 # mybatis-generator-gui-extension
 
-## Description
-**mybatis-generator-gui-extension** is a powerful GUI tool for MybatisGenerator, it has almost every config that MBG have.
+## 简介
+**mybatis-generator-gui-extension**是一个为MybatisGenerator编写的图形化界面，集成了几乎所有`mybatis generator`的默认配置。
 
-#### there's also a README written in simplified chinese [中文版README](./README-zh_CN.md)
+#### there's also a README written in English [English README](./README-en.md)
 
-## [show more preview images](./wiki/PREVIEW-en.md)
+## [查看更多预览图片](./wiki/PREVIEW.md)
 
 
-![Preview Img](./wiki/images/main_window-en.png)
+![示例图片](./wiki/images/main_window.png)
 
-## Features
-- A brief gui extension for MBG
-- Comprehensive configs
-- Easy to make integration with your own MBG plugin（goto [4 steps to make integration with yourPlugin](./wiki/IntegrationOfYourPlugin-en.md)）
-- Can hide Unnecessary config(Simple Mode,at right top of the window)
-- Show tooltips on mouse over
-- Comprehensive plugins：
-    - `ToString plugin`: generate `toString` method
-    - `Page plugin`: generate queries based on limit/offset
-    - `Comment plugin`: generate comment for fields and class(based on comments from database)
-    - `FluentBuilder plugin`: you can configure the property values fluently with chained method calls. e.g    
+![示例图片](./wiki/images/tooltip_example.png)
+
+## 特性
+- 省去繁琐的让人眼花缭乱的XML配置，在图形化界面中轻松生成代码
+- 配置全面，包含几乎所有mybatis-generator的配置
+- 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
+- 可开启简洁模式，隐藏不常用的配置(开关在右上角)
+- 鼠标悬停即可显示帮助信息，方便快捷
+- 可以选择语言（目前支持中英两种语言）
+- 内置丰富插件：
+    - `toString插件`。为实体生成toString方法
+    - `分页插件`。生成基于limit/offset的分页查询
+    - `注释插件`：为字段和类生成注释（来自表和字段的注释）
+    - `流式构建插件`：  方便的对实体进行链式调用。例如：    
             ```
             User user = new User().withUserName("uName"").withPassword("pwd"");
             ```  
-    - `Cache plugin`: This plugin adds a <cache> element to generated SQL maps.
-    - `VirtualPrimaryKey plugin`: specify columns that act as primary keys, even if they are not defined as primary key in the database.
-    - `CaseInsensitiveLike plugin`:support case insensitive LIKE searches. 
-    - `MapperAnnotation plugin`: This plugin adds the `@Mapper` annotation to generated mapper interfaces.
+    - `缓存插件`：为生成的XML添加 <cache> 标签
+    - `虚拟主键插件`：指定某些列作为主键
+    - `CaseInsensitiveLike插件`：为Example类生成CaseInsensitiveLike方法
+    - `MapperAnnotationPlugin`：为java接口添加@Mapper注解
     
-## Usage
+## 如何使用
 
-> PLEASE make sure that you have a `1.8u40 plus` Java Runtime
+> 运行前请确保您的JDK版本为1.8u40以上
 
-### Run the code directly 
+### 方法一：下载源代码
+点击右上角**Clone or download**或用git拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
 
-click **Clone or download** at top right of this page  
-or use git to clone this repo: `git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
-
-Then open the project with any java IDEs that you like, then run `com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`
+用IDE打开项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
 
 
-### Run .jar
-You can run maven script: `mvn: jfx:jar` to build a jar
-or [select a version to download]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
+### 方法二：下载jar包
+可以执行`mvn: jfx:jar` 自助构建  
+或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
 
 
-## Contribution && Communicate
-git repo: https://github.com/spawpaw/mybatis-generator-gui-extension  
+## 贡献&&交流
+项目地址 https://github.com/spawpaw/mybatis-generator-gui-extension  
 
-If you have any problems while using this software, please push a issue or contact the author:<spawpaw@hotmail.com>
+如果您在使用过程中遇到了BUG，或者想让软件添加某些功能，请挂issue或者联系作者：<spawpaw@hotmail.com>
 
-QQ group: 171209016
+QQ交流群：171209016
 
-## Others:
-If you feels that this project helpful to you ,please give it a `star`  (ﾉ*･ω･)ﾉ
+## 其他
+如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   (ﾉ*･ω･)ﾉ
 
-[Donate](./wiki/donate.md)
+[捐赠](./wiki/donate.md)

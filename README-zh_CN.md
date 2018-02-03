@@ -3,10 +3,14 @@
 ## 简介
 **mybatis-generator-gui-extension**是一个为MybatisGenerator编写的图形化界面，集成了几乎所有`mybatis generator`的默认配置。
 
+#### there's also a README written in English [English README](./README-en.md)
+
 ## [查看更多预览图片](./wiki/PREVIEW.md)
 
 
 ![示例图片](./wiki/images/main_window.png)
+
+![示例图片](./wiki/images/tooltip_example.png)
 
 ## 特性
 - 省去繁琐的让人眼花缭乱的XML配置，在图形化界面中轻松生成代码
@@ -14,7 +18,6 @@
 - 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 - 可开启简洁模式，隐藏不常用的配置(开关在右上角)
 - 鼠标悬停即可显示帮助信息，方便快捷
-    ![示例图片](./wiki/images/tooltip_example.png)
 - 可以选择语言（目前支持中英两种语言）
 - 内置丰富插件：
     - `toString插件`。为实体生成toString方法
