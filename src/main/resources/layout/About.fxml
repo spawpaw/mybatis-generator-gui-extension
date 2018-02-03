@@ -1,37 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="369.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="349.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" style="-fx-font-weight: BOLD;" text="关于MBG-GUI-EXTENSION">
+      <Label style="-fx-font-weight: BOLD;" text="%ui.about.title">
          <font>
             <Font size="18.0" />
          </font>
+         <VBox.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </VBox.margin>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="15.0" layoutY="43.0" prefHeight="132.0" prefWidth="485.0" text="&#9;本软件旨在为官方的MyBatisGenerator提供图形界面，通过简单的配置生成DAO层代码。&#10;&#10;&#9;您可以免费使用本软件进行代码生成等操作，并有对生成的代码完全支配的权利。但禁止使用本软件或本软件的任何衍生版本进行盈利行为，如出售本软件的副本等。&#10;" wrapText="true">
+      <Label alignment="TOP_LEFT" prefHeight="10000.0" prefWidth="10000.0" text="%ui.about.desc" wrapText="true">
          <font>
             <Font size="14.0" />
          </font>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
       </Label>
-      <ImageView fitHeight="114.0" fitWidth="119.0" layoutX="76.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/image/alipay.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="114.0" fitWidth="139.0" layoutX="314.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@/image/weixinpay.jpg" />
-         </image>
-      </ImageView>
-      <Label layoutX="91.0" layoutY="303.0" text="捐赠（支付宝）" />
-      <Label layoutX="335.0" layoutY="303.0" text="捐赠（微信）" />
-      <Label layoutX="15.0" layoutY="336.0" text="github项目地址：" />
-      <TextField editable="false" layoutX="113.0" layoutY="331.0" prefHeight="23.0" prefWidth="387.0" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #4d66cc;" text="https://github.com/spawpaw/mybatis-generator-gui-extension" />
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/image/alipay.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="%ui.about.donate.alipay" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/image/weixinpay.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label text="%ui.about.donate.weixinpay" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label text="%ui.about.repo" />
+            <TextField editable="false" prefHeight="23.0" prefWidth="387.0" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #4d66cc;" text="https://github.com/spawpaw/mybatis-generator-gui-extension" />
+         </children>
+         <padding>
+            <Insets bottom="8.0" top="8.0" />
+         </padding>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

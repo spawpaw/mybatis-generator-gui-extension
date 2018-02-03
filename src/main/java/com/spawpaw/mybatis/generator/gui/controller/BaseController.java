@@ -107,6 +107,11 @@ public class BaseController extends Application {
             aboutStage.setScene(new Scene(about));
             aboutStage.initOwner(primaryStage);
             aboutStage.initModality(Modality.APPLICATION_MODAL);
+            aboutStage.setMinHeight(349);
+            aboutStage.setMinWidth(515);
+            aboutStage.setMaxHeight(349);
+            aboutStage.setMaxWidth(515);
+            aboutStage.setMaximized(false);
 
         } catch (IOException e) {
             e.printStackTrace();
