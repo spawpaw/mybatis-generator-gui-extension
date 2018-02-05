@@ -13,9 +13,9 @@ public enum DatabaseType {
     SQLServer("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s"),
 
     //TODO 验证数据库连接串
-    DB2("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s"),
-    INFORMIX("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s"),
-    SYBASE("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s");
+    DB2("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:db2://%s:%s/%s"),
+    INFORMIX("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:informix-sqli://%s:%s/%s"),
+    SYBASE("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sybase:Tds://%s:%s/%s");
 
 
     public String driverClazz;
@@ -31,6 +31,17 @@ public enum DatabaseType {
     }
 
     public String getConnectStr(String host, String port, String dbName, String encoding) {
-        return String.format(connectStrFormat, host, port, dbName, encoding);
+        switch (this) {
+            case MySQL:
+                return String.format(connectStrFormat, host, port, dbName, encoding);
+            case Oracle:
+            case PostgreSQL:
+            case SQLServer:
+            case INFORMIX:
+            case SYBASE:
+            case DB2:
+            default:
+                return String.format(connectStrFormat, host, port, dbName);
+        }
     }
 }
