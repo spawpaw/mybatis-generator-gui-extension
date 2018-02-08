@@ -46,7 +46,7 @@ public class TableColumnEditorController extends BaseController implements Initi
 
         c_java_type.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setJavaType(event.getNewValue()));
         c_property_name.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setPropertyName(event.getNewValue()));
-        c_type_handler.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTypeHandle(event.getNewValue()));
+        c_type_handler.setOnEditCommit(event -> event.getTableView().getItems().get(event.getTablePosition().getRow()).setTypeHandler(event.getNewValue()));
     }
 
     public void on_btn_confirm_clicked(ActionEvent actionEvent) {
