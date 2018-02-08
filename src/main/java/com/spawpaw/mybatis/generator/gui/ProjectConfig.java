@@ -69,10 +69,10 @@ public class ProjectConfig {
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
-    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
-    public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(true);
+    public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(false);
 
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @EnablePlugin(DeclaredPlugins.CaseInsensitiveLikePlugin)
     @Config(bundle = "project.enableCaseInsensitiveLikePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableCaseInsensitiveLikePlugin = new SimpleBooleanProperty(true);
