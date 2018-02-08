@@ -150,7 +150,7 @@ public class MBGRunner {
                 columnOverride.setJavaProperty(column.getPropertyName());
                 columnOverride.setJavaType(column.getJavaType());
 //                columnOverride.setJdbcType(column.getJdbcType());
-                columnOverride.setTypeHandler(column.getTypeHandle());
+                columnOverride.setTypeHandler(column.getTypeHandler());
                 tableConfiguration.addColumnOverride(columnOverride);
             }
         }
