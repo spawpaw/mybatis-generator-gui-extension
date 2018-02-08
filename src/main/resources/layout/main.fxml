@@ -51,7 +51,7 @@
                   <Insets left="8.0" />
                </HBox.margin>
                 </HBox>
-                <ToggleButton fx:id="btn_show_advanced_settings" minWidth="160.0" selected="true" text="%ui.simpleMode.off" />
+                <ToggleButton fx:id="btn_show_advanced_settings" minWidth="160.0" text="%ui.simpleMode.on" />
             </HBox>
             <VBox fx:id="main_container" prefHeight="100000.0" prefWidth="100000.0">
 
