@@ -11,6 +11,7 @@ import javafx.beans.property.StringProperty;
 
 import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DATA_ACCESS_OBJECT;
 import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DOMAIN_OBJECT;
+import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.SHORTCUT;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -22,13 +23,16 @@ import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DOMAIN_OBJEC
 public class ProjectConfig {
     public StringProperty selectedTable = new SimpleStringProperty("");
     /****基本配置******************************************************************************************************/
+//    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
+//    @Config(bundle = "project.savedName", helpText = "保存的名称")
+//    public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
     @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
-    @Config(bundle = "project.savedName", helpText = "保存的名称")
-    public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.projectDir", type = ConfigType.DirChooser)
     public SimpleStringProperty projectDir = new SimpleStringProperty("");
     @Config(bundle = "project.basePackage")
     public SimpleStringProperty basePackage = new SimpleStringProperty("");
+    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     @Config(bundle = "project.reduceTablePrefix")
     public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
     @AdvancedConfig
@@ -49,8 +53,10 @@ public class ProjectConfig {
 
     /****DAO层配置******************************************************************************************************/
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.javaClientMapperType", type = ConfigType.ChoiceBox, testRegex = "ANNOTATEDMAPPER|MIXEDMAPPER|XMLMAPPER")
     public SimpleStringProperty javaClientMapperType = new SimpleStringProperty("XMLMAPPER");
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @Config(bundle = "project.mapperDir", type = ConfigType.TextField)
     public SimpleStringProperty mapperDir = new SimpleStringProperty("src/main/resources");
     @Config(bundle = "project.mapperPackage", type = ConfigType.TextField)
@@ -59,8 +65,11 @@ public class ProjectConfig {
     public SimpleStringProperty daoDir = new SimpleStringProperty("src/main/java");
     @Config(bundle = "project.daoPackage", type = ConfigType.TextField)
     public SimpleStringProperty daoPackage = new SimpleStringProperty("");
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(true);
 
@@ -69,11 +78,14 @@ public class ProjectConfig {
     public SimpleBooleanProperty enableCaseInsensitiveLikePlugin = new SimpleBooleanProperty(true);
 
     @AdvancedConfig
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @EnablePlugin(DeclaredPlugins.MapperAnnotationPlugin)
     @Config(bundle = "project.enableMapperAnnotationPlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableMapperAnnotationPlugin = new SimpleBooleanProperty(true);
 
     @AdvancedConfig
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @Config(bundle = "project.enableInsert", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableInsert = new SimpleBooleanProperty(true);
     @AdvancedConfig
@@ -107,12 +119,16 @@ public class ProjectConfig {
 
     /****Entity层配置***************************************************************************************************/
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.defaultModelType", type = ConfigType.ChoiceBox, testRegex = "conditional|flat|hierarchical")
     public StringProperty defaultModelType = new SimpleStringProperty("conditional");
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
     @Config(bundle = "project.entityDir", type = ConfigType.TextField)
     public SimpleStringProperty entityDir = new SimpleStringProperty("src/main/java");
     @Config(bundle = "project.entityPackage", type = ConfigType.TextField)
     public SimpleStringProperty entityPackage = new SimpleStringProperty("entity");
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.entityObjName", type = ConfigType.TextField)
     public SimpleStringProperty entityObjName = new SimpleStringProperty("");
     @Config(bundle = "project.exampleObjName", type = ConfigType.TextField)
@@ -124,7 +140,14 @@ public class ProjectConfig {
     @ExportToPlugin(plugin = DeclaredPlugins.VirtualPrimaryKeyPlugin, key = "virtualKeyColumns")
     @Config(bundle = "project.enableVirtualPrimaryKeyPlugin", type = ConfigType.CheckableTextField)
     public StringProperty enableVirtualPrimaryKeyPlugin = new SimpleStringProperty("");
+    @ExportToTab(tabName = SHORTCUT, index = 1)
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @Config(bundle = "project.generateJPA", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
+    @Config(bundle = "project.useActualColumnNames", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty useActualColumnNames = new SimpleBooleanProperty(true);
 
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
     @EnablePlugin(DeclaredPlugins.FluentBuilderMethodsPlugin)
     @Config(bundle = "project.enableFluentBuilderMethodsPlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableFluentBuilderMethodsPlugin = new SimpleBooleanProperty(true);
@@ -132,6 +155,7 @@ public class ProjectConfig {
     @Config(bundle = "project.generateToString", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateToString = new SimpleBooleanProperty(true);
     @ExportToPlugin(plugin = DeclaredPlugins.ToStringPlugin,key = "useToStringFromRoot")
+    @AdvancedConfig
     @Config(bundle = "project.useToStringFromRoot", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useToStringFromRoot = new SimpleBooleanProperty(false);
 
@@ -140,6 +164,7 @@ public class ProjectConfig {
     @Config(bundle = "project.generateHashcodeEquals", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateHashcodeEquals = new SimpleBooleanProperty(true);
 
+    @AdvancedConfig
     @ExportToPlugin(plugin = DeclaredPlugins.EqualsHashCodePlugin,key = "useEqualsHashCodeFromRoot")
     @Config(bundle = "project.useEqualsHashCodeFromRoot", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useEqualsHashCodeFromRoot = new SimpleBooleanProperty(false);
@@ -148,10 +173,6 @@ public class ProjectConfig {
     @Config(bundle = "project.implementsSerializable", type = ConfigType.CheckBox)
     public SimpleBooleanProperty implementsSerializable = new SimpleBooleanProperty(true);
     @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
-    @Config(bundle = "project.generateJPA", type = ConfigType.CheckBox)
-    public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
-    @Config(bundle = "project.useActualColumnNames", type = ConfigType.CheckBox)
-    public SimpleBooleanProperty useActualColumnNames = new SimpleBooleanProperty(true);
 
 
     @ExportToTab(tabName = tabs.COMMENT)
