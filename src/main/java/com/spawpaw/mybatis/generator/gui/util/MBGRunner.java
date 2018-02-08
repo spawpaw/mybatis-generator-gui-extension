@@ -41,7 +41,7 @@ public class MBGRunner {
     }
 
 
-    public void generate() {
+    public String generate() {
         config = new Configuration();
         //default model type
         if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("CONDITIONAL"))
@@ -166,7 +166,7 @@ public class MBGRunner {
         } catch (InvalidConfigurationException | InterruptedException | SQLException | IOException e) {
             e.printStackTrace();
         }
-        System.out.println(warnings);
+        return warnings.toString();
     }
 
     /**

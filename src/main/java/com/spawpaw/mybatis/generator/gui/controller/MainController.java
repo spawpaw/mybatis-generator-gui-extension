@@ -299,6 +299,6 @@ public class MainController extends BaseController implements Initializable {
             showMessage(Constants.getI18nStr("msg.error.configHasProblems"), msg);
             return;
         }
-        new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate();
+        showMessage("Code Generated! ",new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate());
     }
 }
