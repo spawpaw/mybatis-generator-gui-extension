@@ -83,6 +83,9 @@ public class MainController extends BaseController implements Initializable {
             VBox vBox = new VBox();
             List<ConfigWrapper> configs = this.configs.get(key);
             configs.sort(Comparator.comparingInt(a -> a.index));
+            if (key.equalsIgnoreCase(Constants.tabs.SHORTCUT)) {
+                vBox.getChildren().add(new Label(Constants.getI18nStr("msg.thisIsShortcutTab")));
+            }
             for (ConfigWrapper cw : configs)
                 vBox.getChildren().add(cw.layout);
 
@@ -120,10 +123,12 @@ public class MainController extends BaseController implements Initializable {
                     defaultTargetLayer = targetTabs;
                 }
                 if (field.get(selectedProjectConfig) instanceof Property) {
-                    HBox layout = ControlsFactory.getLayout(config, (Property) field.get(selectedProjectConfig));
-                    if (field.getAnnotation(AdvancedConfig.class) != null)
-                        layout.visibleProperty().bindBidirectional(btn_show_advanced_settings.selectedProperty());
                     for (ExportToTab l : targetTabs) {
+                        HBox layout = ControlsFactory.getLayout(config, (Property) field.get(selectedProjectConfig));
+                        if (field.getAnnotation(AdvancedConfig.class) != null) {
+                            layout.visibleProperty().bindBidirectional(btn_show_advanced_settings.selectedProperty());
+                            layout.managedProperty().bindBidirectional(btn_show_advanced_settings.selectedProperty());
+                        }
                         if (!configs.containsKey(l.tabName()))
                             configs.put(l.tabName(), new ArrayList<>());
                         configs.get(l.tabName()).add(new ConfigWrapper(layout, l.index()));
@@ -233,9 +238,17 @@ public class MainController extends BaseController implements Initializable {
         Gson gson = new FxGsonBuilder().create();
         String json = gson.toJson(selectedProjectConfig);
         try {
-            FileUtil.writeStringToFile(Constants.CONFIG_SAVE_PATH + selectedProjectConfig.savedName.getValue() + ".json", json);
-            refreshProjectConfigList();
-            showMessage("msg.error.SaveSuccess");
+            TextInputDialog textInputDialog = new TextInputDialog("untitled");
+            textInputDialog.setContentText("Please input file name");
+            textInputDialog.setHeaderText("");
+            textInputDialog.setTitle("message");
+            textInputDialog.setGraphic(null);
+            Optional<String> opt=textInputDialog.showAndWait();
+            if (opt.isPresent() && !opt.get().isEmpty()) {
+                FileUtil.writeStringToFile(Constants.CONFIG_SAVE_PATH + opt.get() + ".json", json);
+                refreshProjectConfigList();
+                showMessage("msg.error.SaveSuccess");
+            }
         } catch (IOException e) {
             System.out.println("msg.error.SaveFailure");
             e.printStackTrace();
@@ -299,6 +312,6 @@ public class MainController extends BaseController implements Initializable {
             showMessage(Constants.getI18nStr("msg.error.configHasProblems"), msg);
             return;
         }
-        showMessage("Code Generated! ",new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate());
+        showMessage("Code Generated! ", new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate());
     }
 }
