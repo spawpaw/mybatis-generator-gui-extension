@@ -13,19 +13,19 @@ import javafx.beans.property.StringProperty;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class TableColumnMetaData  {
+public class TableColumnMetaData {
 
     private BooleanProperty checked = new SimpleBooleanProperty(true);
 
     private StringProperty columnName = new SimpleStringProperty();
 
-    private StringProperty javaType = new SimpleStringProperty();
-
     private StringProperty jdbcType = new SimpleStringProperty();
+
+    private StringProperty javaType = new SimpleStringProperty();
 
     private StringProperty propertyName = new SimpleStringProperty();
 
-    private StringProperty typeHandle = new SimpleStringProperty();
+    private StringProperty typeHandler = new SimpleStringProperty();
 
     public String getColumnName() {
         return columnName.get();
@@ -63,16 +63,16 @@ public class TableColumnMetaData  {
         this.checked.set(checked);
     }
 
-    public StringProperty typeHandleProperty() {
-        return typeHandle;
+    public StringProperty typeHandlerProperty() {
+        return typeHandler;
     }
 
-    public String getTypeHandle() {
-        return typeHandle.get();
+    public String getTypeHandler() {
+        return typeHandler.get();
     }
 
-    public void setTypeHandle(String typeHandle) {
-        this.typeHandle.set(typeHandle);
+    public void setTypeHandler(String typeHandler) {
+        this.typeHandler.set(typeHandler);
     }
 
     public StringProperty columnNameProperty() {
