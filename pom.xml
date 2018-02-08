@@ -61,7 +61,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>5.1.45</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/OJDBC/ojdbc -->
