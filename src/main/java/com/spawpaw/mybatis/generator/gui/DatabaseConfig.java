@@ -32,7 +32,7 @@ public class DatabaseConfig implements Serializable {
     @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle|PostgreSQL|SQLServer", type = ConfigType.ChoiceBox)
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
     @Config(bundle = "database.dbName")
-    public SimpleStringProperty dbName = new SimpleStringProperty("hn");
+    public SimpleStringProperty dbName = new SimpleStringProperty("");
     @Config(bundle = "database.host")
     public SimpleStringProperty host = new SimpleStringProperty("localhost");
     @Config(bundle = "database.port")
