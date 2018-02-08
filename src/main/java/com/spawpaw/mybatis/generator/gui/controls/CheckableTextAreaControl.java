@@ -1,31 +1,34 @@
 package com.spawpaw.mybatis.generator.gui.controls;
 
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TextArea;
 
 /**
  * Created By spawpaw@hotmail.com  2018-01-30
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class CheckableTextAreaControl extends TextAreaControl {
-    CheckBox checkBox;
+public class CheckableTextAreaControl extends IControl<String> {
+    CheckBox checkBox = new CheckBox();
+    protected TextArea textArea = new TextArea();
 
     @Override
     public void initView() {
-        checkBox = new CheckBox();
-        layout.getChildren().addAll(checkBox);
-        super.initView();
+        layout.getChildren().addAll(checkBox, textArea);
         checkBox.setTooltip(tooltip);
     }
 
     @Override
     protected void bindProperties() {
-        super.bindProperties();
+        textArea.textProperty().bindBidirectional(value);
+        textArea.promptTextProperty().bindBidirectional(promptTextProperty);
+        checkBox.textProperty().bindBidirectional(labelTextProperty);
         checkBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue)
                 value.setValue("");
             textArea.setDisable(!newValue);
         });
+        textArea.setDisable(!checkBox.selectedProperty().getValue());
     }
 
     @Override
