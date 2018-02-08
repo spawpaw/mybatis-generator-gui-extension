@@ -61,6 +61,7 @@ public class Constants {
 
     //选项卡，当配置过多时，将分为多个选项卡显示，在这里统一管理选项卡的名称
     public static class tabs {
+        public static final String SHORTCUT = "ui.tab.0.SHORTCUT";
         public static final String BASIC_SETTINGS = "ui.tab.1.BASIC_SETTINGS";
         public static final String DATA_ACCESS_OBJECT = "ui.tab.2.DATA_ACCESS_OBJECT";
         public static final String DOMAIN_OBJECT = "ui.tab.3.DOMAIN_OBJECT";
