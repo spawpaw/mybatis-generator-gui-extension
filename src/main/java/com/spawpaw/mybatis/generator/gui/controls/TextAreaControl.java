@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
  */
 public class TextAreaControl extends IControl<String> {
     protected TextArea textArea;
-    private Label label;
+    protected Label label;
 
     @Override
     protected void initView() {
@@ -18,6 +18,8 @@ public class TextAreaControl extends IControl<String> {
         label = new Label();
         textArea = new TextArea();
         layout.getChildren().addAll(label, textArea);
+        label.setTooltip(tooltip);
+        textArea.setTooltip(tooltip);
     }
 
     @Override

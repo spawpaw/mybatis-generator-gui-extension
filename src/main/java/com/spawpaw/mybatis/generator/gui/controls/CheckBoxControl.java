@@ -14,6 +14,7 @@ public class CheckBoxControl extends IControl<Boolean> {
     protected void initView() {
         checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
+        checkBox.setTooltip(tooltip);
     }
 
     @Override

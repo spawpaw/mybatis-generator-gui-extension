@@ -22,6 +22,8 @@ public class ChoiceBoxConfig extends IControl<String> {
         label = new Label();
         choiceBox = new ChoiceBox<>();
         layout.getChildren().addAll(label, choiceBox);
+        label.setTooltip(tooltip);
+        choiceBox.setTooltip(tooltip);
     }
 
     @Override

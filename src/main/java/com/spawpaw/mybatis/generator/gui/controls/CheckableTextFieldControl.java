@@ -15,6 +15,8 @@ public class CheckableTextFieldControl extends TextFieldControl {
         checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
         super.initView();
+        label.setTooltip(tooltip);
+        textField.setTooltip(tooltip);
     }
 
     @Override

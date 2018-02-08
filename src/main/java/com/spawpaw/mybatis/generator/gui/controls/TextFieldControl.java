@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
  */
 public class TextFieldControl extends IControl<String> {
     protected TextField textField;
-    private Label label;
+    protected Label label;
 
 
     @Override
@@ -19,6 +19,7 @@ public class TextFieldControl extends IControl<String> {
         label = new Label();
         layout.getChildren().addAll(label, textField);
         textField.setTooltip(tooltip);
+        label.setTooltip(tooltip);
     }
 
     @Override

@@ -21,6 +21,9 @@ public class FileChooserControl extends IControl<String> {
     @Override
     protected void initView() {
         layout.getChildren().addAll(textField, button);
+        label.setTooltip(tooltip);
+        textField.setTooltip(tooltip);
+        button.setTooltip(tooltip);
     }
 
     @Override

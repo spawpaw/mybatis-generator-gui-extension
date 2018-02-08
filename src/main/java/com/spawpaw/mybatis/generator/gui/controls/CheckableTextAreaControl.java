@@ -15,6 +15,7 @@ public class CheckableTextAreaControl extends TextAreaControl {
         checkBox = new CheckBox();
         layout.getChildren().addAll(checkBox);
         super.initView();
+        checkBox.setTooltip(tooltip);
     }
 
     @Override
