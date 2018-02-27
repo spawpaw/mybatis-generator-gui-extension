@@ -67,7 +67,7 @@ public class CommentPlugin implements CommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        if (fileHeader != null && !fileHeader.isEmpty()) {
+        if (fileHeader != null && !fileHeader.isEmpty() && introspectedTable.getRemarks() != null) {
             fileHeader = fileHeader.replace("${tableComment}", introspectedTable.getRemarks());
             topLevelClass.addJavaDocLine(fileHeader);
         }
