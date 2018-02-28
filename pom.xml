@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.spawpaw.mybatis.generator</groupId>
     <artifactId>gui-extension</artifactId>
-    <version>2.0.1</version>
+    <version>v2.0.3-stable</version>
     <name>MBG-GUI-EXTENSION</name>
 
     <packaging>jar</packaging>
@@ -64,12 +64,14 @@
             <version>5.1.45</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/OJDBC/ojdbc -->
+
+        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
         <!--<dependency>-->
-        <!--<groupId>OJDBC</groupId>-->
-        <!--<artifactId>ojdbc</artifactId>-->
-        <!--<version>14</version>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc14</artifactId>-->
+            <!--<version>10.2.0.4.0</version>-->
         <!--</dependency>-->
+
 
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -132,6 +134,8 @@
                     <vendor>spawpaw@hotmail.com</vendor>
                     <verbose>false</verbose>
                     <jfxMainAppJarName>MBG-GUI-EXTENSION.jar</jfxMainAppJarName>
+                    <copyAdditionalAppResourcesToJar>true</copyAdditionalAppResourcesToJar>
+                    <additionalAppResources>${project.basedir}/src/main/resources</additionalAppResources>
                 </configuration>
             </plugin>
         </plugins>
