@@ -5,6 +5,7 @@ import com.spawpaw.mybatis.generator.gui.ProjectConfig;
 import com.spawpaw.mybatis.generator.gui.annotations.EnablePlugin;
 import com.spawpaw.mybatis.generator.gui.annotations.ExportToPlugin;
 import com.spawpaw.mybatis.generator.gui.entity.TableColumnMetaData;
+import com.spawpaw.mybatis.generator.gui.enums.DatabaseType;
 import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
 import javafx.beans.property.Property;
 import org.mybatis.generator.api.MyBatisGenerator;
@@ -43,6 +44,8 @@ public class MBGRunner {
 
     public String generate() {
         config = new Configuration();
+        if (!DatabaseType.valueOf(databaseConfig.databaseType.getValue()).getDriverJarFilePath().isEmpty())
+            config.addClasspathEntry(DatabaseType.valueOf(databaseConfig.databaseType.getValue()).getDriverJarFilePath());
         //default model type
         if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("CONDITIONAL"))
             context = new Context(ModelType.CONDITIONAL);

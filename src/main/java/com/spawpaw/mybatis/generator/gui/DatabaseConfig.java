@@ -14,10 +14,7 @@ import javafx.scene.layout.VBox;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created By spawpaw@hotmail.com  2018-01-30
@@ -46,7 +43,7 @@ public class DatabaseConfig implements Serializable {
     private transient TreeItem<String> rootItem;
 
     public String driver() {
-        return DatabaseType.valueOf(databaseType.getValue()).driverClazz;
+        return DatabaseType.valueOf(databaseType.getValue()).getDriverClazzName();
     }
 
     public String connectionUrl() {
@@ -60,14 +57,14 @@ public class DatabaseConfig implements Serializable {
 
     private Connection getConnection() throws SQLException {
         //加载驱动
-        try {
-            Class.forName(driver());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        Driver driver = DatabaseType.valueOf(databaseType.getValue()).getDriver();
         //获得数据库连接
-        System.out.println(userName);
-        return DriverManager.getConnection(connectionUrl(), userName.getValue(), password.getValue());
+        Properties p = new Properties();
+        p.put("user", userName.getValue());
+        p.put("password", password.getValue());
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>driver:" + connectionUrl());
+        return driver.connect(connectionUrl(), p);
+//        return DriverManager.getConnection(connectionUrl(), userName.getValue(), password.getValue());
     }
 
     public void test() throws SQLException {
