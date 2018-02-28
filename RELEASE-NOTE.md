@@ -1,6 +1,6 @@
 
 ### 核心功能：
-- Multiple language: Auto select language when you start this app.
+- Multiple language: Automatically selecting language when you start this app.
 - 可选择生成不同类型的Mapper
   - `Annotated Mapper`: 生成的对象为**基于注解**和**MyBatis 3.x SqlProviders**的Java接口，不会生成XML
   - `Mixed Mapper`:  生成的对象为**基于注解**和**MyBatis 3.x SqlProviders**的Java接口。但复杂的动态SQL语句将采用XML形式
