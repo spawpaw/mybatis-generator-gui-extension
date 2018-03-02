@@ -24,6 +24,14 @@ public class DemoServicePlugin extends PluginAdapter {
     public String baseUrl = null;       //if null, use the lower camel case of `domain object name`
     public String commonResponseWithPageInfoType = "";
 
+    //在字段注释中添加`@EnableSearch()`来启用搜索，支持如下参数：
+    //full:             []全文搜索，仅全部匹配时返回对应记录.
+    //like:             []模糊搜索(大小写敏感)
+    //likeIgnoreCase:   []模糊搜索(大小写不敏感)
+    //largerThan:       比指定值大
+    //lessThan:         比指定值小
+    //例如@EnableSearch(full,like,likeIgnoreCase)
+    //如不填参数，则仅开启full
     public boolean enableGetList = true;                    //GET:      uri?criteria
     public String getListRequestMethod = "GET";
     public String getListUrl = "";
