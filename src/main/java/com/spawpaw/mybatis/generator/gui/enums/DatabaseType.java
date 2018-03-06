@@ -1,5 +1,7 @@
 package com.spawpaw.mybatis.generator.gui.enums;
 
+import com.spawpaw.mybatis.generator.gui.util.Constants;
+
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -16,13 +18,20 @@ public enum DatabaseType {
     //数据库类型枚举
     MySQL("com.mysql.jdbc.Driver", "jdbc:mysql://%s:%s/%s?useUnicode=true&useSSL=false&characterEncoding=%s", ""),
 
-    //格式一：jdbc:oracle:thin:@//<host>:<port>/<service_name>
-    //格式二：jdbc:oracle:thin:@<host>:<port>:<SID>
-    //格式三：jdbc:oracle:thin:@<TNSName>
 
     //如遇错误，尝试在$ORACLE_HOME\NETWORK\ADMIN\sqlnet.ora中配置：
     //SQLNET.ALLOWED_LOGON_VERSION=8
-    Oracle("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@(description=(address=(protocol=tcp)(host=%s)(port=%s))(connect_data=(service_name=%s)))", "ojdbc8.jar"),
+    //    //格式二：jdbc:oracle:thin:@<host>:<port>:<SID>
+    Oracle_SID("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@%s:%s:%s", Constants.ORACLE_DRIVER_NAME),
+    //格式一：jdbc:oracle:thin:@//<host>:<port>/<service_name>
+    Oracle_ServiceName("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@//%s:%s/%s", Constants.ORACLE_DRIVER_NAME),
+    //格式三：jdbc:oracle:thin:@<TNSName>
+    Oracle_TNSName("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@%s", Constants.ORACLE_DRIVER_NAME),
+    //格式三： give a tnsnames.ora entry-like in the string (here for SSL/TCPS):
+    // jdbc:oracle:thin:@(description=(address=(protocol=tcp)(host=%s)(port=%s))(connect_data=(service_name=%s)))
+    Oracle_TNSEntryString("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@(description=(address=(protocol=tcp)(host=%s)(port=%s))(connect_data=(service_name=%s)))", Constants.ORACLE_DRIVER_NAME),
+
+    Oracle("oracle.jdbc.driver.OracleDriver", "jdbc:oracle:thin:@%s:%s:%s", Constants.ORACLE_DRIVER_NAME),
 
     PostgreSQL("org.postgresql.Driver", "jdbc:postgresql://%s:%s/%s", "postgresql-9.4.1209.jar"),
     SQLServer("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s", ""),
@@ -56,6 +65,14 @@ public enum DatabaseType {
         switch (this) {
             case MySQL:
                 return String.format(connectStrFormat, host, port, dbName, encoding);
+            case Oracle_SID:
+                return String.format(connectStrFormat, host, port, dbName);
+            case Oracle_ServiceName:
+                return String.format(connectStrFormat, host, port, dbName);
+            case Oracle_TNSName:
+                return String.format(connectStrFormat, dbName);
+            case Oracle_TNSEntryString:
+                return String.format(connectStrFormat, host, port, dbName);
             case Oracle:
             case PostgreSQL:
             case SQLServer:

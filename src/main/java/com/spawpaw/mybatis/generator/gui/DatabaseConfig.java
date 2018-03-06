@@ -26,7 +26,7 @@ public class DatabaseConfig implements Serializable {
     @Config(bundle = "database.savedName")
     public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
 
-    @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle|PostgreSQL|SQLServer", type = ConfigType.ChoiceBox)
+    @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle_SID|Oracle_ServiceName|Oracle_TNSName|Oracle_TNSEntryString|PostgreSQL|SQLServer", type = ConfigType.ChoiceBox)
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
     @Config(bundle = "database.dbName")
     public SimpleStringProperty dbName = new SimpleStringProperty("");
@@ -103,6 +103,10 @@ public class DatabaseConfig implements Serializable {
                 rs = meta.getTables(null, dbName.getValue(), null, types);
                 break;
             case Oracle:
+            case Oracle_SID:
+            case Oracle_ServiceName:
+            case Oracle_TNSName:
+            case Oracle_TNSEntryString:
                 rs = meta.getTables(null, userName.getValue().toUpperCase(), null, types);
                 break;
             case SQLServer:

@@ -20,6 +20,18 @@ public class Constants {
     public static final String CONFIG_SAVE_PATH = "data/config/";
     public static final String CONNECTION_SAVE_PATH = "data/connection/";
 
+    //classes for use with JDK 1.4 and 1.5
+    public static final String ORACLE_DRIVER_14 = "ojdbc14.jar";
+    //Certified with JDK 8, JDK 7 and JDK 6: It contains the JDBC driver classes except classes for NLS support in Oracle Object and Collection types.
+    public static final String ORACLE_DRIVER_6 = "ojdbc6.jar";
+    //Certified with JDK 8; It contains the JDBC driver classes except classes for NLS support in Oracle Object and Collection types.
+    public static final String ORACLE_DRIVER_8 = "ojdbc8.jar";
+
+    // TODO: 如果你使用的是Oracle数据库，选择一个合适的Driver版本
+//    public static final String ORACLE_DRIVER_NAME = ORACLE_DRIVER_14;
+    public static final String ORACLE_DRIVER_NAME = ORACLE_DRIVER_6;
+    //    public static final String ORACLE_DRIVER_NAME = ORACLE_DRIVER_8;
+
 
     //当前系统的语言，为国际化准备
     public static void setLocale(Locale locale) {
