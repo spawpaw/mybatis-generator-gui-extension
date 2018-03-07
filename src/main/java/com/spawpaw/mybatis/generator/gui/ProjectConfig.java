@@ -31,11 +31,10 @@ public class ProjectConfig {
     @Config(bundle = "project.basePackage")
     public SimpleStringProperty basePackage = new SimpleStringProperty("");
 
+    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     //生成代码文件的编码方式
     @Config(bundle = "project.javaFileEncoding", type = ConfigType.ChoiceBox, testRegex = "UTF-8|GBK|UTF-16BE|UTF-16LE|UTF-16|US-ASCII|ISO-8859-1")
     public SimpleStringProperty javaFileEncoding = new SimpleStringProperty("UTF-8");
-
-    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     @Config(bundle = "project.reduceTablePrefix")
     public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
     @AdvancedConfig
