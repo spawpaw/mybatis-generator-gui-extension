@@ -16,6 +16,7 @@ public enum ConfigType {
     DirChooser,
 
     CheckBox,
+    ComboBox,
 
     ChoiceBox
 
