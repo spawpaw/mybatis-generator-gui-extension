@@ -35,7 +35,7 @@ public class ProjectConfig {
     //生成代码文件的编码方式
     @Config(bundle = "project.javaFileEncoding", type = ConfigType.ChoiceBox, testRegex = "UTF-8|GBK|UTF-16BE|UTF-16LE|UTF-16|US-ASCII|ISO-8859-1")
     public SimpleStringProperty javaFileEncoding = new SimpleStringProperty("UTF-8");
-    @Config(bundle = "project.reduceTablePrefix", testRegex = "(t|T)_\n(a-z|A-Z){0,2}_"/*这里用\n隔开*/, type = ConfigType.ComboBox)
+    @Config(bundle = "project.reduceTablePrefix", testRegex = "(t|T)_\n[a-z|A-Z]{0,2}_"/*这里用\n隔开*/, type = ConfigType.ComboBox)
     public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
     @AdvancedConfig
     @Config(bundle = "project.daoObjSuffix")
