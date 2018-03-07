@@ -3,4 +3,7 @@ jdk:
   - oraclejdk8
   - oraclejdk9
   - openjdk8
-  - openjdk9
+addons:
+  apt:
+    packages:
+    - openjfx
