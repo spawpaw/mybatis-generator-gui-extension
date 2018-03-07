@@ -17,7 +17,7 @@
 
         </Label>
         <HBox prefHeight="36.0" prefWidth="223.0" />
-        <TextField fx:id="tf_filter" minWidth="300.0" promptText="搜索列" />
+        <!--<TextField fx:id="tf_filter" minWidth="300.0" promptText="搜索列" />-->
     </HBox>
     <TableView fx:id="table_view" editable="true" prefHeight="660.0" prefWidth="922.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>

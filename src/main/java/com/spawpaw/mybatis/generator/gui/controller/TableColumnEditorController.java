@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  */
 public class TableColumnEditorController extends BaseController implements Initializable {
 
-    public TextField tf_filter;
+//    public TextField tf_filter;
     public TableView<TableColumnMetaData> table_view;
     public TableColumn<TableColumnMetaData, Boolean> c_checked;
     public TableColumn<TableColumnMetaData, String> c_column_name;
