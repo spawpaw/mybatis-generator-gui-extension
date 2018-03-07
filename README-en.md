@@ -33,7 +33,8 @@
     
 ## Usage
 
-> PLEASE make sure that you have a `1.8u40 plus` Java Runtime
+> PLEASE make sure that you have a `1.8u40 plus` Java Runtime  
+> git is recommended
 
 ### Run the code directly 
 

@@ -1,6 +1,17 @@
 # mybatis-generator-gui-extension
 
+
+<!-- Badges section here. -->
+[![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg)](https://github.com/spawpaw/mybatis-generator-gui-extension/blob/master/LICENSE)
+[![Github Releases](https://img.shields.io/github/downloads/atom/atom/latest/total.svg)](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)
+
+[![GitHub forks](https://img.shields.io/github/forks/spawpaw/mybatis-generator-gui-extension.svg?style=social&label=Fork)](https://github.com/spawpaw/mybatis-generator-gui-extension/fork)
+[![GitHub stars](https://img.shields.io/github/stars/spawpaw/mybatis-generator-gui-extension.svg?style=social&label=Star)](https://github.com/spawpaw/mybatis-generator-gui-extension/star)
+
+
+
 ## 简介
+
 **mybatis-generator-gui-extension**是一个为MybatisGenerator编写的图形化界面，集成了几乎所有`mybatis generator`的默认配置。
 
 #### there's also a README written in English [English README](./README-en.md)
@@ -13,7 +24,7 @@
 ![示例图片](./wiki/images/tooltip_example.png)
 
 ## 特性
-- 省去繁琐的让人眼花缭乱的XML配置，在图形化界面中轻松生成代码
+
 - 配置全面，包含几乎所有mybatis-generator的配置
 - 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 - 可开启简洁模式，隐藏不常用的配置(开关在右上角)
@@ -31,18 +42,21 @@
     - `虚拟主键插件`：指定某些列作为主键
     - `CaseInsensitiveLike插件`：为Example类生成CaseInsensitiveLike方法
     - `MapperAnnotationPlugin`：为java接口添加@Mapper注解
-    
+
 ## 如何使用
 
-> 运行前请确保您的JDK版本为1.8u40以上
+> 运行前请确保您的JDK版本为1.8u40以上  
+> 推荐使用git克隆仓库到本地，这样当本项目更新时直接pull即可
 
 ### 方法一：下载源代码
-点击右上角**Clone or download**或用git拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
 
-用IDE打开项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
+1. 点击右上角**Clone or download**或用`git`拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
+
+2. 用IDE将源代码导入为Maven项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
 
 
 ### 方法二：下载jar包
+
 可以执行`mvn: jfx:jar` 自助构建  
 或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
 
