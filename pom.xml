@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.spawpaw.mybatis.generator</groupId>
     <artifactId>gui-extension</artifactId>
-    <version>v2.0.5-stable</version>
+    <version>v2.0.10-stable</version>
     <name>MBG-GUI-EXTENSION</name>
 
     <packaging>jar</packaging>
