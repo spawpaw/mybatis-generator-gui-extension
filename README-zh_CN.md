@@ -3,6 +3,7 @@
 
 <!-- Badges section here. -->
 [![Crates.io](https://img.shields.io/crates/l/rustc-serialize.svg)](https://github.com/spawpaw/mybatis-generator-gui-extension/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/spawpaw/mybatis-generator-gui-extension.svg?branch=master)](https://travis-ci.org/spawpaw/mybatis-generator-gui-extension)
 [![Github Releases](https://img.shields.io/github/downloads/atom/atom/latest/total.svg)](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)
 
 [![GitHub forks](https://img.shields.io/github/forks/spawpaw/mybatis-generator-gui-extension.svg?style=social&label=Fork)](https://github.com/spawpaw/mybatis-generator-gui-extension/fork)
