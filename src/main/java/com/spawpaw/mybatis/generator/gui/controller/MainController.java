@@ -44,11 +44,13 @@ public class MainController extends BaseController implements Initializable {
     Map<TreeItem<String>, DatabaseConfig> databaseConfigHashMap;
     private Map<String, List<ConfigWrapper>> configs;
 
+    String projectConfigName = "";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         refreshProjectConfigList();
         refreshDatabaseConfigList();
-        setSelectedProjectConfig(new ProjectConfig());
+        setSelectedProjectConfig(new ProjectConfig(), "untitled");
 
         cb_select_language.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals("中文")) {
@@ -61,8 +63,9 @@ public class MainController extends BaseController implements Initializable {
         btn_about.setOnMouseClicked(event -> aboutStage.showAndWait());
     }
 
-    public void setSelectedProjectConfig(ProjectConfig projectConfig) {
+    public void setSelectedProjectConfig(ProjectConfig projectConfig, String projectConfigName) {
         selectedProjectConfig = projectConfig;
+        this.projectConfigName = projectConfigName.replaceAll(".json$","");
 
         projectConfig.initialize();
         generateTabPane();
@@ -154,7 +157,7 @@ public class MainController extends BaseController implements Initializable {
             }
         cb_load_saved_project_config.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.isEmpty())
-                setSelectedProjectConfig(fxGson.fromJson(FileUtil.readFileAsStr(new File(Constants.CONFIG_SAVE_PATH + newValue)), ProjectConfig.class));
+                setSelectedProjectConfig(fxGson.fromJson(FileUtil.readFileAsStr(new File(Constants.CONFIG_SAVE_PATH + newValue)), ProjectConfig.class), newValue);
         });
     }
 
@@ -238,12 +241,12 @@ public class MainController extends BaseController implements Initializable {
         Gson gson = new FxGsonBuilder().create();
         String json = gson.toJson(selectedProjectConfig);
         try {
-            TextInputDialog textInputDialog = new TextInputDialog("untitled");
+            TextInputDialog textInputDialog = new TextInputDialog(projectConfigName);
             textInputDialog.setContentText("Please input file name");
             textInputDialog.setHeaderText("");
             textInputDialog.setTitle("message");
             textInputDialog.setGraphic(null);
-            Optional<String> opt=textInputDialog.showAndWait();
+            Optional<String> opt = textInputDialog.showAndWait();
             if (opt.isPresent() && !opt.get().isEmpty()) {
                 FileUtil.writeStringToFile(Constants.CONFIG_SAVE_PATH + opt.get() + ".json", json);
                 refreshProjectConfigList();
