@@ -65,7 +65,7 @@ public class MainController extends BaseController implements Initializable {
 
     public void setSelectedProjectConfig(ProjectConfig projectConfig, String projectConfigName) {
         selectedProjectConfig = projectConfig;
-        this.projectConfigName = projectConfigName.replaceAll(".json$","");
+        this.projectConfigName = projectConfigName.replaceAll(".json$", "");
 
         projectConfig.initialize();
         generateTabPane();
@@ -249,7 +249,9 @@ public class MainController extends BaseController implements Initializable {
             Optional<String> opt = textInputDialog.showAndWait();
             if (opt.isPresent() && !opt.get().isEmpty()) {
                 FileUtil.writeStringToFile(Constants.CONFIG_SAVE_PATH + opt.get() + ".json", json);
+                projectConfigName = opt.get();
                 refreshProjectConfigList();
+                cb_load_saved_project_config.setValue(projectConfigName + ".json");
                 showMessage("msg.error.SaveSuccess");
             }
         } catch (IOException e) {
