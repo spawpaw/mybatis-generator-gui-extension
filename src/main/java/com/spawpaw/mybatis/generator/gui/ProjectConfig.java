@@ -266,11 +266,16 @@ public class ProjectConfig {
     }
 
     /**
-     * 将lower_snake转换成大骆驼峰
+     * 获取字符串的大骆驼峰形式
      */
     private String getUpperCamel(String s) {
-        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
+        //如果全大写，且包含下划线
+        if (s.replaceAll("[A-Z]+", "").equals(s) && s.contains("_"))
+            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
+        //如果不包含下划线
+        if (!s.contains("_") && s.length() > 2)
+            return s.toUpperCase().charAt(0) + s.substring(1);
+        //如果不全为大写，且包含下划线
+        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s.toLowerCase());
     }
-
-
 }
