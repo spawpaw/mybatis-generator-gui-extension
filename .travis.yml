@@ -2,8 +2,8 @@ language: java
 jdk:
   - oraclejdk8
   - oraclejdk9
-  - openjdk8
-addons:
-  apt:
-    packages:
-    - openjfx
+#  - openjdk8
+#addons:
+#  apt:
+#    packages:
+#    - openjfx
