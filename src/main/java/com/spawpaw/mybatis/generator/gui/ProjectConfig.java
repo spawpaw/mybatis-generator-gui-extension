@@ -9,9 +9,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DATA_ACCESS_OBJECT;
-import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.DOMAIN_OBJECT;
-import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.SHORTCUT;
+import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.*;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -32,6 +30,11 @@ public class ProjectConfig {
     public SimpleStringProperty projectDir = new SimpleStringProperty("");
     @Config(bundle = "project.basePackage")
     public SimpleStringProperty basePackage = new SimpleStringProperty("");
+
+    //生成代码文件的编码方式
+    @Config(bundle = "project.javaFileEncoding", type = ConfigType.ChoiceBox, testRegex = "UTF-8|GBK|UTF-16BE|UTF-16LE|UTF-16|US-ASCII|ISO-8859-1")
+    public SimpleStringProperty javaFileEncoding = new SimpleStringProperty("UTF-8");
+
     @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     @Config(bundle = "project.reduceTablePrefix")
     public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
@@ -50,6 +53,7 @@ public class ProjectConfig {
     @AdvancedConfig
     @Config(bundle = "project.entityPackageSuffix")
     public SimpleStringProperty entityPackageSuffix = new SimpleStringProperty("entity");
+
 
     /****DAO层配置******************************************************************************************************/
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
@@ -154,7 +158,7 @@ public class ProjectConfig {
     @EnablePlugin(DeclaredPlugins.ToStringPlugin)
     @Config(bundle = "project.generateToString", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateToString = new SimpleBooleanProperty(true);
-    @ExportToPlugin(plugin = DeclaredPlugins.ToStringPlugin,key = "useToStringFromRoot")
+    @ExportToPlugin(plugin = DeclaredPlugins.ToStringPlugin, key = "useToStringFromRoot")
     @AdvancedConfig
     @Config(bundle = "project.useToStringFromRoot", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useToStringFromRoot = new SimpleBooleanProperty(false);
@@ -165,7 +169,7 @@ public class ProjectConfig {
     public SimpleBooleanProperty generateHashcodeEquals = new SimpleBooleanProperty(true);
 
     @AdvancedConfig
-    @ExportToPlugin(plugin = DeclaredPlugins.EqualsHashCodePlugin,key = "useEqualsHashCodeFromRoot")
+    @ExportToPlugin(plugin = DeclaredPlugins.EqualsHashCodePlugin, key = "useEqualsHashCodeFromRoot")
     @Config(bundle = "project.useEqualsHashCodeFromRoot", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useEqualsHashCodeFromRoot = new SimpleBooleanProperty(false);
 

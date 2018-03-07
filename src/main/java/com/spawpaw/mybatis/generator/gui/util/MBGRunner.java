@@ -56,7 +56,7 @@ public class MBGRunner {
 
         context.setId("mybatis generator gui extension");//id
         context.setTargetRuntime("MyBatis3");//targetRuntime
-
+        context.addProperty("javaFileEncoding", projectConfig.javaFileEncoding.getValue());
 
         //=====================================================================================================加载插件
         //initialize plugin data
