@@ -17,6 +17,9 @@ public class ControlsFactory {
         }
         IControl control;
         switch (config.type()) {
+            case ComboBox:
+                control = new ComboBoxControl();
+                break;
             case CheckBox:
                 control = new CheckBoxControl();
                 break;
