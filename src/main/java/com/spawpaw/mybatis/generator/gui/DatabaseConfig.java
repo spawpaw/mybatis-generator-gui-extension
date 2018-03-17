@@ -163,7 +163,7 @@ public class DatabaseConfig implements Serializable {
             for (Field field : DatabaseConfig.class.getFields()) {
                 if (field.getAnnotation(Config.class) != null && field.get(this) instanceof Property) {
                     vBox.getChildren().addAll(ControlsFactory.getLayout(field.getAnnotation(Config.class), (Property) field.get(this)));
-                } else {
+                } else if (field.getAnnotation(Config.class) != null && !(field.get(this) instanceof Property)) {
                     System.out.println(Constants.getI18nStr("msg.dbConfigInvalid"));
                 }
             }
