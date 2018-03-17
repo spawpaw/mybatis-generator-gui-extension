@@ -38,7 +38,7 @@ public class DatabaseConfig implements Serializable {
     public SimpleStringProperty userName = new SimpleStringProperty("root");
     @Config(bundle = "database.password")
     public SimpleStringProperty password = new SimpleStringProperty("123456");
-    @Config(bundle = "database.encoding", testRegex = "utf8", type = ConfigType.ChoiceBox)
+    @Config(bundle = "database.encoding", testRegex = "utf8|latin1", type = ConfigType.ChoiceBox)
     public SimpleStringProperty encoding = new SimpleStringProperty("utf8");
     private transient TreeItem<String> rootItem;
 
