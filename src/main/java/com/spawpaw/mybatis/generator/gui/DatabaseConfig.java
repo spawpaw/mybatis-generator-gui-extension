@@ -149,14 +149,17 @@ public class DatabaseConfig implements Serializable {
             rootItem.getChildren().add(item);
             rootItem.setExpanded(true);
         }
+        // TODO: 2018/3/17 关闭数据库连接
     }
 
+    //关闭连接,清空ListView
     public void close() {
         if (rootItem != null)
             rootItem.getChildren().clear();
     }
 
 
+    //获取数据库连接的配置表单
     public VBox getLayout() {
         VBox vBox = new VBox();
         try {

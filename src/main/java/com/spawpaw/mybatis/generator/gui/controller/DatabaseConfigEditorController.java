@@ -50,6 +50,7 @@ public class DatabaseConfigEditorController extends BaseController implements In
     }
 
     public void onSaveClicked(MouseEvent event) {
+        // TODO: 2018/3/17 检查数据库配置是否有效（例如是否填写了数据库名称）
         try {
             FileUtil.writeJsonObjToFile(Constants.CONNECTION_SAVE_PATH + databaseConfig.savedName.getValue() + ".json", databaseConfig);
             primaryStageController.refreshDatabaseConfigList();
