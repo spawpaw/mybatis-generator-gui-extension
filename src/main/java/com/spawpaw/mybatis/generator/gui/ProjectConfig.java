@@ -72,6 +72,7 @@ public class ProjectConfig {
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
+    @EnablePlugin(DeclaredPlugins.PagePlugin)
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(false);
 
