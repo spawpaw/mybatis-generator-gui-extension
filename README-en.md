@@ -45,7 +45,7 @@ Then open the project with any java IDEs that you like, then run `com.spawpaw.my
 
 
 ### Run .jar
-You can run maven script: `mvn: jfx:jar` to build a jar
+You can run maven script: `mvn: package` to build a jar
 or [select a version to download]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
 
 

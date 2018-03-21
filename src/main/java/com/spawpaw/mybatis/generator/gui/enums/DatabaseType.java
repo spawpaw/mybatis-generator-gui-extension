@@ -4,7 +4,6 @@ import com.spawpaw.mybatis.generator.gui.util.Constants;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.sql.Driver;
@@ -87,27 +86,28 @@ public enum DatabaseType {
     public String getDriverJarFilePath() {
         if (driverJarFile.isEmpty())
             return "";
-        try {
-            File file = new File(Thread.currentThread().getContextClassLoader().getResource("drivers/" + driverJarFile).toURI());
-            return file.getAbsolutePath();
-        } catch (URISyntaxException e) {
-            System.out.println("没有找到数据库驱动jar");
-        }
-        return "";
+        File file = new File("lib/" + driverJarFile);
+        return file.getAbsolutePath();
     }
 
     public Driver getDriver() {
         try {
+            //尝试直接加载Driver
+            return (Driver) (ClassLoader.getSystemClassLoader().loadClass(driverClazz).newInstance());
+        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            //尝试从lib目录加载driver
             if (driverJarFile.isEmpty()) {
-                return (Driver) (ClassLoader.getSystemClassLoader().loadClass(driverClazz).newInstance());
+                System.out.println("既没有在classpath中添加Driver，也没有为程序指定Driver所在的jar包，\n请联系作者解决该问题，或向lib目录下添加您所使用数据库的jar包，然后在DatabaseType中将该数据库配置的第三个参数改成您所使用的jar包的文件名");
             } else {
-                File file = new File(Thread.currentThread().getContextClassLoader().getResource("drivers/" + driverJarFile).toURI());
-                URLClassLoader loader = new URLClassLoader(new URL[]{file.toURI().toURL()});
-                Class clazz = loader.loadClass(driverClazz);
-                return (Driver) clazz.newInstance();
+                try {
+                    System.out.println(new File("lib/" + driverJarFile).getAbsoluteFile());
+                    URLClassLoader loader = new URLClassLoader(new URL[]{new File("lib/" + driverJarFile).toURI().toURL()});
+                    Class clazz = loader.loadClass(driverClazz);
+                    return (Driver) clazz.newInstance();
+                } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | MalformedURLException e1) {
+                    e1.printStackTrace();
+                }
             }
-        } catch (URISyntaxException | IllegalAccessException | MalformedURLException | InstantiationException | ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return null;
     }

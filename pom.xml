@@ -67,11 +67,10 @@
 
         <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
         <!--<dependency>-->
-            <!--<groupId>com.oracle</groupId>-->
-            <!--<artifactId>ojdbc14</artifactId>-->
-            <!--<version>10.2.0.4.0</version>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>ojdbc14</artifactId>-->
+        <!--<version>10.2.0.4.0</version>-->
         <!--</dependency>-->
-
 
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -90,7 +89,78 @@
 
     </dependencies>
     <build>
+        <resources>
+            <resource>
+                <!-- 设定主资源目录  -->
+                <directory>src/main/resources</directory>
+                <!--不将以下文件打包到jar中-->
+                <excludes>
+                    <exclude>lib/*</exclude>
+                    <exclude>*.md</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <copy todir="${project.build.directory}/lib" overwrite="true" >
+                                    <fileset dir="src/main/resources/lib" erroronmissingdir="false">
+                                        <include name="*.jar"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- 拷贝依赖的jar包到lib目录 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>${exec.mainClass}</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>lib/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -98,44 +168,6 @@
                 <configuration>
                     <source>1.${java.language.level}</source>
                     <target>1.${java.language.level}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <!-- 此处指定main方法入口的class -->
-                            <mainClass>${exec.mainClass}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>assembly</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.8.3</version>
-                <configuration>
-                    <mainClass>${exec.mainClass}</mainClass>
-                    <vendor>spawpaw@hotmail.com</vendor>
-                    <verbose>false</verbose>
-                    <jfxMainAppJarName>MBG-GUI-EXTENSION.jar</jfxMainAppJarName>
-                    <copyAdditionalAppResourcesToJar>true</copyAdditionalAppResourcesToJar>
-                    <additionalAppResources>${project.basedir}/src/main/resources</additionalAppResources>
                 </configuration>
             </plugin>
         </plugins>

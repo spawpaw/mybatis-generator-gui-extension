@@ -9,8 +9,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/spawpaw/mybatis-generator-gui-extension.svg?style=social&label=Fork)](https://github.com/spawpaw/mybatis-generator-gui-extension/fork)
 [![GitHub stars](https://img.shields.io/github/stars/spawpaw/mybatis-generator-gui-extension.svg?style=social&label=Star)](https://github.com/spawpaw/mybatis-generator-gui-extension/star)
 
-
-
 ## 简介
 
 **mybatis-generator-gui-extension**是一个为MybatisGenerator编写的图形化界面，集成了几乎所有`mybatis generator`的默认配置。
@@ -58,7 +56,7 @@
 
 ### 方法二：下载jar包
 
-可以执行`mvn: jfx:jar` 自助构建  
+可以执行`mvn: package` 自助构建  
 或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
 
 
