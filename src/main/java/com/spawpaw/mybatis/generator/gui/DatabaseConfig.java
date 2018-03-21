@@ -63,6 +63,7 @@ public class DatabaseConfig implements Serializable {
         p.put("user", userName.getValue());
         p.put("password", password.getValue());
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>driver:" + connectionUrl());
+        System.out.println(connectionUrl());
         return driver.connect(connectionUrl(), p);
 //        return DriverManager.getConnection(connectionUrl(), userName.getValue(), password.getValue());
     }

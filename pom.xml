@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.spawpaw.mybatis.generator</groupId>
     <artifactId>gui-extension</artifactId>
-    <version>v2.0.10-stable</version>
+    <version>v2.0.13-stable</version>
     <name>MBG-GUI-EXTENSION</name>
 
     <packaging>jar</packaging>
@@ -65,12 +65,13 @@
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc14 -->
-        <!--<dependency>-->
-        <!--<groupId>com.oracle</groupId>-->
-        <!--<artifactId>ojdbc14</artifactId>-->
-        <!--<version>10.2.0.4.0</version>-->
-        <!--</dependency>-->
+        <!--使用第三方托管的ojdbc（辣鸡oracle...-->
+        <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>12.1.0.1-atlassian-hosted</version>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
@@ -79,6 +80,7 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.1</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
@@ -89,78 +91,7 @@
 
     </dependencies>
     <build>
-        <resources>
-            <resource>
-                <!-- 设定主资源目录  -->
-                <directory>src/main/resources</directory>
-                <!--不将以下文件打包到jar中-->
-                <excludes>
-                    <exclude>lib/*</exclude>
-                    <exclude>*.md</exclude>
-                </excludes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
         <plugins>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <copy todir="${project.build.directory}/lib" overwrite="true" >
-                                    <fileset dir="src/main/resources/lib" erroronmissingdir="false">
-                                        <include name="*.jar"/>
-                                    </fileset>
-                                </copy>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 拷贝依赖的jar包到lib目录 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>copy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>
-                                ${project.build.directory}/lib
-                            </outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>${exec.mainClass}</mainClass>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                        </manifest>
-                        <manifestEntries>
-                            <Class-Path>lib/</Class-Path>
-                        </manifestEntries>
-                    </archive>
-                </configuration>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -169,6 +100,28 @@
                     <source>1.${java.language.level}</source>
                     <target>1.${java.language.level}</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>${exec.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
