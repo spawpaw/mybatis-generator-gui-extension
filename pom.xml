@@ -50,6 +50,18 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.hildan.fxgson/fx-gson -->
         <dependency>
             <groupId>org.hildan.fxgson</groupId>
