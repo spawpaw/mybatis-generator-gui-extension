@@ -42,9 +42,8 @@ public class MainController extends BaseController implements Initializable {
     public Button btn_about;
 
     Map<TreeItem<String>, DatabaseConfig> databaseConfigHashMap;
-    private Map<String, List<ConfigWrapper>> configs;
-
     String projectConfigName = "";
+    private Map<String, List<ConfigWrapper>> configs;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

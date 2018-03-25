@@ -57,7 +57,7 @@ public class DatabaseConfigEditorController extends BaseController implements In
             databaseEditorStage.close();
             showMessage("msg.error.SaveSuccess");
         } catch (IOException e) {
-            showMessage(Constants.getI18nStr("msg.error.SaveFailure")+"\n" + e.getMessage());
+            showMessage(Constants.getI18nStr("msg.error.SaveFailure") + "\n" + e.getMessage());
             e.printStackTrace();
         }
 

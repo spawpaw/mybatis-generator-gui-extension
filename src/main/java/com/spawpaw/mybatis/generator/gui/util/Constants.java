@@ -19,16 +19,15 @@ public class Constants {
     //保存配置的目录
     public static final String CONFIG_SAVE_PATH = "data/config/";
     public static final String CONNECTION_SAVE_PATH = "data/connection/";
+    private static Locale SPECIFIED_LOCALE = Locale.getDefault();
+    //缓存Res
+    private static Map<Locale, ResourceBundle> resourceBundles = new HashMap<>();
 
     //当前系统的语言，为国际化准备
     public static void setLocale(Locale locale) {
         SPECIFIED_LOCALE = locale;
         IControl.refreshLabels();
     }
-
-    private static Locale SPECIFIED_LOCALE = Locale.getDefault();
-    //缓存Res
-    private static Map<Locale, ResourceBundle> resourceBundles = new HashMap<>();
 
     public static String getI18nStr(String s) {
         try {

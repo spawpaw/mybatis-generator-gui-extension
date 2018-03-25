@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -22,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class TableColumnEditorController extends BaseController implements Initializable {
 
-//    public TextField tf_filter;
+    //    public TextField tf_filter;
     public TableView<TableColumnMetaData> table_view;
     public TableColumn<TableColumnMetaData, Boolean> c_checked;
     public TableColumn<TableColumnMetaData, String> c_column_name;
