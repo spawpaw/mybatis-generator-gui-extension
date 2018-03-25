@@ -26,8 +26,10 @@ public class ProjectConfig {
 //    public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
     @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     @ExportToTab(tabName = SHORTCUT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.projectDir", type = ConfigType.DirChooser)
     public SimpleStringProperty projectDir = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.basePackage")
     public SimpleStringProperty basePackage = new SimpleStringProperty("");
 
@@ -210,19 +212,12 @@ public class ProjectConfig {
     public SimpleStringProperty cache_type = new SimpleStringProperty("");
 
 
-//    /****Service层配置**************************************************************************************************/
-//    @ExportToTab(tabName = tabs.SERVICE)
-//    @EnablePlugin(plugins.SerializablePlugin)
-//    public String enableRestServicePlugin ="";
-//
-//    public String serviceDir ="";
-//    public String servicePackage ="";
-//
-//    @ExportToPlugin(plugin = plugins.DemoServicePlugin, key = "restServiceDir")
-//    public String getServiceDir() {
-//        return projectDir.getValue() + serviceDir.getValue();
-//    }
+    /**** MVC*层配置**************************************************************************************************/
 
+    @ExportToTab(tabName = tabs.MVC)
+    @EnablePlugin(DeclaredPlugins.SCVXGeneratorPlugin)
+    @Config(label = "启用代码生成插件", helpText = "", type = ConfigType.CheckBox)
+    public BooleanProperty enableSCVXGeneratorPlugin = new SimpleBooleanProperty(false);
 
     /*===方法s========================================================================================================*/
 

@@ -4,7 +4,7 @@
     <!-- 输出到控制台 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>[%highlight(%level)\t] %green(%thread) %cyan(%logger{32}->%method #%line) : %msg%n</pattern>
+            <pattern>[%highlight(%level)] %green(%thread) %cyan(%logger{32}->%method #%line) : %msg%n</pattern>
         </encoder>
     </appender>
 

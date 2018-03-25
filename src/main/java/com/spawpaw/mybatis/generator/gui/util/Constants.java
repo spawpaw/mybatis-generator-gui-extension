@@ -63,7 +63,7 @@ public class Constants {
         public static final String BASIC_SETTINGS = "ui.tab.1.BASIC_SETTINGS";
         public static final String DATA_ACCESS_OBJECT = "ui.tab.2.DATA_ACCESS_OBJECT";
         public static final String DOMAIN_OBJECT = "ui.tab.3.DOMAIN_OBJECT";
-        public static final String SERVICE = "ui.tab.4.SERVICE";
+        public static final String MVC = "ui.tab.4.MVC";
         public static final String COMMENT = "ui.tab.5.COMMENT";
         public static final String CACHE = "ui.tab.6.CACHE";
     }

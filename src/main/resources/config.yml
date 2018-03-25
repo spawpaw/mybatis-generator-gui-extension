@@ -1,0 +1,29 @@
+# 每项配置有以下四个属性：
+# template:    模板文件名
+# destDir:     目标文件夹
+# destPackage: 目标包
+# destFileName:目标文件名
+#
+# 支持如下变量：
+# ${basePackage}  在创建文件时该变量将替换为根包名
+# ${entityName}   在创建文件时该变量将替换为实体名
+templateConfig:
+  - template: java/service.vm
+    destDir: src/main/java
+    destPackage: ${basePackage}.service
+    destFileName: ${entityName}Service.java
+
+  - template: java/controller.vm
+    destDir: src/main/java
+    destPackage: ${basePackage}.controller
+    destFileName: ${entityName}Controller.java
+
+  - template: html/form.vm
+    destDir: src/main/resources
+    destPackage: templates
+    destFileName: form.html
+
+  - template: html/list.vm
+    destDir: src/main/resources
+    destPackage: templates
+    destFileName: list.html

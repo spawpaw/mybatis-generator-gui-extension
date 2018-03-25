@@ -1,0 +1,36 @@
+
+table.actualName            :${table.actualName}
+table.entityPackage         :${table.entityPackage}
+table.entityName            :${table.entityName}
+table.entityLowerCamel      :${table.entityLowerCamel}
+table.exampleName           :${table.exampleName}
+table.exampleLowerCamel     :${table.exampleLowerCamel}
+table.mapperPackage         :${table.mapperPackage}
+table.mapperName            :${table.mapperName}
+table.mapperLowerCamel      :${table.mapperLowerCamel}
+columns:
+#foreach($column in $table.columns)
+    column:${column.actualName}
+        actualName               :${column.actualName}
+        fieldName                :${column.fieldName}
+        getterName               :${column.getterName}
+        setterName               :${column.setterName}
+        betweenMethod            :${column.betweenMethod}
+        notBetweenMethod         :${column.notBetweenMethod}
+        equalMethod              :${column.equalMethod}
+        greaterThanMethod        :${column.greaterThanMethod}
+        greaterThenOrEqualMethod :${column.greaterThenOrEqualMethod}
+        inMethod                 :${column.inMethod}
+        notInMethod              :${column.notInMethod}
+        lessThanMethod           :${column.lessThanMethod}
+        lessThanOrEqualMethod    :${column.lessThanOrEqualMethod}
+        likeMethod               :${column.likeMethod}
+        notEqualMethod           :${column.notEqualMethod}
+        notLikeMethod            :${column.notLikeMethod}
+        notNullMethod            :${column.notNullMethod}
+        key-values:
+        #foreach($key in $column.keySet())
+            key:$key       ->   $!column.get($key)
+        #end
+
+#end
