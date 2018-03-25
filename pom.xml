@@ -50,6 +50,16 @@
     </repositories>
 
     <dependencies>
+
+        <!--yml序列化/反序列化工具-->
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.20</version>
+        </dependency>
+
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
