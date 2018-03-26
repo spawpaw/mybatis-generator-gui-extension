@@ -153,4 +153,16 @@ public class Column extends ConfigMatcher {
     public String getNullMethod() {
         return nullMethod;
     }
+
+    public String getFieldType() {
+        return fieldType;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
+    }
 }
