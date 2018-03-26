@@ -13,20 +13,22 @@ columns:
     column:${column.actualName}
         actualName               :${column.actualName}
         fieldName                :${column.fieldName}
+        fieldType                :${column.fieldType}
         getterName               :${column.getterName}
         setterName               :${column.setterName}
         betweenMethod            :${column.betweenMethod}
         notBetweenMethod         :${column.notBetweenMethod}
         equalMethod              :${column.equalMethod}
+        notEqualMethod           :${column.notEqualMethod}
         greaterThanMethod        :${column.greaterThanMethod}
         greaterThenOrEqualMethod :${column.greaterThenOrEqualMethod}
-        inMethod                 :${column.inMethod}
-        notInMethod              :${column.notInMethod}
         lessThanMethod           :${column.lessThanMethod}
         lessThanOrEqualMethod    :${column.lessThanOrEqualMethod}
+        inMethod                 :${column.inMethod}
+        notInMethod              :${column.notInMethod}
         likeMethod               :${column.likeMethod}
-        notEqualMethod           :${column.notEqualMethod}
         notLikeMethod            :${column.notLikeMethod}
+        isNullMethod             :${column.isNullMethod}
         notNullMethod            :${column.notNullMethod}
         key-values:
         #foreach($key in $column.keySet())
