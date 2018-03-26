@@ -96,4 +96,12 @@ public class Table extends ConfigMatcher {
     public List<Column> getColumns() {
         return columns;
     }
+
+    public void setColumns(List<Column> columns) {
+        this.columns = columns;
+    }
+
+    public void setLog(Logger log) {
+        this.log = log;
+    }
 }
