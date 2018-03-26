@@ -18,8 +18,10 @@ import java.util.Map;
 public class Column extends ConfigMatcher {
     public final String actualName;//真实列名称
     public final String fieldName;//该字段entity中的变量名称
+    public final String fieldType;//该字段的类型
     public final String getterName;//该字段在entity中的getter名称
     public final String setterName;//该字段在entity中的setter名称
+
     //以下为该字段在Example类中的方法名
     public final String betweenMethod;
     public final String notBetweenMethod;
@@ -45,6 +47,7 @@ public class Column extends ConfigMatcher {
         Field field = JavaBeansUtil.getJavaBeansField(introspectedColumn, context, introspectedTable);
 
         fieldName = field.getName();
+        fieldType = field.getType().getFullyQualifiedName();
         actualName = introspectedColumn.getActualColumnName();
         getterName = JavaBeansUtil.getGetterMethodName(field.getName(), field.getType());
         setterName = JavaBeansUtil.getSetterMethodName(field.getName());
