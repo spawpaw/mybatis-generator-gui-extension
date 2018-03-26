@@ -18,6 +18,11 @@ templateConfig:
     destPackage: ${basePackage}.controller
     destFileName: ${entityName}Controller.java
 
+  - template: java/restController.vm
+    destDir: src/main/java
+    destPackage: ${basePackage}.controller
+    destFileName: ${entityName}Service.java
+
   - template: html/form.vm
     destDir: src/main/resources
     destPackage: templates
