@@ -62,15 +62,20 @@ public class ProjectConfig {
     @Config(bundle = "project.javaClientMapperType", type = ConfigType.ChoiceBox, testRegex = "ANNOTATEDMAPPER|MIXEDMAPPER|XMLMAPPER")
     public SimpleStringProperty javaClientMapperType = new SimpleStringProperty("XMLMAPPER");
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.mapperDir", type = ConfigType.TextField)
     public SimpleStringProperty mapperDir = new SimpleStringProperty("src/main/resources");
     @Config(bundle = "project.mapperPackage", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     public SimpleStringProperty mapperPackage = new SimpleStringProperty("mapper");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.daoDir", type = ConfigType.TextField)
     public SimpleStringProperty daoDir = new SimpleStringProperty("src/main/java");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.daoPackage", type = ConfigType.TextField)
     public SimpleStringProperty daoPackage = new SimpleStringProperty("");
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
@@ -129,16 +134,21 @@ public class ProjectConfig {
     @Config(bundle = "project.defaultModelType", type = ConfigType.ChoiceBox, testRegex = "conditional|flat|hierarchical")
     public StringProperty defaultModelType = new SimpleStringProperty("conditional");
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.entityDir", type = ConfigType.TextField)
     public SimpleStringProperty entityDir = new SimpleStringProperty("src/main/java");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.entityPackage", type = ConfigType.TextField)
     public SimpleStringProperty entityPackage = new SimpleStringProperty("entity");
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
     @ExportToTab(tabName = SHORTCUT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.entityObjName", type = ConfigType.TextField)
     public SimpleStringProperty entityObjName = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.exampleObjName", type = ConfigType.TextField)
     public SimpleStringProperty exampleObjName = new SimpleStringProperty("");
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.primaryKey", type = ConfigType.CheckableTextField)
     public SimpleStringProperty primaryKey = new SimpleStringProperty("");
 
