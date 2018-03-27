@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import org.hildan.fxgson.FxGsonBuilder;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -45,6 +43,9 @@ public class FileUtil {
         File file = new File(filePath);
         if (!file.getParentFile().exists())
             file.getParentFile().mkdirs();
-        Files.write(Paths.get(filePath), content.getBytes());
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(file), "utf-8"));
+        writer.write(content);
+        writer.close();
     }
 }

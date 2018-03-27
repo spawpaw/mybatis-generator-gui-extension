@@ -95,7 +95,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
         ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
         ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
         ve.init();
-        Template t = ve.getTemplate("template/" + templateFile);
+        Template t = ve.getTemplate("template/" + templateFile,"UTF-8");
         StringWriter sw = new StringWriter();
         t.merge(ctx, sw);
         return sw.toString();
