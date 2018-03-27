@@ -83,7 +83,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
             } catch (IOException e) {
                 log.error(e.getMessage());
             }
-            log.info("content: {}", content);
+//            log.info("content: {}", content);
         }
         log.info("<<< generated extra files.");
         return null;
