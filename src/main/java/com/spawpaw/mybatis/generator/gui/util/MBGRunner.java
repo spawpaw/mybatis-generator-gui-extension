@@ -64,13 +64,16 @@ public class MBGRunner {
         if (projectConfig.enableComment.getValue()) {
             CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
             commentGeneratorConfiguration.setConfigurationType(DeclaredPlugins.CommentPlugin);
-//            commentGeneratorConfiguration.addProperty("suppressDate", "false");
-//            commentGeneratorConfiguration.addProperty("suppressAllComments", "true");
             if (pluginConfigs.containsKey(DeclaredPlugins.CommentPlugin)) {
                 HashMap<String, String> pluginProperties = pluginConfigs.get(DeclaredPlugins.CommentPlugin);
                 for (String key : pluginProperties.keySet())
                     commentGeneratorConfiguration.addProperty(key, pluginProperties.get(key));
             }
+            context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
+        } else {
+            CommentGeneratorConfiguration commentGeneratorConfiguration = new CommentGeneratorConfiguration();
+            commentGeneratorConfiguration.addProperty("suppressDate", "true");
+            commentGeneratorConfiguration.addProperty("suppressAllComments", "true");
             context.setCommentGeneratorConfiguration(commentGeneratorConfiguration);
         }
 
