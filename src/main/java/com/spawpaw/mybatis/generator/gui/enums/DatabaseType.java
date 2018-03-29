@@ -28,6 +28,7 @@ public enum DatabaseType {
 
     PostgreSQL("org.postgresql.Driver", "jdbc:postgresql://%s:%s/%s"),
     SQLServer("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s:%s;databaseName=%s"),
+    SQLServer_InstanceBased("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sqlserver://%s;instanceName=%s;DatabaseName=%s"),
 
     //TODO 验证数据库连接串
     DB2("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:db2://%s:%s/%s"),
@@ -63,9 +64,9 @@ public enum DatabaseType {
                 return String.format(connectStrFormat, dbName);
             case Oracle_TNSEntryString:
                 return String.format(connectStrFormat, host, port, dbName);
+            case SQLServer:
             case Oracle:
             case PostgreSQL:
-            case SQLServer:
             case INFORMIX:
             case SYBASE:
             case DB2:

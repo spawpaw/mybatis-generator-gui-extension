@@ -26,7 +26,7 @@ public class DatabaseConfig implements Serializable {
     @Config(bundle = "database.savedName")
     public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
 
-    @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle_SID|Oracle_ServiceName|Oracle_TNSName|Oracle_TNSEntryString|PostgreSQL|SQLServer", type = ConfigType.ChoiceBox)
+    @Config(bundle = "database.databaseType", testRegex = "MySQL|Oracle_SID|Oracle_ServiceName|Oracle_TNSName|Oracle_TNSEntryString|PostgreSQL|SQLServer|SQLServer_InstanceBased", type = ConfigType.ChoiceBox)
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
     @Config(bundle = "database.dbName")
     public SimpleStringProperty dbName = new SimpleStringProperty("");
