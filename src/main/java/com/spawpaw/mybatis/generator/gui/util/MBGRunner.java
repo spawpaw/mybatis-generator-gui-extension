@@ -169,7 +169,11 @@ public class MBGRunner {
         } catch (InvalidConfigurationException | InterruptedException | SQLException | IOException e) {
             e.printStackTrace();
         }
-        return warnings.toString();
+        StringBuilder w = new StringBuilder();
+        for (String warning : warnings) {
+            w.append(warning).append("\n");
+        }
+        return w.toString();
     }
 
     /**

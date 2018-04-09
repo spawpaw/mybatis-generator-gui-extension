@@ -7,6 +7,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.TreeView?>
@@ -17,17 +19,17 @@
     <SplitPane dividerPositions="0.1">
         <VBox prefHeight="200.0" prefWidth="100.0">
             <HBox alignment="CENTER_LEFT" minHeight="48.0">
-                <Button minWidth="200.0" onMouseClicked="#showCreateDatabaseConfigDialog" prefHeight="39.0" prefWidth="231.0" styleClass="link-button" text="%ui.newConnection">
+                <Label alignment="CENTER" contentDisplay="CENTER" minWidth="200.0" onMouseClicked="#showCreateDatabaseConfigDialog" prefHeight="39.0" prefWidth="231.0" styleClass="link-button" text="%ui.newConnection">
                     <HBox.margin>
                         <Insets left="8.0" />
                     </HBox.margin>
-                </Button>
+                </Label>
             </HBox>
             <TreeView fx:id="tv_connections" minWidth="255.0" prefHeight="10000.0" prefWidth="500.0" />
         </VBox>
         <VBox>
 
-            <HBox alignment="CENTER" minHeight="48.0">
+            <HBox alignment="CENTER_LEFT" minHeight="48.0">
 
                 <ComboBox fx:id="cb_load_saved_project_config" minWidth="180.0" prefHeight="29.0" prefWidth="183.0" promptText="%ui.useSavedConfig">
                     <opaqueInsets>
@@ -37,7 +39,7 @@
                         <Insets left="8.0" />
                     </HBox.margin>
                 </ComboBox>
-                <HBox alignment="CENTER_LEFT" prefWidth="10000.0">
+                <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="500.0">
                     <Label text="Language:" />
                     <ChoiceBox fx:id="cb_select_language" prefWidth="150.0">
                         <items>
@@ -51,31 +53,29 @@
                   <Insets left="8.0" />
                </HBox.margin>
                 </HBox>
-                <ToggleButton fx:id="btn_show_advanced_settings" minWidth="160.0" text="%ui.simpleMode.on" />
+                <ToggleButton fx:id="btn_show_advanced_settings" minWidth="160.0" prefHeight="31.0" prefWidth="240.0" text="%ui.simpleMode.on" />
             </HBox>
             <VBox fx:id="main_container" prefHeight="100000.0" prefWidth="100000.0">
 
             </VBox>
 
-            <HBox alignment="CENTER" minHeight="56.0" prefHeight="130.0" prefWidth="200.0">
-                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="10000.0">
-                    <children>
-                  <Button fx:id="btn_about" mnemonicParsing="false" styleClass="link-button" text="About" />
-                        <Button minWidth="240.0" onMouseClicked="#showEditTableColumnsDialog" styleClass="link-button" text="%ui.customizeColumn">
-                            <HBox.margin>
-                                <Insets left="8.0" right="8.0" />
-                            </HBox.margin>
-                        </Button>
-                    </children>
+            <HBox alignment="CENTER_RIGHT" minHeight="56.0" prefHeight="130.0" prefWidth="200.0">
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0">
+                    <Label fx:id="btn_about" prefHeight="1000.0" styleClass="link-button" text="About" />
+                    <Label onMouseClicked="#showEditTableColumnsDialog" styleClass="link-button" text="%ui.customizeColumn">
+                        <HBox.margin><Insets left="8.0" right="8.0" /></HBox.margin>
+                    </Label>
                 </HBox>
-
-                <Button minWidth="120.0" onMouseClicked="#runMybatisGenerator" styleClass="button-primary" text="%ui.generateCode">
-                    <HBox.margin>
-                        <Insets left="8.0" right="8.0" />
-                    </HBox.margin>
-                </Button>
-
-                <Button minWidth="120.0" onMouseClicked="#saveProjectConfig" styleClass="button-primary" text="%ui.saveConfig">
+                <SplitMenuButton minHeight="36.0" mnemonicParsing="false" onMouseClicked="#onGenerateCodeForCurrentTableClicked" prefHeight="31.0" prefWidth="128.0" styleClass="primary" text="%ui.generateCode">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onGenerateCodeForAllTableClicked" text="%ui.generateCodeForAllTable" />
+                        <MenuItem mnemonicParsing="false" onAction="#onGenerateCodeForCurrentTableClicked" text="%ui.generateCodeForCurrentTable" />
+                    </items>
+               <HBox.margin>
+                  <Insets right="8.0" />
+               </HBox.margin>
+                </SplitMenuButton>
+                <Button minHeight="36.0" minWidth="120.0" onMouseClicked="#saveProjectConfig" prefWidth="128.0" styleClass="primary" text="%ui.saveConfig">
                     <HBox.margin>
                         <Insets right="8.0" />
                     </HBox.margin>

@@ -10,7 +10,6 @@ import com.spawpaw.mybatis.generator.gui.annotations.ExportToTab;
 import com.spawpaw.mybatis.generator.gui.controls.ControlsFactory;
 import com.spawpaw.mybatis.generator.gui.util.Constants;
 import com.spawpaw.mybatis.generator.gui.util.FileUtil;
-import com.spawpaw.mybatis.generator.gui.util.MBGRunner;
 import javafx.beans.property.Property;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -39,7 +38,7 @@ public class MainController extends BaseController implements Initializable {
     public TreeItem<String> rootItem;
     public ChoiceBox<String> cb_select_language;
     public ToggleButton btn_show_advanced_settings;
-    public Button btn_about;
+    public Label btn_about;
 
     Map<TreeItem<String>, DatabaseConfig> databaseConfigHashMap;
     String projectConfigName = "";
@@ -284,38 +283,13 @@ public class MainController extends BaseController implements Initializable {
         tableColumnEditorStage.showAndWait();
     }
 
-    public void runMybatisGenerator(MouseEvent event) {
-        //check
-        String msg = "";
-        //是否选中数据库
-        if (selectedDatabaseConfig == null) {
-            msg += "\n" + Constants.getI18nStr("msg.error.NoDatabaseSelected");
-        } else if (selectedProjectConfig.selectedTable == null || selectedProjectConfig.selectedTable.getValue().isEmpty()) {  //是否选中表
-            msg += "\n" + Constants.getI18nStr("msg.error.NoTableSelected");
-        } else {
-            //是否填写 Mapper目录、包名，接口目录、包名，Mapper名称
-            if (selectedProjectConfig.mapperDir.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.MapperDirNotConfigured");
-            if (selectedProjectConfig.mapperPackage.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.MapperPackageNotConfigured");
-            if (selectedProjectConfig.daoDir.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.DAODirNotConfigured");
-            if (selectedProjectConfig.daoPackage.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.DAOPackageNotConfigured");
-            if (selectedProjectConfig.daoObjName.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.MapperObjNameNotConfigured");
-            // 是否填写Entity目录、包名、名称、Example名称
-            if (selectedProjectConfig.entityDir.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.EntityDirNotConfigured");
-            if (selectedProjectConfig.entityPackage.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.EntityPackageNotConfigured");
-            if (selectedProjectConfig.entityObjName.getValue().isEmpty())
-                msg += "\n" + Constants.getI18nStr("msg.error.EntityObjNameNotConfigured");
-        }
-        if (!msg.isEmpty()) {
-            showMessage(Constants.getI18nStr("msg.error.configHasProblems"), msg);
-            return;
-        }
-        showMessage("Code Generated! ", new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate());
+    public void onGenerateCodeForCurrentTableClicked() {
+        generationProgressStage.show();
+        generationProgressController.beginGenerate(false);
+    }
+
+    public void onGenerateCodeForAllTableClicked() {
+        generationProgressStage.show();
+        generationProgressController.beginGenerate(true);
     }
 }
