@@ -15,14 +15,12 @@
 
 #### there's also a README written in English [English README](./README-en.md)
 
-## [查看更多预览图片](./wiki/PREVIEW.md)
+### [查看更多预览图片](./wiki/PREVIEW.md)
 
 
 ![示例图片](./wiki/images/main_window.png)
 
-![示例图片](./wiki/images/tooltip_example.png)
-
-## 特性
+## 特性  ([进入帮助页面](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki))
 
 - 配置全面，包含几乎所有mybatis-generator的配置
 - 可方便的与您自己的插件进行集成（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
@@ -57,7 +55,7 @@
 ### 方法二：下载jar包
 
 可以执行`mvn: package` 自助构建  
-或者[选择版本进行下载]<https://github.com/spawpaw/mybatis-generator-gui-extension/releases>  
+或者[选择版本进行下载](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)  
 
 
 ## 贡献&&交流
@@ -70,4 +68,4 @@ QQ交流群：171209016
 ## 其他
 如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   (ﾉ*･ω･)ﾉ
 
-[捐赠](./wiki/donate.md)
+[捐赠](./wiki/donate.md) （[捐助者列表](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki/sponsors)）

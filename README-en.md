@@ -10,8 +10,6 @@
 
 ![Preview Img](./wiki/images/main_window-en.png)
 
-![示例图片](./wiki/images/tooltip_example-en.png)
-
 ## Features
 - A brief gui extension for MBG
 - Comprehensive configs
