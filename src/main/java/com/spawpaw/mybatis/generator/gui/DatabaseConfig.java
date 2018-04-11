@@ -92,7 +92,7 @@ public class DatabaseConfig implements Serializable {
      */
     public void connect() throws SQLException {
         if (tableConfigs != null && tableConfigs.size() != 0) return;
-        tableConfigs = new HashMap<>();
+        tableConfigs = new Hashtable<>();
         Connection connection = getConnection();
         DatabaseMetaData meta = connection.getMetaData();
         ResultSet rs;
