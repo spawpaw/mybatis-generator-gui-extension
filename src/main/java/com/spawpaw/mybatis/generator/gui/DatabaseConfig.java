@@ -24,7 +24,7 @@ import java.util.*;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class DatabaseConfig implements Serializable {
-    Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
+    transient Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
     public transient Map<String, List<TableColumnMetaData>> tableConfigs;
     @Config(bundle = "database.savedName")
     public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
