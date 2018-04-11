@@ -5,12 +5,15 @@ import com.spawpaw.mybatis.generator.gui.ProjectConfig;
 import com.spawpaw.mybatis.generator.gui.annotations.EnablePlugin;
 import com.spawpaw.mybatis.generator.gui.annotations.ExportToPlugin;
 import com.spawpaw.mybatis.generator.gui.entity.TableColumnMetaData;
+import com.spawpaw.mybatis.generator.gui.enums.DatabaseType;
 import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
 import javafx.beans.property.Property;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.InvalidConfigurationException;
 import org.mybatis.generator.internal.DefaultShellCallback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -26,6 +29,7 @@ import java.util.*;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class MBGRunner {
+    Logger log = LoggerFactory.getLogger(MBGRunner.class);
     private static boolean overwrite = true;
     private ProjectConfig projectConfig;
     private DatabaseConfig databaseConfig;
@@ -141,12 +145,12 @@ public class MBGRunner {
 
         //see http://www.mybatis.org/generator/configreference/generatedKey.html  ,JDBC is a database independent method of obtaining the value from identity columns,only for Mybatis3+
         if (!projectConfig.primaryKey.getValue().isEmpty())
-            tableConfiguration.setGeneratedKey(new GeneratedKey(projectConfig.primaryKey.getValue(), "JDBC", true, null));
+            tableConfiguration.setGeneratedKey(new GeneratedKey(projectConfig.primaryKey.getValue(), DatabaseType.valueOf(databaseConfig.databaseType.getValue()).getSqlStatement(), true, null));
 
         //添加忽略列/列覆写
         for (TableColumnMetaData column : databaseConfig.tableConfigs.get(projectConfig.selectedTable.getValue())) {
             if (!column.getChecked()) {
-                System.out.println("忽略的列：" + column.getColumnName());
+                log.info("忽略列：{}", column.getColumnName());
                 tableConfiguration.addIgnoredColumn(new IgnoredColumn(column.getColumnName()));
             } else {
                 ColumnOverride columnOverride = new ColumnOverride(column.getColumnName());
@@ -195,7 +199,7 @@ public class MBGRunner {
                 if (field.get(projectConfig) instanceof Property)
                     valueOfField = ((Property) field.get(projectConfig)).getValue().toString();
                 else {
-                    System.out.println(String.format("initPluginConfigs:不支持的配置:%s,类型不是Property", field.getName()));
+                    log.info("initPluginConfigs:不支持的配置:{},类型不是Property", field.getName());
                     continue;
                 }
                 //如果该配置项设置了启动某个Plugin的Trigger，将启用指定的plugin
@@ -206,7 +210,7 @@ public class MBGRunner {
                 }
                 //将配置项的值加入到plugin的properties中,如果没有指定key，则使用变量名称
                 for (ExportToPlugin exportToPlugin : field.getAnnotationsByType(ExportToPlugin.class)) {
-                    System.out.printf("配置:%s,值：%s,,plugin:%s   key:%s  \n", field.getName(), valueOfField, exportToPlugin.plugin(), exportToPlugin.key());
+                    log.info("配置:{},值：{},,plugin:{}   key:{}  \n", field.getName(), valueOfField, exportToPlugin.plugin(), exportToPlugin.key());
                     pluginConfigs.putIfAbsent(exportToPlugin.plugin(), new HashMap<>());
                     pluginConfigs.get(exportToPlugin.plugin()).put(exportToPlugin.key().isEmpty() ? field.getName() : exportToPlugin.key(), valueOfField);
                 }
@@ -225,7 +229,7 @@ public class MBGRunner {
 
     private void addPlugins() {
         for (String enabledPluginType : enabledPlugins) {
-            System.out.println("MBGRunner.addPlugins:启用插件：" + enabledPluginType);
+            log.info("启用插件：{}", enabledPluginType);
             HashMap<String, String> pluginProperties = pluginConfigs.get(enabledPluginType);
             PluginConfiguration pluginConfiguration = new PluginConfiguration();
             pluginConfiguration.setConfigurationType(enabledPluginType);
