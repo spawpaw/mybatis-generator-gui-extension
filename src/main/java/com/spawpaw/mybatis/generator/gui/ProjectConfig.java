@@ -243,6 +243,8 @@ public class ProjectConfig {
         basePackage.addListener(((observable, oldValue, newValue) -> updatePackageName()));
         daoPackageSuffix.addListener(((observable, oldValue, newValue) -> updatePackageName()));
         entityPackageSuffix.addListener(((observable, oldValue, newValue) -> updatePackageName()));
+
+        selectedTable.addListener((observable, oldValue, newValue) -> updateClassName());
     }
 
     /**

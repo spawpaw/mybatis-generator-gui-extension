@@ -13,7 +13,6 @@ import com.spawpaw.mybatis.generator.gui.util.FileUtil;
 import javafx.beans.property.Property;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.hildan.fxgson.FxGson;
@@ -195,7 +194,6 @@ public class MainController extends BaseController implements Initializable {
                 } else {
                     selectedDatabaseConfig = databaseConfigHashMap.get(tv_connections.getSelectionModel().getSelectedItem().getParent());
                     selectedProjectConfig.selectedTable.setValue(tv_connections.getSelectionModel().getSelectedItem().getValue());
-                    selectedProjectConfig.updateClassName();
                 }
             });
 
