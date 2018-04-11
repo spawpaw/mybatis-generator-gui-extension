@@ -160,6 +160,8 @@ public class ProjectConfig {
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
     @Config(bundle = "project.generateJPA", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
+    @Config(bundle = "project.trimStrings", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty trimStrings = new SimpleBooleanProperty(false);
     @Config(bundle = "project.useActualColumnNames", type = ConfigType.CheckBox)
     public SimpleBooleanProperty useActualColumnNames = new SimpleBooleanProperty(true);
 
