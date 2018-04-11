@@ -71,7 +71,9 @@ public class GenerationProgressController extends BaseController {
                     log.info("正在处理第{}个表{}，共{}个表", ++generatedTableCount, t, tableCount);
                     appendMsg(String.format("[%d/%d]\tprocessing %s", generatedTableCount, tableCount, t));
                     progressbar.setProgress(generatedTableCount / tableCount);
-                    selectedProjectConfig.selectedTable.setValue(t);
+                    synchronized (selectedProjectConfig) {
+                        selectedProjectConfig.selectedTable.set(t);
+                    }
                     String warnings = new MBGRunner(selectedProjectConfig, selectedDatabaseConfig).generate();
                     if (!warnings.isEmpty())
                         appendMsg("warning: \n" + warnings);
