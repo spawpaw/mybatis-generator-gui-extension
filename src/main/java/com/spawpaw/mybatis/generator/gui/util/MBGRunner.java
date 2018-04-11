@@ -210,7 +210,7 @@ public class MBGRunner {
                 }
                 //将配置项的值加入到plugin的properties中,如果没有指定key，则使用变量名称
                 for (ExportToPlugin exportToPlugin : field.getAnnotationsByType(ExportToPlugin.class)) {
-                    log.info("配置:{},值：{},,plugin:{}   key:{}  \n", field.getName(), valueOfField, exportToPlugin.plugin(), exportToPlugin.key());
+                    log.info("配置:{},值：{},,plugin:{}   key:{}", field.getName(), valueOfField, exportToPlugin.plugin(), exportToPlugin.key());
                     pluginConfigs.putIfAbsent(exportToPlugin.plugin(), new HashMap<>());
                     pluginConfigs.get(exportToPlugin.plugin()).put(exportToPlugin.key().isEmpty() ? field.getName() : exportToPlugin.key(), valueOfField);
                 }
