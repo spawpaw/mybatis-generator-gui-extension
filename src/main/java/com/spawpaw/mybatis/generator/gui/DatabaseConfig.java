@@ -10,6 +10,8 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TreeItem;
 import javafx.scene.layout.VBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -22,6 +24,7 @@ import java.util.*;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class DatabaseConfig implements Serializable {
+    Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
     public transient Map<String, List<TableColumnMetaData>> tableConfigs;
     @Config(bundle = "database.savedName")
     public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
@@ -62,8 +65,7 @@ public class DatabaseConfig implements Serializable {
         Properties p = new Properties();
         p.put("user", userName.getValue());
         p.put("password", password.getValue());
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>driver:" + connectionUrl());
-        System.out.println(connectionUrl());
+        log.info("using connection url:{}", connectionUrl());
         return driver.connect(connectionUrl(), p);
 //        return DriverManager.getConnection(connectionUrl(), userName.getValue(), password.getValue());
     }
@@ -168,7 +170,7 @@ public class DatabaseConfig implements Serializable {
                 if (field.getAnnotation(Config.class) != null && field.get(this) instanceof Property) {
                     vBox.getChildren().addAll(ControlsFactory.getLayout(field.getAnnotation(Config.class), (Property) field.get(this)));
                 } else if (field.getAnnotation(Config.class) != null && !(field.get(this) instanceof Property)) {
-                    System.out.println(Constants.getI18nStr("msg.dbConfigInvalid"));
+                    log.info(Constants.getI18nStr("msg.dbConfigInvalid"));
                 }
             }
         } catch (IllegalAccessException e) {

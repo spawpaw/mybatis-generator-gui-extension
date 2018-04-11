@@ -1,5 +1,8 @@
 package com.spawpaw.mybatis.generator.gui.enums;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Driver;
 
 /**
@@ -36,6 +39,7 @@ public enum DatabaseType {
     INFORMIX("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:informix-sqli://%s:%s/%s", "Informix"),
     SYBASE("com.microsoft.sqlserver.jdbc.SQLServerDriver", "jdbc:sybase:Tds://%s:%s/%s", "SYBASE");
 
+    Logger log = LoggerFactory.getLogger(DatabaseType.class);
 
     private String driverClazz;
     private String connectStrFormat;
@@ -92,7 +96,7 @@ public enum DatabaseType {
             return (Driver) (ClassLoader.getSystemClassLoader().loadClass(driverClazz).newInstance());
         } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("找不到数据库驱动，请联系开发人员");
+            log.error("找不到数据库驱动，请联系开发人员");
         }
         return null;
     }
