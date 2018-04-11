@@ -150,7 +150,7 @@ public class DatabaseConfig implements Serializable {
             rootItem.getChildren().add(item);
             rootItem.setExpanded(true);
         }
-        // TODO: 2018/3/17 关闭数据库连接
+        connection.close();
     }
 
     //关闭连接,清空ListView
