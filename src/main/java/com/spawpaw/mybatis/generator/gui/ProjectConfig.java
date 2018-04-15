@@ -121,6 +121,16 @@ public class ProjectConfig {
     @Config(bundle = "project.enableCaseInsensitiveLikePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableCaseInsensitiveLikePlugin = new SimpleBooleanProperty(true);
 
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @EnablePlugin(DeclaredPlugins.ModelColumnPlugin)
+    @Config(bundle = "project.enableModelColumnPlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableModelColumnPlugin = new SimpleBooleanProperty(false);
+
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @EnablePlugin(DeclaredPlugins.BatchInsertPlugin)
+    @Config(bundle = "project.enableBatchInsertPlugin", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty enableBatchInsertPlugin = new SimpleBooleanProperty(false);
+
     @AdvancedConfig
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @ExportToTab(tabName = SHORTCUT, index = 1)

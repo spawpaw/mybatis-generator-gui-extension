@@ -21,6 +21,8 @@ public class DeclaredPlugins {
 
     //github开源项目https://github.com/itfsw/mybatis-generator-plugin中的插件
     public static final String LogicalDeletePlugin = "com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin";
+    public static final String BatchInsertPlugin = "com.itfsw.mybatis.generator.plugins.BatchInsertPlugin";
+    public static final String ModelColumnPlugin = "com.itfsw.mybatis.generator.plugins.ModelColumnPlugin";
 
     public static final String CommentPlugin = "com.spawpaw.mybatis.generator.gui.plugin.CommentPlugin";
     public static final String PagePlugin = "com.spawpaw.mybatis.generator.gui.plugin.PagePlugin";
