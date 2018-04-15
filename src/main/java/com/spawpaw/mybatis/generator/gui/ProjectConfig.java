@@ -82,9 +82,39 @@ public class ProjectConfig {
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
     @ExportToTab(tabName = SHORTCUT, index = 2)
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @EnablePlugin(DeclaredPlugins.PagePlugin)
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(false);
+
+
+    @ExportToTab(tabName = SHORTCUT, index = 2)
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @EnablePlugin(DeclaredPlugins.LogicalDeletePlugin)
+    @Config(bundle = "plugin.logicalDeletePlugin.enableLogicDeletePlugin", type = ConfigType.CheckBox)
+    public BooleanProperty enableLogicDeletePlugin = new SimpleBooleanProperty(false); // 逻辑删除列
+
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @AdvancedConfig
+    @Config(bundle = "plugin.logicalDeletePlugin.logicalDeleteColumn", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
+    public StringProperty logicalDeleteColumn = new SimpleStringProperty("IS_DELETE"); // 逻辑删除列
+    @AdvancedConfig
+    @Config(bundle = "plugin.logicalDeletePlugin.logicalDeleteValue", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
+    public StringProperty logicalDeleteValue = new SimpleStringProperty("1");  // 逻辑删除值
+    @AdvancedConfig
+    @Config(bundle = "plugin.logicalDeletePlugin.logicalUnDeleteValue", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
+    public StringProperty logicalUnDeleteValue = new SimpleStringProperty("0");    // 逻辑删除值（未删除）
+    @AdvancedConfig
+    @Config(bundle = "plugin.logicalDeletePlugin.logicalDeleteConstName", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
+    public StringProperty logicalDeleteConstName = new SimpleStringProperty("DELETED");  // 逻辑删除常量
+    @AdvancedConfig
+    @Config(bundle = "plugin.logicalDeletePlugin.logicalUnDeleteConstName", type = ConfigType.TextField)
+    @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
+    public StringProperty logicalUnDeleteConstName = new SimpleStringProperty("NOT_DELETED");    // 逻辑删除常量（未删除）
 
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @EnablePlugin(DeclaredPlugins.CaseInsensitiveLikePlugin)

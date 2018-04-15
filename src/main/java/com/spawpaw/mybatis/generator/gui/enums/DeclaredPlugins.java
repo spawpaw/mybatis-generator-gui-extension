@@ -19,6 +19,9 @@ public class DeclaredPlugins {
     public static final String ToStringPlugin = "org.mybatis.generator.plugins.ToStringPlugin";
     public static final String VirtualPrimaryKeyPlugin = "org.mybatis.generator.plugins.VirtualPrimaryKeyPlugin";
 
+    //github开源项目https://github.com/itfsw/mybatis-generator-plugin中的插件
+    public static final String LogicalDeletePlugin = "com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin";
+
     public static final String CommentPlugin = "com.spawpaw.mybatis.generator.gui.plugin.CommentPlugin";
     public static final String PagePlugin = "com.spawpaw.mybatis.generator.gui.plugin.PagePlugin";
     public static final String SCVXGeneratorPlugin = "com.spawpaw.mybatis.generator.gui.plugin.SCVXGeneratorPlugin";
