@@ -11,7 +11,6 @@ import javafx.beans.property.Property;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.InvalidConfigurationException;
-import org.mybatis.generator.internal.DefaultShellCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +29,6 @@ import java.util.*;
  */
 public class MBGRunner {
     Logger log = LoggerFactory.getLogger(MBGRunner.class);
-    private static boolean overwrite = true;
     private ProjectConfig projectConfig;
     private DatabaseConfig databaseConfig;
 
@@ -166,7 +164,7 @@ public class MBGRunner {
 
         config.addContext(context);
         List<String> warnings = new ArrayList<>();
-        DefaultShellCallback callback = new DefaultShellCallback(overwrite);
+        MyShellCallback callback = new MyShellCallback(projectConfig.overwrite.getValue());
         try {
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
             myBatisGenerator.generate(null);

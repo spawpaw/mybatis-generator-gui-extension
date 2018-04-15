@@ -58,7 +58,12 @@
             <artifactId>snakeyaml</artifactId>
             <version>1.20</version>
         </dependency>
-
+        <!-- https://mvnrepository.com/artifact/com.github.javaparser/javaparser-core -->
+        <dependency>
+            <groupId>com.github.javaparser</groupId>
+            <artifactId>javaparser-core</artifactId>
+            <version>3.6.0</version>
+        </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>

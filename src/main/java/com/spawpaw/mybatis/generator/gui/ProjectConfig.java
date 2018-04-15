@@ -54,14 +54,16 @@ public class ProjectConfig {
     @AdvancedConfig
     @Config(bundle = "project.entityPackageSuffix")
     public SimpleStringProperty entityPackageSuffix = new SimpleStringProperty("entity");
+    @ExportToTab(tabName = SHORTCUT, index = 10)
+    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
+    @Config(bundle = "project.overwrite", type = ConfigType.CheckBox)
+    public SimpleBooleanProperty overwrite = new SimpleBooleanProperty(false);
 
 
     /****DAO层配置******************************************************************************************************/
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
-    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.javaClientMapperType", type = ConfigType.ChoiceBox, testRegex = "ANNOTATEDMAPPER|MIXEDMAPPER|XMLMAPPER")
     public SimpleStringProperty javaClientMapperType = new SimpleStringProperty("XMLMAPPER");
-    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.mapperDir", type = ConfigType.TextField)
     public SimpleStringProperty mapperDir = new SimpleStringProperty("src/main/resources");
@@ -79,6 +81,7 @@ public class ProjectConfig {
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
+    @ExportToTab(tabName = SHORTCUT, index = 2)
     @EnablePlugin(DeclaredPlugins.PagePlugin)
     @Config(bundle = "project.enablePagePlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enablePagePlugin = new SimpleBooleanProperty(false);
@@ -130,10 +133,8 @@ public class ProjectConfig {
 
     /****Entity层配置***************************************************************************************************/
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
-    @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.defaultModelType", type = ConfigType.ChoiceBox, testRegex = "conditional|flat|hierarchical")
     public StringProperty defaultModelType = new SimpleStringProperty("conditional");
-    @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.entityDir", type = ConfigType.TextField)
     public SimpleStringProperty entityDir = new SimpleStringProperty("src/main/java");
@@ -158,6 +159,7 @@ public class ProjectConfig {
     public StringProperty enableVirtualPrimaryKeyPlugin = new SimpleStringProperty("");
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @ExportToTab(tabName = DOMAIN_OBJECT, index = 1)
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
     @Config(bundle = "project.generateJPA", type = ConfigType.CheckBox)
     public SimpleBooleanProperty generateJPA = new SimpleBooleanProperty(false);
     @Config(bundle = "project.trimStrings", type = ConfigType.CheckBox)
@@ -197,10 +199,20 @@ public class ProjectConfig {
     @Config(bundle = "project.enableComment", type = ConfigType.CheckBox)
     public BooleanProperty enableComment = new SimpleBooleanProperty(true);
     @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
+    @Config(bundle = "project.enableMbgGenerated", type = ConfigType.CheckBox)
+    public BooleanProperty enableMbgGenerated = new SimpleBooleanProperty(true);
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
+    @Config(bundle = "project.enableCorrespondingTable", type = ConfigType.CheckBox)
+    public BooleanProperty enableCorrespondingTable = new SimpleBooleanProperty(false);
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
     @Config(bundle = "project.fileHeader", type = ConfigType.TextArea)
     public SimpleStringProperty fileHeader = new SimpleStringProperty("/**\n" +
             " * Created By MBG-GUI-EXTENSION https://github.com/spawpaw/mybatis-generator-gui-extension\n" +
-            " * Description:\n * ${tableComment}\n *\n * @author \n */");
+            " * Description:\n" +
+            " * ${tableComment}\n" +
+            " *\n" +
+            " * @author \n" +
+            " */");
 
 
     @ExportToTab(tabName = tabs.CACHE)
