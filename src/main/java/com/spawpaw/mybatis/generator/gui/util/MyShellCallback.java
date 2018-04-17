@@ -190,7 +190,7 @@ public class MyShellCallback implements ShellCallback {
             //判断是否有内部类
             types.get(i).getChildNodes();
             for (Node n : types.get(i).getChildNodes()) {
-                if (n.toString().contains("static class")) {
+                if (n.toString().contains("static class") || n.toString().contains("public enum Column")) {
                     String res = n.toString().replaceAll("\r\n", "\r\n    ");
                     sb.append("    " + res);
                 }
