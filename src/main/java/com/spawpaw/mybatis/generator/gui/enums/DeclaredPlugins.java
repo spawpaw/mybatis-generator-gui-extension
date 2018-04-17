@@ -20,6 +20,7 @@ public class DeclaredPlugins {
     public static final String VirtualPrimaryKeyPlugin = "org.mybatis.generator.plugins.VirtualPrimaryKeyPlugin";
 
     //github开源项目https://github.com/itfsw/mybatis-generator-plugin中的插件
+    public static final String ExampleEnhancedPlugin = "com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin";
     public static final String LogicalDeletePlugin = "com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin";
     public static final String BatchInsertPlugin = "com.itfsw.mybatis.generator.plugins.BatchInsertPlugin";
     public static final String ModelColumnPlugin = "com.itfsw.mybatis.generator.plugins.ModelColumnPlugin";
