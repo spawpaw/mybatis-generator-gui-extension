@@ -99,6 +99,7 @@ public class MBGRunner {
         javaModelGeneratorConfiguration.addProperty("enableSubPackages", "true");
         javaModelGeneratorConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());
         javaModelGeneratorConfiguration.addProperty("trimStrings", projectConfig.trimStrings.getValue().toString());
+        javaModelGeneratorConfiguration.addProperty("rootClass", projectConfig.entityRootClass.getValue());
         context.setJavaModelGeneratorConfiguration(javaModelGeneratorConfiguration);
 
         //=======================================================================================================mapper
