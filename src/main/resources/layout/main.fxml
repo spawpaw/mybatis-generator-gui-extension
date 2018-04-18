@@ -28,9 +28,7 @@
             <TreeView fx:id="tv_connections" minWidth="255.0" prefHeight="10000.0" prefWidth="500.0" />
         </VBox>
         <VBox>
-
             <HBox alignment="CENTER_LEFT" minHeight="48.0">
-
                 <ComboBox fx:id="cb_load_saved_project_config" minWidth="180.0" prefHeight="29.0" prefWidth="183.0" promptText="%ui.useSavedConfig">
                     <opaqueInsets>
                         <Insets />

@@ -1,64 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-
 <VBox prefHeight="349.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label style="-fx-font-weight: BOLD;" text="%ui.about.title">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </VBox.margin>
-      </Label>
-      <Label alignment="TOP_LEFT" prefHeight="10000.0" prefWidth="10000.0" text="%ui.about.desc" wrapText="true">
-         <font>
-            <Font size="14.0" />
-         </font>
-         <padding>
-            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-         </padding>
-      </Label>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/image/alipay.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label text="%ui.about.donate.alipay" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/image/weixinpay.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label text="%ui.about.donate.weixinpay" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Label text="%ui.about.repo" />
-            <TextField editable="false" prefHeight="23.0" prefWidth="387.0" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #4d66cc;" text="https://github.com/spawpaw/mybatis-generator-gui-extension" />
-         </children>
-         <padding>
-            <Insets bottom="8.0" top="8.0" />
-         </padding>
-      </HBox>
-   </children>
+    <Label style="-fx-font-weight: BOLD;" text="%ui.about.title">
+        <font>
+            <Font size="18.0"/>
+        </font>
+        <VBox.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+        </VBox.margin>
+    </Label>
+    <Label alignment="TOP_LEFT" prefHeight="10000.0" prefWidth="10000.0" text="%ui.about.desc" wrapText="true">
+        <font>
+            <Font size="14.0"/>
+        </font>
+        <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+        </padding>
+    </Label>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+            <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/image/alipay.jpg"/>
+            </ImageView>
+            <Label text="%ui.about.donate.alipay"/>
+        </VBox>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+            <ImageView fitHeight="108.0" fitWidth="108.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@/image/weixinpay.jpg"/>
+            </ImageView>
+            <Label text="%ui.about.donate.weixinpay"/>
+        </VBox>
+    </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <padding>
+            <Insets bottom="8.0" top="8.0"/>
+        </padding>
+        <Label text="%ui.about.repo"/>
+        <TextField editable="false" prefHeight="23.0" prefWidth="387.0"
+                   style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-text-fill: #4d66cc;"
+                   text="https://github.com/spawpaw/mybatis-generator-gui-extension"/>
+    </HBox>
 </VBox>

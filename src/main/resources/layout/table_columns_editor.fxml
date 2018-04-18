@@ -6,17 +6,16 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.spawpaw.mybatis.generator.gui.controller.TableColumnEditorController">
-    <HBox alignment="CENTER" minHeight="56.0">
+    <HBox alignment="CENTER_LEFT" minHeight="56.0">
         <Label text="%ui.customizeColumns.prompt">
-
-        </Label>
-        <HBox prefHeight="36.0" prefWidth="223.0" />
+         <HBox.margin>
+            <Insets left="16.0" />
+         </HBox.margin></Label>
         <!--<TextField fx:id="tf_filter" minWidth="300.0" promptText="搜索列" />-->
     </HBox>
     <TableView fx:id="table_view" editable="true" prefHeight="660.0" prefWidth="922.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
