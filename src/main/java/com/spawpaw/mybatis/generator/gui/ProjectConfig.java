@@ -132,6 +132,7 @@ public class ProjectConfig {
     public SimpleBooleanProperty enableModelColumnPlugin = new SimpleBooleanProperty(false);
 
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 2)
     @EnablePlugin(DeclaredPlugins.BatchInsertPlugin)
     @Config(bundle = "project.enableBatchInsertPlugin", type = ConfigType.CheckBox)
     public SimpleBooleanProperty enableBatchInsertPlugin = new SimpleBooleanProperty(false);
@@ -306,6 +307,27 @@ public class ProjectConfig {
         entityPackageSuffix.addListener(((observable, oldValue, newValue) -> updatePackageName()));
 
         selectedTable.addListener((observable, oldValue, newValue) -> updateClassName());
+
+        //表名获取、Example增强、批量插入 插件联动
+        enableExampleEnhancedPlugin.addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                enableBatchInsertPlugin.setValue(false);
+                enableModelColumnPlugin.setValue(false);
+            }
+        });
+        enableModelColumnPlugin.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                enableExampleEnhancedPlugin.setValue(true);
+            } else {
+                enableBatchInsertPlugin.setValue(false);
+            }
+        });
+        enableBatchInsertPlugin.addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                enableModelColumnPlugin.setValue(true);
+                enableExampleEnhancedPlugin.setValue(true);
+            }
+        });
     }
 
     /**
