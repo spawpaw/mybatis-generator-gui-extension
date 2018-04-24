@@ -290,6 +290,36 @@ public class ProjectConfig {
     @EnablePlugin(DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(label = "启用代码生成插件", helpText = "", type = ConfigType.CheckBox)
     public BooleanProperty enableSCVXGeneratorPlugin = new SimpleBooleanProperty(false);
+    @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
+    @Config(label = "代码成成配置（yml）", helpText = "", type = ConfigType.TextArea)
+    public StringProperty scvxConfigYml = new SimpleStringProperty("# 每项配置有以下四个属性：\n" +
+            "# template:    模板文件名\n" +
+            "# destDir:     目标文件夹\n" +
+            "# destPackage: 目标包\n" +
+            "# destFileName:目标文件名\n" +
+            "#\n" +
+            "# 支持如下变量：\n" +
+            "# ${basePackage}  在创建文件时该变量将替换为根包名\n" +
+            "# ${entityName}   在创建文件时该变量将替换为实体名\n" +
+            "templateConfig:\n" +
+            "\n" +
+            "  # REST-ful Controller\n" +
+            "  - template: java/restController.vm\n" +
+            "    destDir: src/main/java\n" +
+            "    destPackage: ${basePackage}.controller\n" +
+            "    destFileName: ${entityName}RestController.java\n" +
+            "\n" +
+            "  # 生成html表单\n" +
+            "  - template: html/form.vm\n" +
+            "    destDir: src/main/resources\n" +
+            "    destPackage: templates\n" +
+            "    destFileName: form.html\n" +
+            "\n" +
+            "  # 生成html列表\n" +
+            "  - template: html/list.vm\n" +
+            "    destDir: src/main/resources\n" +
+            "    destPackage: templates\n" +
+            "    destFileName: list.html\n");
 
     /*===方法s========================================================================================================*/
 

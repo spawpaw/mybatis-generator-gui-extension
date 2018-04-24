@@ -8,26 +8,32 @@
 # ${basePackage}  在创建文件时该变量将替换为根包名
 # ${entityName}   在创建文件时该变量将替换为实体名
 templateConfig:
+
+  # 传统Service层
   - template: java/service.vm
     destDir: src/main/java
     destPackage: ${basePackage}.service
     destFileName: ${entityName}Service.java
 
+  # 传统Controller层
   - template: java/controller.vm
     destDir: src/main/java
     destPackage: ${basePackage}.controller
     destFileName: ${entityName}Controller.java
 
+  # REST-ful Controller
   - template: java/restController.vm
     destDir: src/main/java
     destPackage: ${basePackage}.controller
     destFileName: ${entityName}RestController.java
 
+  # 生成html表单
   - template: html/form.vm
     destDir: src/main/resources
     destPackage: templates
     destFileName: form.html
 
+  # 生成html列表
   - template: html/list.vm
     destDir: src/main/resources
     destPackage: templates

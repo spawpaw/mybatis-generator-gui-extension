@@ -32,6 +32,7 @@ import java.util.Properties;
 public class SCVXGeneratorPlugin extends PluginAdapter {
     public String projectDir = "";
     public String basePackage = "";
+    public String scvxConfigYml = "";
     Logger log = LoggerFactory.getLogger(SCVXGeneratorPlugin.class);
 
     @Override
@@ -59,7 +60,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
         log.info("hierarchical table structure: {}", content);
 
         // : 2018/3/22 保存到指定目录
-        List<TemplateConfig> configs = new Yaml().loadAs(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.yml"), ConfigWrapper.class).getTemplateConfig();
+        List<TemplateConfig> configs = new Yaml().loadAs(scvxConfigYml, ConfigWrapper.class).getTemplateConfig();
         for (TemplateConfig config : configs) {
             String template = config.getTemplate();
             String destDir = config.getDestDir().replaceAll("\\.", "/");
@@ -95,7 +96,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
         ve.setProperty(RuntimeConstants.RESOURCE_LOADER, "classpath");
         ve.setProperty("classpath.resource.loader.class", ClasspathResourceLoader.class.getName());
         ve.init();
-        Template t = ve.getTemplate("template/" + templateFile,"UTF-8");
+        Template t = ve.getTemplate("template/" + templateFile, "UTF-8");
         StringWriter sw = new StringWriter();
         t.merge(ctx, sw);
         return sw.toString();
