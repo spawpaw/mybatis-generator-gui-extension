@@ -100,6 +100,7 @@ public class DatabaseConfig implements Serializable {
         ResultSet rs;
 
         String[] types = {"TABLE", "VIEW"};
+        String sql;
         //获取表列表
         switch (DatabaseType.valueOf(databaseType.getValue())) {
             case MySQL:
@@ -113,11 +114,14 @@ public class DatabaseConfig implements Serializable {
                 rs = meta.getTables(null, userName.getValue().toUpperCase(), null, types);
                 break;
             case SQLServer:
-                rs = meta.getTables(null, null, "%", types);
+            case SQLServer_InstanceBased:
+                sql = "select name as TABLE_NAME from sysobjects  where xtype='u' or xtype='v' ";
+                rs = connection.createStatement().executeQuery(sql);
                 break;
             case PostgreSQL:
                 rs = meta.getTables(null, "%", "%", types);
                 break;
+            case DB2MF:
             case DB2:
                 rs = meta.getTables(null, "jence_user", "%", types);
                 break;
@@ -131,7 +135,7 @@ public class DatabaseConfig implements Serializable {
                 throw new RuntimeException(Constants.getI18nStr("msg.unsupportedDatabase"));
         }
         while (rs.next()) {
-            tableConfigs.put(rs.getString(3), new ArrayList<>());
+            tableConfigs.put(rs.getString("TABLE_NAME"), new ArrayList<>());
         }
 
         List<String> tmpList = new ArrayList<>(tableConfigs.keySet());
