@@ -81,6 +81,10 @@ public class ProjectConfig {
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @Config(bundle = "project.daoObjName", type = ConfigType.TextField)
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 1)
+    @Config(bundle = "project.autoDelimitKeywords", testRegex = "\n`\n\"", type = ConfigType.ComboBox)
+    public SimpleStringProperty autoDelimitKeywords = new SimpleStringProperty("");
     @ExportToTab(tabName = SHORTCUT, index = 2)
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @EnablePlugin(DeclaredPlugins.PagePlugin)

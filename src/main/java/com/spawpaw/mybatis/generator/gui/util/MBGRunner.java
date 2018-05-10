@@ -51,7 +51,11 @@ public class MBGRunner {
         else if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("FLAT"))
             context = new Context(ModelType.FLAT);
         else context = new Context(ModelType.HIERARCHICAL);
-
+        if (!projectConfig.autoDelimitKeywords.getValue().trim().isEmpty()) {
+            context.addProperty("autoDelimitKeywords", "true");
+            context.addProperty("beginningDelimiter", projectConfig.autoDelimitKeywords.getValue());
+            context.addProperty("endingDelimiter", projectConfig.autoDelimitKeywords.getValue());
+        }
 
         context.setId("mybatis generator gui extension");//id
         context.setTargetRuntime("MyBatis3");//targetRuntime
