@@ -65,6 +65,7 @@ public class DatabaseConfig implements Serializable {
         Properties p = new Properties();
         p.put("user", userName.getValue());
         p.put("password", password.getValue());
+        p.put("useInformationSchema", "true"); //获取表注释
         log.info("using connection url:{}", connectionUrl());
         return driver.connect(connectionUrl(), p);
 //        return DriverManager.getConnection(connectionUrl(), userName.getValue(), password.getValue());

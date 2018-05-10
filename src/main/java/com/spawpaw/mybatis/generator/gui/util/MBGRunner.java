@@ -89,6 +89,17 @@ public class MBGRunner {
         jdbcConnectionConfiguration.setConnectionURL(databaseConfig.connectionUrl());
         jdbcConnectionConfiguration.setUserId(databaseConfig.userName.getValue());
         jdbcConnectionConfiguration.setPassword(databaseConfig.password.getValue());
+        //手动添加获取表注释的参数，这里仅找到了这几个数据库的获取方式，如有有获取其他数据库表注释的方法请提issue
+        switch (DatabaseType.valueOf(databaseConfig.databaseType.get())) {
+            case MySQL:
+                jdbcConnectionConfiguration.addProperty("useInformationSchema", "true");//获取Mysql的表注释
+                break;
+            case Oracle:
+                jdbcConnectionConfiguration.addProperty("remarksReporting", "true");//获取Oracle的表注释
+                break;
+            default:
+                break;
+        }
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
 
         //=============================================================================================javaTypeResolver
