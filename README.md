@@ -66,6 +66,6 @@
 QQ交流群：171209016
 
 ## 其他
-如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   (ﾉ*･ω･)ﾉ
+如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   ο(=•ω＜=)ρ⌒★
 
 [捐赠](./wiki/donate.md) （[捐助者列表](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki/sponsors)）
