@@ -51,11 +51,6 @@ public class MBGRunner {
         else if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("FLAT"))
             context = new Context(ModelType.FLAT);
         else context = new Context(ModelType.HIERARCHICAL);
-        if (!projectConfig.autoDelimitKeywords.getValue().trim().isEmpty()) {
-            context.addProperty("autoDelimitKeywords", "true");
-            context.addProperty("beginningDelimiter", projectConfig.autoDelimitKeywords.getValue());
-            context.addProperty("endingDelimiter", projectConfig.autoDelimitKeywords.getValue());
-        }
 
         context.setId("mybatis generator gui extension");//id
         context.setTargetRuntime("MyBatis3");//targetRuntime
@@ -178,6 +173,15 @@ public class MBGRunner {
         }
 
         context.addTableConfiguration(tableConfiguration);
+
+
+        if (!projectConfig.autoDelimitKeywords.getValue().trim().isEmpty()) {
+            context.addProperty("autoDelimitKeywords", "true");
+            context.addProperty("beginningDelimiter", projectConfig.autoDelimitKeywords.getValue());
+            context.addProperty("endingDelimiter", projectConfig.autoDelimitKeywords.getValue());
+            tableConfiguration.setDelimitIdentifiers(true);
+//            tableConfiguration.setAllColumnDelimitingEnabled(true);//将此行取消注释即可delimit所有字段
+        }
 
         config.addContext(context);
         List<String> warnings = new ArrayList<>();
