@@ -70,11 +70,18 @@ public class Utils {
     }
 
     public static String getLowerCamelCase(String s) {
-        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, s);
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, getUpperCamelCase(s));
     }
 
     public static String getUpperCamelCase(String s) {
-        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
+        //如果全大写，且包含下划线
+        if (s.replaceAll("[A-Z]+", "").equals(s) && s.contains("_"))
+            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
+        //如果不包含下划线
+        if (!s.contains("_") && s.length() > 2)
+            return s.toUpperCase().charAt(0) + s.substring(1);
+        //如果不全为大写，且包含下划线
+        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s.toLowerCase());
     }
 
     public static Method createPublicMethod(String returnType, String name, String annotation) {
