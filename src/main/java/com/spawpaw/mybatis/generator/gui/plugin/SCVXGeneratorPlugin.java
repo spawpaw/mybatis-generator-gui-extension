@@ -56,8 +56,9 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
         templateContext.put("projectDir.ss", projectDir);
 
         //输出测试数据
-        String content = renderTemplateAsString("test.vm", templateContext);
-        log.info("hierarchical table structure: {}", content);
+        String content;
+//        content = renderTemplateAsString("test.vm", templateContext);
+//        log.info("hierarchical table structure: {}", content);
 
         // : 2018/3/22 保存到指定目录
         List<TemplateConfig> configs = new Yaml().loadAs(scvxConfigYml, ConfigWrapper.class).getTemplateConfig();
@@ -66,7 +67,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
             String destDir = config.getDestDir().replaceAll("\\.", "/");
             String destPackage = config.getDestPackage();
             String destFileName = config.getDestFileName();
-            String absPath = (projectDir == null || projectDir.isEmpty() ? "" : projectDir)
+            String absPath = (projectDir == null || projectDir.isEmpty() ? "" : projectDir + (projectDir.endsWith("/") || projectDir.endsWith("\\") ? "" : "/"))
                     + destDir
                     + "/"
                     + destPackage.replace(".", "/")
@@ -74,6 +75,7 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
                     + destFileName;
             absPath = absPath.replace("//", "/");
             absPath = absPath.replace("${entityName}", table.getEntityName());
+            absPath = absPath.replace("${entityLowerCamel}", table.getEntityLowerCamel());
             absPath = absPath.replace("${basePackage}", basePackage.replace(".", "/"));
             log.info("generate file `{}` from template `{}`", absPath, template);
 

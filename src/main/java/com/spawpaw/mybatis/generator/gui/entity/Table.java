@@ -1,5 +1,6 @@
 package com.spawpaw.mybatis.generator.gui.entity;
 
+import com.spawpaw.mybatis.generator.gui.util.Utils;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.config.Context;
@@ -37,14 +38,14 @@ public class Table extends ConfigMatcher {
 
         entityPackage = introspectedTable.getIbatis2SqlMapPackage();
         entityName = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
-        entityLowerCamel = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
+        entityLowerCamel = Utils.getLowerCamelCase(entityName);
 
         exampleName = introspectedTable.getExampleType();
-        exampleLowerCamel = introspectedTable.getExampleType();
+        exampleLowerCamel = Utils.getLowerCamelCase(exampleName);
 
         mapperPackage = introspectedTable.getFullyQualifiedTable().getDomainObjectSubPackage();
         mapperName = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
-        mapperLowerCamel = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
+        mapperLowerCamel = Utils.getLowerCamelCase(mapperName);
 
         for (IntrospectedColumn introspectedColumn : introspectedTable.getAllColumns()) {
             columns.add(new Column(context, introspectedTable, introspectedColumn, this));

@@ -73,6 +73,17 @@ public class Column extends ConfigMatcher {
             disable = Boolean.valueOf(get("disable"));
     }
 
+    @Override
+    public boolean contains(String key) {
+        System.err.println("key:" + key + "          " + (super.contains(key) || super.contains(actualName + "." + key)));
+        return super.contains(key) || super.contains(actualName + "." + key);
+    }
+
+    @Override
+    public String get(String key) {
+        System.err.println("getkey:" + key + "          " + (super.contains(key) || super.contains(actualName + "." + key)));
+        return containsKey(key) ? super.get(key) : super.get(actualName + "." + key);
+    }
 
     public int getIndex() {
         return index;

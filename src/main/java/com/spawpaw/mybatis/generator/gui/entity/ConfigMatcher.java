@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  */
 public class ConfigMatcher extends HashMap<String, String> {
     protected static final String configPrefix = "#";
-    protected static final String configPattern = "(" + configPrefix + "[\\w|\\.]+\\([^)]*\\))";
+    protected static final String configPattern = "(" + configPrefix + "[^(]+\\([^)]*\\))";
 
     Logger log = LoggerFactory.getLogger(ConfigMatcher.class);
 
@@ -27,7 +27,7 @@ public class ConfigMatcher extends HashMap<String, String> {
     }
 
     public static void main(String[] args) {
-        new ConfigMatcher("#com.spawpaw()#label(你好呀)#search(equal,like,likeIgnoreCase,between,larger,less)", null);
+        new ConfigMatcher("#com.spawpaw()#label(你好呀)#column.search(equal,like,likeIgnoreCase,between,larger,less)", null);
     }
 
     /**
