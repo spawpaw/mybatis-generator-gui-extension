@@ -1,0 +1,196 @@
+<!--html模板-->
+
+<!--列表-->
+<div th:fragment="list" xmlns:th="http://www.thymeleaf.org" style="height: 100%;width: 100%">
+    <div id="toolbar" class="btn-group">
+        <button type="button" class="btn btn-default" onclick="showEditModal()">
+            <i class="fas fa-plus"></i> 添加
+        </button>
+        <button type="button" class="btn btn-default" onclick="deleteBatch()">
+            <i class="fas fa-times"></i> 删除选中行
+        </button>
+    </div>
+    <table id="table-main"
+           class="table table-striped"></table>
+    <div id="button-toolbar"></div>
+
+
+    <script th:inline="javascript">
+        var moduleName = '${table.entityLowerCamel}';
+
+        function initTable() {
+            $("#table-main").bootstrapTable({
+                url: restfulApi.apiUrl(moduleName), // 获取表格数据的url
+                cache: false, // 设置为 false 禁用 AJAX 数据缓存， 默认为true
+                striped: true,  //表格显示条纹，默认为false
+                toolbar: "#toolbar",
+                search: true,
+
+                // buttonsToolbar: "#button-toolbar",
+                pagination: true, // 在表格底部显示分页组件，默认false
+                pageList: [10, 20, 30, 50, 80, 100], // 设置页面可以显示的数据条数
+                pageSize: 10, // 页面数据条数
+                pageNumber: 1, // 首页页码
+                paginationPreText: "上一页",
+                paginationNextText: "下一页",
+                sidePagination: 'server', // 设置为服务器端分页
+                queryParams: function (params) { // 请求服务器数据时发送的参数，可以在这里添加额外的查询参数，返回false则终止请求
+                    return params;
+                },
+                sortName: 'id', // 要排序的字段
+                sortOrder: 'asc', // 排序规则
+
+                clickToSelect: true,
+
+
+                columns: [
+                    {
+                        checkbox: true, // 显示一个勾选框
+                        align: 'center' // 居中显示
+                    }, {
+                        field: 'id', // 返回json数据中的name
+                        title: '编号', // 表格表头显示文字
+                        sortable: true,
+                        align: 'center', // 左右居中
+                        valign: 'middle' // 上下居中
+                    #foreach($column in $table.columns)
+                    }, {
+                        field: "${column.actualName}",
+                        title: "${column.actualName}",
+                        sortable: true,
+                        align: 'center', // 左右居中
+                        valign: 'middle', // 上下居中
+                        clickToSelect: false,
+                        editable: {
+                            type: 'text',
+                            title: "${column.actualName}",
+                            mode: "popup",
+                            validate: function (v) {
+                                if (!v) return '${column.actualName} cannot be null';
+
+                            }
+                        }
+                    #end
+                    }, {
+                        title: "操作",
+                        align: 'center',
+                        valign: 'middle',
+                        clickToSelect: false,
+                        width: 160, // 定义列的宽度，单位为像素px
+                        formatter: function (value, row, index) {
+                            return '<button class="btn btn-primary btn-sm" onclick="deleteOne(\'' + row.id + '\')">删除</button>';
+                        }
+                    }
+                ],
+                onLoadSuccess: function (data) {  //加载成功时执行
+                    console.info("加载成功:" + JSON.stringify(data));
+                },
+                onLoadError: function () {  //加载失败时执行
+                    console.info("加载数据失败");
+                },
+                onEditableSave: function (field, row, oldValue, $el) {
+                    request("put", restfulApi.apiUrl(moduleName), row, "成功", "编辑失败，请重试");
+                }
+            })
+        }
+
+        //显示编辑模态框
+        function showEditModal() {
+            $('#resetForm').click();
+            $('#edit-modal').modal('show')
+        }
+
+        //插入一条数据,数据从 $('#edit-modal') 中获取
+        function insertOne() {
+            var url = restfulApi.apiUrl(moduleName);
+            var data = $('#edit-form').serializeJSON();
+            request('post', url, data, '添加成功', '添加失败');
+        }
+
+        function deleteOne(id) {
+            var url = restfulApi.apiUrl(moduleName) + '/' + id;
+            request('delete', url, '', '删除成功', '删除失败')
+        }
+
+        function deleteBatch() {
+            var selectedRows = $("#table-main").bootstrapTable('getSelections');
+            var url = restfulApi.apiUrl(moduleName) + '?';
+            console.log("rows: " + JSON.stringify(selectedRows));
+            if (selectedRows == null || selectedRows.length == 0) {
+                $.snackbar({content: "请先选中行"});
+                return;
+            }
+            for (var i = 0; i < selectedRows.length; i++) {
+                console.log("rowi: " + JSON.stringify(selectedRows[i]))
+                url += "id=" + selectedRows[i].id + "&";
+            }
+            request('delete', url, '', '批量删除成功', '批量删除失败')
+        }
+
+        function request(method, url, data, msgSuccess, msgFailure) {
+            var csrf_parameterName = /*[[${_csrf.parameterName}]]*/"_csrf";
+            var csrf_token = /*[[${_csrf.token}]]*/"";
+            data[csrf_parameterName] = csrf_token;
+            var headers = {};
+            headers['X-CSRF-TOKEN'] = csrf_token;
+            $.ajax({
+                type: method,
+                url: url,
+                data: JSON.stringify(data),
+                headers: headers,
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (data, status) {
+                    if (data.code == 0) {
+                        $.snackbar({content: msgSuccess});
+                        $('#edit-modal').modal('hide');
+                    } else {
+                        $.snackbar({content: '操作失败，错误码：' + data.code + "，错误信息：" + data.msg});
+
+                    }
+                },
+                error: function (data) {
+                    $.snackbar({content: msgFailure});
+                },
+                complete: function () {
+                    $("#table-main").bootstrapTable('refresh');
+                }
+            });
+        }
+
+        initTable();
+    </script>
+
+
+    <!--编辑表单-->
+    <!-- Modal -->
+    <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">创建用户</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="edit-form">
+                        #foreach($column in $table.columns)
+                        <div class="form-group">
+                            <label for="${column.actualName}" class="col-form-label">${column.actualName}:</label>
+                            <input type="text" class="form-control" id="${column.actualName}" name="${column.actualName}" required>
+                        </div>
+                        #end
+
+                        <button type="reset" id="resetForm" hidden></button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="insertOne()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,158 +1,174 @@
-package $!table.get("basePackage") .service;
+package $!table.get("basePackage") .controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
 
 import $!table.get("daoPackage") .$!table.get("daoObjName");
 import $!table.get("entityPackage") .$!table.get("entityObjName");
 import $!table.get("entityPackage") .$!table.get("exampleObjName");
+import $!table.get("basePackage") .common.CommonResponse;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@RestController
+@RequestMapping(path = "api/${table.entityLowerCamel}")
 public class ${table.entityName}RestController{
     @Resource
     ${table.entityName}Mapper mapper;
 
     @RequestMapping(path = "", method = RequestMethod.GET)
     @Transactional
-    public List<${table.entityName}> getList(
-            @RequestParam(value = "field", required = false) String field//搜索的字段
-            , @RequestParam(value = "type", defaultValue = "none") String type
-            , @RequestParam(value = "param1", required = false) List<String> param1
-            , @RequestParam(value = "param2", required = false) List<String> param2
-            , @RequestParam(value = "page", defaultValue = "1") Integer page
-            , @RequestParam(value = "pageSize", defaultValue = "100") Integer pageSize) {
+    public CommonResponse getList(
+            @RequestParam(value = "field", required = false) String field//要搜索的字段
+            , @RequestParam(value = "type", defaultValue = "none") String type//搜索类型，支持in,notIn,like,notLike,equals,notEquals....
 
-            $!table.get("exampleObjName") example = new $!table.get("exampleObjName")();
-            switch (field) {
-                #foreach($column in $table.columns)
-                #if ($!column.contains("search.in"))
-                case "${column.actualName}":{
-                        List<$column.fieldType> param1Conversed = new ArrayList<>();
-                        List<$column.fieldType> param2Conversed = new ArrayList<>();
-                        if (param1 != null && param1.size() != 0)
-                            for (String s : param2)
-                                param1Conversed.add($column.fieldType .valueOf(s));
-                        if (param2 != null && param2.size() != 0)
-                            for (String s : param2)
-                                param2Conversed.add($column.fieldType .valueOf(s));
+            , @RequestParam(value = "sort", required = false) String sort//排序字段
+            , @RequestParam(value = "order", required = false) String order//排序方式
 
-                        $column.fieldType param1Single = param1Conversed.size() > 0 ? param1Conversed.get(0) : null;
-                        $column.fieldType param2Single = param2Conversed.size() > 0 ? param2Conversed.get(0) : null;
+            , @RequestParam(value = "limit", required = false, defaultValue = "1") @Min(1) Integer limit//limit
+            , @RequestParam(value = "offset", required = false, defaultValue = "100") @Max(1000) @Min(1) Integer offset//offset
+        ) {
 
-                        switch (type) {
-                            #if ($!column.contains("search.in"))
-                            case "in":
-                                if (param1Conversed.size() == 0)
-                                    throw new RuntimeException("you need to fill param1 win at least 1 item");
-                                example.or().$column.inMethod (param1Conversed);
-                                break;
-                            #end
-                            #if($column.contains("search.notIn"))
-                            case "notIn":
-                                if (param1Conversed.size() == 0)
-                                    throw new RuntimeException("you need to fill param1 win at least 1 item");
-                                example.or().$column.notInMethod (param1Conversed);
-                                break;
-                            #end
-                            #if($column.contains("search.like"))
-                            case "like":
-                                for ($column.fieldType value : param1Conversed) {
-                                    example.or().$column.likeMethod (value);
-                                }
-                                break;
-                            #end
-                            #if($column.contains("search.notLike"))
-                            case "notLike":
-                                for ($column.fieldType value : param1Conversed) {
-                                    example.or().$column.notLikeMethod (value);
-                                }
-                                break;
-                            #end
-                            #if($column.contains("search.isNull"))
-                            case "isNull":
-                                example.or().$column.nullMethod ();
-                                break;
-                            #end
-                            #if($column.contains("search.notNull"))
-                            case "notNull":
-                                example.or().$column.notNullMethod ();
-                                break;
-                            #end
-                            #if($column.contains("search.equal"))
-                            case "equal":
-                                example.or().$column.equalMethod (param1Single);
-                                break;
-                            #end
-                            #if($column.contains("search.notEqual"))
-                            case "notEqual":
-                                example.or().$column.notEqualMethod (param1Single);
-                                break;
-                            #end
-                            #if($column.contains("search.between"))
-                            case "between":
-                                example.or().$column.betweenMethod (param1Single, param2Single);
-                                break;
-                            #end
-                            #if($column.contains("search.notBetween"))
-                            case "notBetween":
-                                example.or().$column.notBetweenMethod (param1Single, param2Single);
-                                break;
-                            #end
-                            #if($column.contains("search.greaterThan"))
-                            case "greaterThan":
-                                example.or().$column.greaterThanMethod (param1Single);
-                                break;
-                            #end
-                            #if($column.contains("search.lessThan"))
-                            case "lessThan":
-                                example.or().$column.lessThanMethod (param1Single);
-                                break;
-                            #end
-                            #if($column.contains("search.greaterThenOrEqual"))
-                            case "greaterThenOrEqual":
-                                example.or().$column.greaterThenOrEqualMethod (param1Single);
-                                break;
-                            #end
-                            #if($column.contains("search.lessThanOrEqual"))
-                            case "lessThanOrEqual":
-                                example.or().$column.lessThanOrEqualMethod (param1Single);
-                                break;
-                            #end
-                            case "none":
-                                break;
-                            default:
-                                throw new RuntimeException("unsupported searching type!");
-                        }
+        $!table.get("exampleObjName") example = new $!table.get("exampleObjName")();
+##        switch (field) {
+##            #foreach($column in $table.columns)
+##            case "${column.actualName}":{
+##                    //获取参数数组
+##                    List<$column.fieldType> param1Conversed = new ArrayList<>();
+##                    List<$column.fieldType> param2Conversed = new ArrayList<>();
+##                    if (param1 != null && param1.size() != 0)
+##                        for (String s : param2)
+##                            param1Conversed.add($column.fieldType .valueOf(s));
+##                    if (param2 != null && param2.size() != 0)
+##                        for (String s : param2)
+##                            param2Conversed.add($column.fieldType .valueOf(s));
+##
+##                    $column.fieldType param1Single = param1Conversed.size() > 0 ? param1Conversed.get(0) : null;
+##                    $column.fieldType param2Single = param2Conversed.size() > 0 ? param2Conversed.get(0) : null;
+##
+##                    //根据搜索类型设定参数
+##                    switch (type) {
+##                        #if ($!column.contains("search.in"))
+##                        case "in":
+##                            if (param1Conversed.size() == 0)
+##                                throw new RuntimeException("you need to fill param1 win at least 1 item");
+##                            example.or().$column.inMethod (param1Conversed);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.notIn"))
+##                        case "notIn":
+##                            if (param1Conversed.size() == 0)
+##                                throw new RuntimeException("you need to fill param1 win at least 1 item");
+##                            example.or().$column.notInMethod (param1Conversed);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.like"))
+##                        case "like":
+##                            for ($column.fieldType value : param1Conversed) {
+##                                example.or().$column.likeMethod (value);
+##                            }
+##                            break;
+##                        #end
+##                        #if($column.contains("search.notLike"))
+##                        case "notLike":
+##                            for ($column.fieldType value : param1Conversed) {
+##                                example.or().$column.notLikeMethod (value);
+##                            }
+##                            break;
+##                        #end
+##                        #if($column.contains("search.isNull"))
+##                        case "isNull":
+##                            example.or().$column.nullMethod ();
+##                            break;
+##                        #end
+##                        #if($column.contains("search.notNull"))
+##                        case "notNull":
+##                            example.or().$column.notNullMethod ();
+##                            break;
+##                        #end
+##                        #if($column.contains("search.equal"))
+##                        case "equal":
+##                            example.or().$column.equalMethod (param1Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.notEqual"))
+##                        case "notEqual":
+##                            example.or().$column.notEqualMethod (param1Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.between"))
+##                        case "between":
+##                            example.or().$column.betweenMethod (param1Single, param2Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.notBetween"))
+##                        case "notBetween":
+##                            example.or().$column.notBetweenMethod (param1Single, param2Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.greaterThan"))
+##                        case "greaterThan":
+##                            example.or().$column.greaterThanMethod (param1Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.lessThan"))
+##                        case "lessThan":
+##                            example.or().$column.lessThanMethod (param1Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.greaterThenOrEqual"))
+##                        case "greaterThenOrEqual":
+##                            example.or().$column.greaterThenOrEqualMethod (param1Single);
+##                            break;
+##                        #end
+##                        #if($column.contains("search.lessThanOrEqual"))
+##                        case "lessThanOrEqual":
+##                            example.or().$column.lessThanOrEqualMethod (param1Single);
+##                            break;
+##                        #end
+##                        case "none":
+##                            break;
+##                        default:
+##                            throw new RuntimeException("unsupported searching type!");
+##                    }
+##                break;
+##                }
+##            #end
+##            default:
+##                throw new RuntimeException("unsupported searching column!");
+##        }
+
+        //排序
+        if (sort != null && order != null)
+            switch (order.toLowerCase()) {
+                case "asc":
+                    example.setOrderByClause(${table.entityName}.Column.valueOf(sort).asc());
                     break;
-                    }
-                #end
-                #end
+                case "desc":
+                    example.setOrderByClause(${table.entityName}.Column.valueOf(sort).desc());
+                    break;
                 default:
-                    throw new RuntimeException("unsupported searching column!");
+                    throw new RuntimeException("unsupported sorting method(only support asc or desc)");
             }
 
         //设置基于Limit/Offset分页插件的分页信息,如数据库不支持或使用了PageHelper，请自行更改实现方式
-        if (page != null && pageSize != null) {
-            example.setPageInfo(page, pageSize);
-        } else {
-            example.setPageInfo(1, 100);
-        }
+        example.setLimit(limit);
+        example.setOffset(offset);
 
-        return mapper.selectByExample(example);
+        return new CommonResponse<>(mapper.selectByExample(example)).total(mapper.countByExample(example));
     }
 
 
     /**
-     *
+     * 插入单条数据
      * @param record the record you want to create
      * @return created records(with primary key if your mapper supports it)
      */
@@ -165,7 +181,7 @@ public class ${table.entityName}RestController{
 
 
     /**
-     *
+     * 批量插入
      * @param records the records you want to create
      * @return created records(with primary key if your mapper supports it)
      */
@@ -179,10 +195,11 @@ public class ${table.entityName}RestController{
     }
 
     /**
+     * 更新单条数据
      * @param record the records you want to update
      * @return affected row count
      */
-    @RequestMapping(path = "", method = RequestMethod.PATCH)
+    @RequestMapping(path = "", method = RequestMethod.PUT)
     @Transactional
     public int updateOne(@RequestBody ${table.entityName} record) {
         return mapper.updateByPrimaryKey(record);
@@ -190,11 +207,12 @@ public class ${table.entityName}RestController{
     }
 
     /**
+     * 批量更新数据
      * @param records the records you want to update
      * @return affected row count
      */
     // TODO: 2018/3/25 update batch
-    @RequestMapping(path = "batch", method = RequestMethod.PATCH)
+    @RequestMapping(path = "batch", method = RequestMethod.PUT)
     @Transactional
     public long updateBatch(@RequestBody List<${table.entityName}> records) {
         int count = 0;
