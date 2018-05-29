@@ -204,6 +204,8 @@ public class ProjectConfig {
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.primaryKey", type = ConfigType.CheckableTextField)
     public SimpleStringProperty primaryKey = new SimpleStringProperty("");
+    @Config(bundle = "project.lastInsertIdSqlStatement", testRegex = "\nCloudscape\nDB2\nDB2_MF\nDB2_MF\nHSQLDB\nInformix\nMySql\nSqlServer\nSYBASE\nJDBC", type = ConfigType.ComboBox)
+    public SimpleStringProperty lastInsertIdSqlStatement = new SimpleStringProperty("");
 
     @EnablePlugin(DeclaredPlugins.VirtualPrimaryKeyPlugin)
     @ExportToPlugin(plugin = DeclaredPlugins.VirtualPrimaryKeyPlugin, key = "virtualKeyColumns")

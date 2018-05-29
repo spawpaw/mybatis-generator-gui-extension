@@ -154,8 +154,12 @@ public class MBGRunner {
             tableConfiguration.addProperty("virtualKeyColumns", projectConfig.enableVirtualPrimaryKeyPlugin.getValue());
 
         //see http://www.mybatis.org/generator/configreference/generatedKey.html  ,JDBC is a database independent method of obtaining the value from identity columns,only for Mybatis3+
-        if (!projectConfig.primaryKey.getValue().isEmpty())
-            tableConfiguration.setGeneratedKey(new GeneratedKey(projectConfig.primaryKey.getValue(), DatabaseType.valueOf(databaseConfig.databaseType.getValue()).getSqlStatement(), true, null));
+        if (!projectConfig.primaryKey.getValue().isEmpty()) {
+            String sqlStatement = DatabaseType.valueOf(databaseConfig.databaseType.getValue()).getSqlStatement();
+            if (!projectConfig.lastInsertIdSqlStatement.getValue().trim().isEmpty())//如果指定了获取自增主键的sql，则覆盖默认的配置
+                sqlStatement = projectConfig.lastInsertIdSqlStatement.getValue();
+            tableConfiguration.setGeneratedKey(new GeneratedKey(projectConfig.primaryKey.getValue(), sqlStatement, true, null));
+        }
 
         //添加忽略列/列覆写
         for (TableColumnMetaData column : databaseConfig.tableConfigs.get(projectConfig.selectedTable.getValue())) {
