@@ -38,7 +38,7 @@ public class ProjectConfig {
     @Config(bundle = "project.javaFileEncoding", type = ConfigType.ChoiceBox, testRegex = "UTF-8|GBK|UTF-16BE|UTF-16LE|UTF-16|US-ASCII|ISO-8859-1")
     public SimpleStringProperty javaFileEncoding = new SimpleStringProperty("UTF-8");
     @Config(bundle = "project.reduceTablePrefix", testRegex = "(t|T)_\n[a-z|A-Z]{0,2}_"/*这里用\n隔开*/, type = ConfigType.ComboBox)
-    public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("t_");
+    public SimpleStringProperty reduceTablePrefix = new SimpleStringProperty("");
     @AdvancedConfig
     @Config(bundle = "project.daoObjSuffix")
     public SimpleStringProperty daoObjSuffix = new SimpleStringProperty("Mapper");
@@ -314,10 +314,10 @@ public class ProjectConfig {
             "    destFileName: ${entityName}RestController.java\n" +
             "\n" +
             "  # 生成html表单\n" +
-            "  - template: html/form.vm\n" +
+            "  - template: html/index.vm\n" +
             "    destDir: src/main/resources\n" +
             "    destPackage: templates\n" +
-            "    destFileName: form.html\n" +
+            "    destFileName: index.html\n" +
             "\n" +
             "  # 生成html列表\n" +
             "  - template: html/list.vm\n" +
