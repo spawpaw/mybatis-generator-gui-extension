@@ -196,7 +196,12 @@ public class ProjectConfig {
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.entityObjName", type = ConfigType.TextField)
     public SimpleStringProperty entityObjName = new SimpleStringProperty("");
+
+    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin,key = "searchString")
+    public SimpleStringProperty exampleSearchString = new SimpleStringProperty("[a-zA-Z0-9$]+$");//替换Example类名
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
+    @EnablePlugin(DeclaredPlugins.RenameExampleClassPlugin)
+    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin,key = "replaceString")//替换字符串为正则式，若其中含$等特殊字符需转义
     @Config(bundle = "project.exampleObjName", type = ConfigType.TextField)
     public SimpleStringProperty exampleObjName = new SimpleStringProperty("");
     @Config(bundle = "project.entityRootClass", type = ConfigType.CheckableTextField)
