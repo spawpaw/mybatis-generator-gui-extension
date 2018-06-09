@@ -3,6 +3,8 @@ package com.spawpaw.mybatis.generator.gui.controls;
 import com.spawpaw.mybatis.generator.gui.annotations.Config;
 import javafx.beans.property.Property;
 import javafx.scene.layout.HBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created By spawpaw@hotmail.com  2018-01-30
@@ -10,9 +12,11 @@ import javafx.scene.layout.HBox;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class ControlsFactory {
+    static Logger log = LoggerFactory.getLogger(ControlsFactory.class);
+
     public static HBox getLayout(Config config, Property value) {
         if (config == null) {
-            System.out.println("无效的配置项,请为Property添加@Config注解");
+//            log.info("发现隐藏的配置项, 如要在界面中显示，请为Property添加@Config注解");
             return new HBox();
         }
         IControl control;
