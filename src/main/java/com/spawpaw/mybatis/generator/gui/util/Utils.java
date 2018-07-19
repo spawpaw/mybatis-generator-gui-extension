@@ -6,6 +6,8 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.util.Properties;
@@ -16,6 +18,7 @@ import java.util.Properties;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class Utils {
+    private static Logger log = LoggerFactory.getLogger(Utils.class);
     private IntrospectedTable introspectedTable;
 
 
@@ -67,7 +70,16 @@ public class Utils {
      * @return 返回该字符串对应的boolean值
      */
     public static boolean isTrue(String s) {
-        return "true".equalsIgnoreCase(s);
+        if ("true".equalsIgnoreCase(s)) return true;
+        if ("false".equalsIgnoreCase(s)) return false;
+        try {
+            if (Integer.valueOf(s) != 0) return true;
+            else if (Integer.valueOf(s) == 0) return false;
+        } catch (Exception e) {
+            //do nothing;
+        }
+        log.warn("您为一个boolean类型的字段指定了错误的值，应为true/false，实际为：{}", s);
+        return false;
     }
 
 
