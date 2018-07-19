@@ -30,9 +30,9 @@ import java.util.Properties;
  * @author BenBenShang spawpaw@hotmail.com
  */
 public class SCVXGeneratorPlugin extends PluginAdapter {
-    public String projectDir = "";
-    public String basePackage = "";
-    public String scvxConfigYml = "";
+    private String projectDir = "";
+    private String basePackage = "";
+    private String scvxConfigYml = "";
     Logger log = LoggerFactory.getLogger(SCVXGeneratorPlugin.class);
 
     @Override

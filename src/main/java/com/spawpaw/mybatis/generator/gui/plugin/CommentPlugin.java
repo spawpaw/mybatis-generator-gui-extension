@@ -27,12 +27,12 @@ import java.util.Set;
  */
 public class CommentPlugin implements CommentGenerator {
 
-    public boolean generateJPA = false;
-    public boolean suppressDate = false;
-    public String dateFormat;
-    public String fileHeader = "";
-    public boolean enableMbgGenerated = true;
-    public boolean enableCorrespondingTable = true;
+    private boolean generateJPA = false;
+    private boolean suppressDate = false;
+    private String dateFormat;
+    private String fileHeader = "";
+    private boolean enableMbgGenerated = true;
+    private boolean enableCorrespondingTable = true;
 
     @Override
     public void addConfigurationProperties(Properties properties) {

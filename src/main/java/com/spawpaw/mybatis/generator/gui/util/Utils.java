@@ -32,6 +32,7 @@ public class Utils {
      */
     public static <T> void injectFieldsFromProperties(T obj, Properties properties) {
         for (Field field : obj.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
             //如果field对应的property为null
             if (properties.get(field.getName()) == null)
                 continue;
