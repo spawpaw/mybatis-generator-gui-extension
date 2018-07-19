@@ -69,19 +69,49 @@ public class Utils {
         return "true".equalsIgnoreCase(s);
     }
 
+
+    /**
+     * 获取字符串的小骆驼峰形式
+     */
     public static String getLowerCamelCase(String s) {
+        if (s.startsWith("_"))
+            return s;
+
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, getUpperCamelCase(s));
     }
 
+    /**
+     * 几种规范的命名方式：
+     * LOWER_CAMEL:         lowerCamel,lower
+     * UPPER_CAMEL:         UpperCamel,Upper
+     * LOWER_UNDERSCORE:    lower_underscore,
+     * UPPER_UNDERSCORE:    UPPER_UNDERSCORE,
+     * LOWER_HYPHEN:        lower-hyphen
+     * <p>
+     * 对于不规范的命名方式，仅提供基本的处理，并不保证完全符合需求,主要是underscore和camelcase混合的情况：
+     * 0.将所有-替换成_
+     * 1.对所有首部包含下划线的字符串将不作处理：_camel_Case_将直接返回
+     * 2.1.去掉所有尾部的下划线：camel_Case_将转化为camel_Case
+     * 2.2.如果字符串仍然包含下划线，或者字符串全部为大写，或者全部为小写，则按underscore处理：camel_CaSe_将转化为CamelCase
+     * 2.3.否则按照CamelCase处理
+     */
     public static String getUpperCamelCase(String s) {
-        //如果全大写，且包含下划线
-        if (s.replaceAll("[A-Z]+", "").equals(s) && s.contains("_"))
-            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
-        //如果不包含下划线
-        if (!s.contains("_") && s.length() > 2)
-            return s.toUpperCase().charAt(0) + s.substring(1);
-        //如果不全为大写，且包含下划线
-        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s.toLowerCase());
+        //0.
+        s = s.replace("-", "_");
+        //1.
+        if (s.startsWith("_"))
+            return s;
+
+        //2.1去掉尾巴
+        if (s.endsWith("_")) {
+            s = s.replaceAll("(_)+$", "");
+        }
+        //2.2.如果全大写，或包含_
+        if (s.replaceAll("[A-Z]+", "").isEmpty() || s.replaceAll("[a-z]+", "").isEmpty() || s.contains("_")) {
+            return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s.toUpperCase());
+        }
+        //2.3.如果不包含下划线
+        return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, s);
     }
 
     public static Method createPublicMethod(String returnType, String name, String annotation) {
