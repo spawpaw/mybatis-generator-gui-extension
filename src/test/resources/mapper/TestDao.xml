@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spawpaw.mybatis.generator.gui.dao.TestDao">
+  <resultMap id="BaseResultMap" type="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="field_int" jdbcType="INTEGER" property="field_int" />
+    <result column="field_boolean" jdbcType="BIT" property="field_boolean" />
+    <result column="field_double" jdbcType="DOUBLE" property="field_double" />
+    <result column="_fieldTest" jdbcType="VARCHAR" property="_fieldTest" />
+    <result column="_field_test2" jdbcType="VARCHAR" property="_field_test2" />
+    <result column="field_test_" jdbcType="VARCHAR" property="field_test_" />
+    <result column="fieldLowerCamel" jdbcType="VARCHAR" property="fieldLowerCamel" />
+    <result column="FieldUpperCamel" jdbcType="VARCHAR" property="fieldUpperCamel" />
+    <result column="SINGLE" jdbcType="VARCHAR" property="SINGLE" />
+    <result column="FIELD_UPPER_UNDERSCORE" jdbcType="VARCHAR" property="FIELD_UPPER_UNDERSCORE" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="select" jdbcType="VARCHAR" property="select" />
+    <result column="drop" jdbcType="VARCHAR" property="drop" />
+    <result column="deleted" jdbcType="BIT" property="deleted" />
+    <result column="field_having_default_value" jdbcType="VARCHAR" property="field_having_default_value" />
+    <result column="field_not_having_default_value" jdbcType="VARCHAR" property="field_not_having_default_value" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    id, `name`, field_int, field_boolean, field_double, _fieldTest, _field_test2, field_test_, 
+    fieldLowerCamel, FieldUpperCamel, SINGLE, FIELD_UPPER_UNDERSCORE, `group`, `select`, 
+    `drop`, deleted, field_having_default_value, field_not_having_default_value
+  </sql>
+  <select id="selectByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `t_test`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from `t_test`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    delete from `t_test`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    delete from `t_test`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `t_test` (`name`, field_int, field_boolean, 
+      field_double, _fieldTest, _field_test2, 
+      field_test_, fieldLowerCamel, FieldUpperCamel, 
+      SINGLE, FIELD_UPPER_UNDERSCORE, `group`, 
+      `select`, `drop`, deleted, 
+      field_having_default_value, field_not_having_default_value
+      )
+    values (#{name,jdbcType=VARCHAR}, #{field_int,jdbcType=INTEGER}, #{field_boolean,jdbcType=BIT}, 
+      #{field_double,jdbcType=DOUBLE}, #{_fieldTest,jdbcType=VARCHAR}, #{_field_test2,jdbcType=VARCHAR}, 
+      #{field_test_,jdbcType=VARCHAR}, #{fieldLowerCamel,jdbcType=VARCHAR}, #{fieldUpperCamel,jdbcType=VARCHAR}, 
+      #{SINGLE,jdbcType=VARCHAR}, #{FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
+      #{select,jdbcType=VARCHAR}, #{drop,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, 
+      #{field_having_default_value,jdbcType=VARCHAR}, #{field_not_having_default_value,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `t_test`
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="field_int != null">
+        field_int,
+      </if>
+      <if test="field_boolean != null">
+        field_boolean,
+      </if>
+      <if test="field_double != null">
+        field_double,
+      </if>
+      <if test="_fieldTest != null">
+        _fieldTest,
+      </if>
+      <if test="_field_test2 != null">
+        _field_test2,
+      </if>
+      <if test="field_test_ != null">
+        field_test_,
+      </if>
+      <if test="fieldLowerCamel != null">
+        fieldLowerCamel,
+      </if>
+      <if test="fieldUpperCamel != null">
+        FieldUpperCamel,
+      </if>
+      <if test="SINGLE != null">
+        SINGLE,
+      </if>
+      <if test="FIELD_UPPER_UNDERSCORE != null">
+        FIELD_UPPER_UNDERSCORE,
+      </if>
+      <if test="group != null">
+        `group`,
+      </if>
+      <if test="select != null">
+        `select`,
+      </if>
+      <if test="drop != null">
+        `drop`,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="field_having_default_value != null">
+        field_having_default_value,
+      </if>
+      <if test="field_not_having_default_value != null">
+        field_not_having_default_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="field_int != null">
+        #{field_int,jdbcType=INTEGER},
+      </if>
+      <if test="field_boolean != null">
+        #{field_boolean,jdbcType=BIT},
+      </if>
+      <if test="field_double != null">
+        #{field_double,jdbcType=DOUBLE},
+      </if>
+      <if test="_fieldTest != null">
+        #{_fieldTest,jdbcType=VARCHAR},
+      </if>
+      <if test="_field_test2 != null">
+        #{_field_test2,jdbcType=VARCHAR},
+      </if>
+      <if test="field_test_ != null">
+        #{field_test_,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldLowerCamel != null">
+        #{fieldLowerCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldUpperCamel != null">
+        #{fieldUpperCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="SINGLE != null">
+        #{SINGLE,jdbcType=VARCHAR},
+      </if>
+      <if test="FIELD_UPPER_UNDERSCORE != null">
+        #{FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="select != null">
+        #{select,jdbcType=VARCHAR},
+      </if>
+      <if test="drop != null">
+        #{drop,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="field_having_default_value != null">
+        #{field_having_default_value,jdbcType=VARCHAR},
+      </if>
+      <if test="field_not_having_default_value != null">
+        #{field_not_having_default_value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample" resultType="java.lang.Long">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    select count(*) from `t_test`
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update `t_test`
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field_int != null">
+        field_int = #{record.field_int,jdbcType=INTEGER},
+      </if>
+      <if test="record.field_boolean != null">
+        field_boolean = #{record.field_boolean,jdbcType=BIT},
+      </if>
+      <if test="record.field_double != null">
+        field_double = #{record.field_double,jdbcType=DOUBLE},
+      </if>
+      <if test="record._fieldTest != null">
+        _fieldTest = #{record._fieldTest,jdbcType=VARCHAR},
+      </if>
+      <if test="record._field_test2 != null">
+        _field_test2 = #{record._field_test2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field_test_ != null">
+        field_test_ = #{record.field_test_,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldLowerCamel != null">
+        fieldLowerCamel = #{record.fieldLowerCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldUpperCamel != null">
+        FieldUpperCamel = #{record.fieldUpperCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.SINGLE != null">
+        SINGLE = #{record.SINGLE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.FIELD_UPPER_UNDERSCORE != null">
+        FIELD_UPPER_UNDERSCORE = #{record.FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR},
+      </if>
+      <if test="record.group != null">
+        `group` = #{record.group,jdbcType=VARCHAR},
+      </if>
+      <if test="record.select != null">
+        `select` = #{record.select,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drop != null">
+        `drop` = #{record.drop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BIT},
+      </if>
+      <if test="record.field_having_default_value != null">
+        field_having_default_value = #{record.field_having_default_value,jdbcType=VARCHAR},
+      </if>
+      <if test="record.field_not_having_default_value != null">
+        field_not_having_default_value = #{record.field_not_having_default_value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update `t_test`
+    set id = #{record.id,jdbcType=INTEGER},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      field_int = #{record.field_int,jdbcType=INTEGER},
+      field_boolean = #{record.field_boolean,jdbcType=BIT},
+      field_double = #{record.field_double,jdbcType=DOUBLE},
+      _fieldTest = #{record._fieldTest,jdbcType=VARCHAR},
+      _field_test2 = #{record._field_test2,jdbcType=VARCHAR},
+      field_test_ = #{record.field_test_,jdbcType=VARCHAR},
+      fieldLowerCamel = #{record.fieldLowerCamel,jdbcType=VARCHAR},
+      FieldUpperCamel = #{record.fieldUpperCamel,jdbcType=VARCHAR},
+      SINGLE = #{record.SINGLE,jdbcType=VARCHAR},
+      FIELD_UPPER_UNDERSCORE = #{record.FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR},
+      `group` = #{record.group,jdbcType=VARCHAR},
+      `select` = #{record.select,jdbcType=VARCHAR},
+      `drop` = #{record.drop,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BIT},
+      field_having_default_value = #{record.field_having_default_value,jdbcType=VARCHAR},
+      field_not_having_default_value = #{record.field_not_having_default_value,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update `t_test`
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="field_int != null">
+        field_int = #{field_int,jdbcType=INTEGER},
+      </if>
+      <if test="field_boolean != null">
+        field_boolean = #{field_boolean,jdbcType=BIT},
+      </if>
+      <if test="field_double != null">
+        field_double = #{field_double,jdbcType=DOUBLE},
+      </if>
+      <if test="_fieldTest != null">
+        _fieldTest = #{_fieldTest,jdbcType=VARCHAR},
+      </if>
+      <if test="_field_test2 != null">
+        _field_test2 = #{_field_test2,jdbcType=VARCHAR},
+      </if>
+      <if test="field_test_ != null">
+        field_test_ = #{field_test_,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldLowerCamel != null">
+        fieldLowerCamel = #{fieldLowerCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldUpperCamel != null">
+        FieldUpperCamel = #{fieldUpperCamel,jdbcType=VARCHAR},
+      </if>
+      <if test="SINGLE != null">
+        SINGLE = #{SINGLE,jdbcType=VARCHAR},
+      </if>
+      <if test="FIELD_UPPER_UNDERSCORE != null">
+        FIELD_UPPER_UNDERSCORE = #{FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        `group` = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="select != null">
+        `select` = #{select,jdbcType=VARCHAR},
+      </if>
+      <if test="drop != null">
+        `drop` = #{drop,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="field_having_default_value != null">
+        field_having_default_value = #{field_having_default_value,jdbcType=VARCHAR},
+      </if>
+      <if test="field_not_having_default_value != null">
+        field_not_having_default_value = #{field_not_having_default_value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    update `t_test`
+    set `name` = #{name,jdbcType=VARCHAR},
+      field_int = #{field_int,jdbcType=INTEGER},
+      field_boolean = #{field_boolean,jdbcType=BIT},
+      field_double = #{field_double,jdbcType=DOUBLE},
+      _fieldTest = #{_fieldTest,jdbcType=VARCHAR},
+      _field_test2 = #{_field_test2,jdbcType=VARCHAR},
+      field_test_ = #{field_test_,jdbcType=VARCHAR},
+      fieldLowerCamel = #{fieldLowerCamel,jdbcType=VARCHAR},
+      FieldUpperCamel = #{fieldUpperCamel,jdbcType=VARCHAR},
+      SINGLE = #{SINGLE,jdbcType=VARCHAR},
+      FIELD_UPPER_UNDERSCORE = #{FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR},
+      `group` = #{group,jdbcType=VARCHAR},
+      `select` = #{select,jdbcType=VARCHAR},
+      `drop` = #{drop,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BIT},
+      field_having_default_value = #{field_having_default_value,jdbcType=VARCHAR},
+      field_not_having_default_value = #{field_not_having_default_value,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    insert into `t_test`
+    (`name`, field_int, field_boolean, field_double, _fieldTest, _field_test2, field_test_, 
+      fieldLowerCamel, FieldUpperCamel, SINGLE, FIELD_UPPER_UNDERSCORE, `group`, `select`, 
+      `drop`, deleted, field_having_default_value, field_not_having_default_value)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.name,jdbcType=VARCHAR}, #{item.field_int,jdbcType=INTEGER}, #{item.field_boolean,jdbcType=BIT}, 
+        #{item.field_double,jdbcType=DOUBLE}, #{item._fieldTest,jdbcType=VARCHAR}, #{item._field_test2,jdbcType=VARCHAR}, 
+        #{item.field_test_,jdbcType=VARCHAR}, #{item.fieldLowerCamel,jdbcType=VARCHAR}, 
+        #{item.fieldUpperCamel,jdbcType=VARCHAR}, #{item.SINGLE,jdbcType=VARCHAR}, #{item.FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR}, 
+        #{item.group,jdbcType=VARCHAR}, #{item.select,jdbcType=VARCHAR}, #{item.drop,jdbcType=VARCHAR}, 
+        #{item.deleted,jdbcType=BIT}, #{item.field_having_default_value,jdbcType=VARCHAR}, 
+        #{item.field_not_having_default_value,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="batchInsertSelective" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--
+      WARNING - @mbg.generated  This element was generated on Sat Jul 21 16:47:00 CST 2018. by MyBatis Generator, do not modify.
+    -->
+    insert into `t_test` (
+    <foreach collection="selective" item="column" separator=",">
+      ${column.escapedColumnName}
+    </foreach>
+    )
+    values
+    <foreach collection="list" item="item" separator=",">
+      (
+      <foreach collection="selective" item="column" separator=",">
+        <if test="'name'.toString() == column.value">
+          #{item.name,jdbcType=VARCHAR}
+        </if>
+        <if test="'field_int'.toString() == column.value">
+          #{item.field_int,jdbcType=INTEGER}
+        </if>
+        <if test="'field_boolean'.toString() == column.value">
+          #{item.field_boolean,jdbcType=BIT}
+        </if>
+        <if test="'field_double'.toString() == column.value">
+          #{item.field_double,jdbcType=DOUBLE}
+        </if>
+        <if test="'_fieldTest'.toString() == column.value">
+          #{item._fieldTest,jdbcType=VARCHAR}
+        </if>
+        <if test="'_field_test2'.toString() == column.value">
+          #{item._field_test2,jdbcType=VARCHAR}
+        </if>
+        <if test="'field_test_'.toString() == column.value">
+          #{item.field_test_,jdbcType=VARCHAR}
+        </if>
+        <if test="'fieldLowerCamel'.toString() == column.value">
+          #{item.fieldLowerCamel,jdbcType=VARCHAR}
+        </if>
+        <if test="'FieldUpperCamel'.toString() == column.value">
+          #{item.fieldUpperCamel,jdbcType=VARCHAR}
+        </if>
+        <if test="'SINGLE'.toString() == column.value">
+          #{item.SINGLE,jdbcType=VARCHAR}
+        </if>
+        <if test="'FIELD_UPPER_UNDERSCORE'.toString() == column.value">
+          #{item.FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR}
+        </if>
+        <if test="'group'.toString() == column.value">
+          #{item.group,jdbcType=VARCHAR}
+        </if>
+        <if test="'select'.toString() == column.value">
+          #{item.select,jdbcType=VARCHAR}
+        </if>
+        <if test="'drop'.toString() == column.value">
+          #{item.drop,jdbcType=VARCHAR}
+        </if>
+        <if test="'deleted'.toString() == column.value">
+          #{item.deleted,jdbcType=BIT}
+        </if>
+        <if test="'field_having_default_value'.toString() == column.value">
+          #{item.field_having_default_value,jdbcType=VARCHAR}
+        </if>
+        <if test="'field_not_having_default_value'.toString() == column.value">
+          #{item.field_not_having_default_value,jdbcType=VARCHAR}
+        </if>
+      </foreach>
+      )
+    </foreach>
+  </insert>
+</mapper>
