@@ -26,6 +26,11 @@ JDK Version:
 - [x] OracleJDK 8u40+
 - [ ] OpenJDK 8+ with openjfx
 
+Database:
+- [x] MySQL/MariaDB
+- [] Oracle
+- [] SQL Server
+- [] input your database name
  
 Others:
 <!-- Anything else relevant?  Operating system version, IDE, ... -->
