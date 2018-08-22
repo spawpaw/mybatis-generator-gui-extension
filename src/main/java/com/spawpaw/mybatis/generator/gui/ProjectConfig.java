@@ -197,11 +197,11 @@ public class ProjectConfig {
     @Config(bundle = "project.entityObjName", type = ConfigType.TextField)
     public SimpleStringProperty entityObjName = new SimpleStringProperty("");
 
-    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin,key = "searchString")
+    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin, key = "searchString")
     public SimpleStringProperty exampleSearchString = new SimpleStringProperty("[a-zA-Z0-9$]+$");//替换Example类名
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @EnablePlugin(DeclaredPlugins.RenameExampleClassPlugin)
-    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin,key = "replaceString")//替换字符串为正则式，若其中含$等特殊字符需转义
+    @ExportToPlugin(plugin = DeclaredPlugins.RenameExampleClassPlugin, key = "replaceString")//替换字符串为正则式，若其中含$等特殊字符需转义
     @Config(bundle = "project.exampleObjName", type = ConfigType.TextField)
     public SimpleStringProperty exampleObjName = new SimpleStringProperty("");
     @Config(bundle = "project.entityRootClass", type = ConfigType.CheckableTextField)
@@ -299,19 +299,11 @@ public class ProjectConfig {
 
     @ExportToTab(tabName = tabs.MVC)
     @EnablePlugin(DeclaredPlugins.SCVXGeneratorPlugin)
-    @Config(label = "启用代码生成插件", helpText = "", type = ConfigType.CheckBox)
+    @Config(bundle = "project.scvxGenerator.enable", type = ConfigType.CheckBox)
     public BooleanProperty enableSCVXGeneratorPlugin = new SimpleBooleanProperty(false);
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
-    @Config(label = "代码成成配置（yml）", helpText = "", type = ConfigType.TextArea)
-    public StringProperty scvxConfigYml = new SimpleStringProperty("# 每项配置有以下四个属性：\n" +
-            "# template:    模板文件名\n" +
-            "# destDir:     目标文件夹\n" +
-            "# destPackage: 目标包\n" +
-            "# destFileName:目标文件名\n" +
-            "#\n" +
-            "# 支持如下变量：\n" +
-            "# ${basePackage}  在创建文件时该变量将替换为根包名\n" +
-            "# ${entityName}   在创建文件时该变量将替换为实体名\n" +
+    @Config(bundle = "project.scvxGenerator.configYml", type = ConfigType.TextArea)
+    public StringProperty scvxConfigYml = new SimpleStringProperty(
             "templateConfig:\n" +
             "\n" +
             "  # REST-ful Controller\n" +
