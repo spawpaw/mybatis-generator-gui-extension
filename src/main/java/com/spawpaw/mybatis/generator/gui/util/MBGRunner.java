@@ -90,6 +90,10 @@ public class MBGRunner {
                 jdbcConnectionConfiguration.addProperty("useInformationSchema", "true");//获取Mysql的表注释
                 break;
             case Oracle:
+            case Oracle_SID:
+            case Oracle_ServiceName:
+            case Oracle_TNSEntryString:
+            case Oracle_TNSName:
                 jdbcConnectionConfiguration.addProperty("remarksReporting", "true");//获取Oracle的表注释
                 break;
             default:
