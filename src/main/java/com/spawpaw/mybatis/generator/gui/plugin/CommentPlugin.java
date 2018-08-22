@@ -208,7 +208,7 @@ public class CommentPlugin implements CommentGenerator {
         if (StringUtility.stringHasValue(remarks)) {
             String[] remarkLines = remarks.split(System.getProperty("line.separator"));  //$NON-NLS-1$
             for (String remarkLine : remarkLines) {
-                field.addJavaDocLine(" *   " + remarkLine);  //$NON-NLS-1$
+                field.addJavaDocLine(" * " + remarkLine);  //$NON-NLS-1$
             }
         }
 
