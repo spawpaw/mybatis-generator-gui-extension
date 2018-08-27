@@ -28,10 +28,9 @@ JDK Version:
 
 Database:
 - [x] MySQL/MariaDB
-- [] Oracle
-- [] SQL Server
-- [] input your database name
+- [ ] Oracle
+- [ ] SQL Server
+- [ ] others <!-- replace with your database type -->
  
 Others:
 <!-- Anything else relevant?  Operating system version, IDE, ... -->
-</code></pre>
