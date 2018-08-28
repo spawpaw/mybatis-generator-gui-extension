@@ -57,6 +57,7 @@ public class CommentPlugin implements CommentGenerator {
         if (generateJPA) {
             compilationUnit.addImportedType(new FullyQualifiedJavaType("org.hibernate.validator.constraints.NotEmpty"));
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Table"));
+            compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Entity"));
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.GeneratedValue"));
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Id"));
             compilationUnit.addImportedType(new FullyQualifiedJavaType("javax.persistence.Column"));
