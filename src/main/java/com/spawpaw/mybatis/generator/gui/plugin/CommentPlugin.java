@@ -40,7 +40,7 @@ import com.spawpaw.mybatis.generator.gui.util.Utils;
  */
 public class CommentPlugin implements CommentGenerator {
 
-    private boolean generateJPA = true;
+    private boolean generateJPA = false;
     private boolean suppressDate = false;
     private String dateFormat;
     private String fileHeader = "";
