@@ -32,12 +32,11 @@ import com.spawpaw.mybatis.generator.gui.util.Utils;
  * Created By spawpaw@hotmail.com 2018.1.20
  * Description:
  * 为POJO添加注释的插件
+ * @author BenBenShang spawpaw@hotmail.com
  * 
  * 修复bug: 生成JPA注解时字段上的注解不能被正确生成的bug
  * @author quqiangsheng server@max256.com
  * @since 20180828
- *
- * @author BenBenShang spawpaw@hotmail.com
  */
 public class CommentPlugin implements CommentGenerator {
 
