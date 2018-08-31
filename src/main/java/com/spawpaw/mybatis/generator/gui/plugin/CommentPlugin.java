@@ -32,9 +32,8 @@ import com.spawpaw.mybatis.generator.gui.util.Utils;
  * Created By spawpaw@hotmail.com 2018.1.20
  * Description:
  * 为POJO添加注释的插件
+ *
  * @author BenBenShang spawpaw@hotmail.com
- * 
- * 修复bug: 生成JPA注解时字段上的注解不能被正确生成的bug
  * @author quqiangsheng server@max256.com
  * @since 20180828
  */
@@ -186,7 +185,7 @@ public class CommentPlugin implements CommentGenerator {
             topLevelClass.addJavaDocLine(fileHeader);
         }
         if (generateJPA) {
-        	topLevelClass.addAnnotation("@Entity");
+            topLevelClass.addAnnotation("@Entity");
             topLevelClass.addAnnotation("@Table(name=\"" + introspectedTable.getFullyQualifiedTableNameAtRuntime() + "\")");
         }
     }
@@ -240,10 +239,10 @@ public class CommentPlugin implements CommentGenerator {
         addJavadocTag(field, false);
 
         field.addJavaDocLine(" */"); //$NON-NLS-1$
-        
+
         if (generateJPA) {
-        	//生成jpa Column注解
-        	field.addAnnotation("@Column(name=\""+introspectedColumn.getActualColumnName()+"\")");
+            //生成jpa Column注解
+            field.addAnnotation("@Column(name=\"" + introspectedColumn.getActualColumnName() + "\")");
             boolean isId = false;
             for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
                 if (introspectedColumn == column) {
@@ -402,7 +401,7 @@ public class CommentPlugin implements CommentGenerator {
                 + introspectedColumn.getActualColumnName();
         field.addAnnotation(getGeneratedAnnotation(comment));
     }
-   
+
 
     @Override
     public void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable,
