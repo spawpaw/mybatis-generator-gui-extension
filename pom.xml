@@ -139,12 +139,18 @@
         <!--=====================================================================================================DAO -->
 
         <!-- mysql数据库驱动 -->
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.45</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.45</version>
+            <version>8.0.12</version>
         </dependency>
-
 
         <!--使用第三方托管的ojdbc（辣鸡oracle...-->
         <!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->

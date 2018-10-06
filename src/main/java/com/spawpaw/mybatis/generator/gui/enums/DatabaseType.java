@@ -12,7 +12,7 @@ import java.sql.Driver;
  */
 public enum DatabaseType {
     //数据库类型枚举
-    MySQL("com.mysql.jdbc.Driver", "jdbc:mysql://%s:%s/%s?useUnicode=true&useSSL=false&characterEncoding=%s", "MySql"),
+    MySQL("com.mysql.cj.jdbc.Driver", "jdbc:mysql://%s:%s/%s?useUnicode=true&useSSL=false&characterEncoding=%s&serverTimezone=UTC", "MySql"),
 
 
     //如遇错误，尝试在$ORACLE_HOME\NETWORK\ADMIN\sqlnet.ora中配置：
