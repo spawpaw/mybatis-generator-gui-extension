@@ -33,6 +33,8 @@ public class DatabaseConfig implements Serializable {
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
     @Config(bundle = "database.dbName")
     public SimpleStringProperty dbName = new SimpleStringProperty("");
+    @Config(bundle = "database.tableNamePattern", testRegex = "%", type = ConfigType.ComboBox)
+    public SimpleStringProperty tableNamePattern = new SimpleStringProperty("%");
     @Config(bundle = "database.host")
     public SimpleStringProperty host = new SimpleStringProperty("localhost");
     @Config(bundle = "database.port")
@@ -96,6 +98,8 @@ public class DatabaseConfig implements Serializable {
     public void connect() throws SQLException {
         if (tableConfigs != null && tableConfigs.size() != 0) return;
         tableConfigs = new Hashtable<>();
+        if (tableNamePattern.getValue().isEmpty())
+            tableNamePattern.setValue("%");
         Connection connection = getConnection();
         DatabaseMetaData meta = connection.getMetaData();
         ResultSet rs;
@@ -105,14 +109,18 @@ public class DatabaseConfig implements Serializable {
         //获取表列表
         switch (DatabaseType.valueOf(databaseType.getValue())) {
             case MySQL:
-                rs = meta.getTables(null, dbName.getValue(), null, types);
+                rs = meta.getTables(
+                        dbName.getValue().isEmpty() ? null : dbName.getValue()
+                        , "%"
+                        , tableNamePattern.getValue()
+                        , types);
                 break;
             case Oracle:
             case Oracle_SID:
             case Oracle_ServiceName:
             case Oracle_TNSName:
             case Oracle_TNSEntryString:
-                rs = meta.getTables(null, userName.getValue().toUpperCase(), null, types);
+                rs = meta.getTables(null, userName.getValue().toUpperCase(), tableNamePattern.getValue(), types);
                 break;
             case SQLServer:
             case SQLServer_InstanceBased:
@@ -120,17 +128,17 @@ public class DatabaseConfig implements Serializable {
                 rs = connection.createStatement().executeQuery(sql);
                 break;
             case PostgreSQL:
-                rs = meta.getTables(null, "%", "%", types);
+                rs = meta.getTables(null, "%", tableNamePattern.getValue(), types);
                 break;
             case DB2MF:
             case DB2:
-                rs = meta.getTables(null, "jence_user", "%", types);
+                rs = meta.getTables(null, "jence_user", tableNamePattern.getValue(), types);
                 break;
             case SYBASE:
-                rs = meta.getTables(null, null, "%", types);
+                rs = meta.getTables(null, null, tableNamePattern.getValue(), types);
                 break;
             case INFORMIX:
-                rs = meta.getTables(null, null, "%", types);
+                rs = meta.getTables(null, null, tableNamePattern.getValue(), types);
                 break;
             default:
                 throw new RuntimeException(Constants.getI18nStr("msg.unsupportedDatabase"));
