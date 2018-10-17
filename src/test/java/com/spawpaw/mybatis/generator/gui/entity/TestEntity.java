@@ -25,7 +25,7 @@ public class TestEntity implements Serializable {
     /**
      * Corresponding to the database column t_test.field_not_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String field_not_having_default_value;
 
@@ -34,7 +34,7 @@ public class TestEntity implements Serializable {
      *
      * Corresponding to the database column t_test.name
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String name;
 
@@ -43,7 +43,7 @@ public class TestEntity implements Serializable {
      *
      * Corresponding to the database column t_test.field_int
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private Integer field_int;
 
@@ -55,117 +55,131 @@ public class TestEntity implements Serializable {
      *
      * Corresponding to the database column t_test.id
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private Integer id;
 
     /**
      * Corresponding to the database table t_test
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private static final long serialVersionUID = 1L;
 
     /**
      * Corresponding to the database column t_test.drop
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String drop;
 
     /**
      * Corresponding to the database column t_test.fieldLowerCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String fieldLowerCamel;
 
     /**
      * Corresponding to the database column t_test._fieldTest
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String _fieldTest;
 
     /**
      * Corresponding to the database column t_test.group
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String group;
 
     /**
+     * Corresponding to the database column t_test.field_tinyint4
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    private Byte field_tinyint4;
+
+    /**
      * Corresponding to the database column t_test.select
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String select;
 
     /**
      * Corresponding to the database column t_test.field_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String field_having_default_value;
 
     /**
      * Corresponding to the database column t_test.field_test_
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String field_test_;
 
     /**
      * Corresponding to the database column t_test.FIELD_UPPER_UNDERSCORE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String FIELD_UPPER_UNDERSCORE;
 
     /**
      * Corresponding to the database column t_test._field_test2
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String _field_test2;
 
     /**
      * Corresponding to the database column t_test.SINGLE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String SINGLE;
 
     /**
      * Corresponding to the database column t_test.deleted
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private Boolean deleted;
 
     /**
      * Corresponding to the database column t_test.field_boolean
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private Boolean field_boolean;
 
     /**
+     * Corresponding to the database column t_test.field_tinyint
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    private Boolean field_tinyint;
+
+    /**
      * Corresponding to the database column t_test.FieldUpperCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private String fieldUpperCamel;
 
     /**
      * Corresponding to the database column t_test.field_double
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     private Double field_double;
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_boolean(Boolean field_boolean) {
         this.setField_boolean(field_boolean);
@@ -173,7 +187,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_double(Double field_double) {
         this.setField_double(field_double);
@@ -181,11 +195,22 @@ public class TestEntity implements Serializable {
     }
 
     /**
+     * This method sets the value of the database column t_test.field_tinyint4
+     *
+     * @param field_tinyint4 the value for t_test.field_tinyint4
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public void setField_tinyint4(Byte field_tinyint4) {
+        this.field_tinyint4 = field_tinyint4;
+    }
+
+    /**
      * This method sets the value of the database column t_test.FieldUpperCamel
      *
      * @param fieldUpperCamel the value for t_test.FieldUpperCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setFieldUpperCamel(String fieldUpperCamel) {
         this.fieldUpperCamel = fieldUpperCamel;
@@ -196,7 +221,7 @@ public class TestEntity implements Serializable {
      *
      * @param fieldLowerCamel the value for t_test.fieldLowerCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setFieldLowerCamel(String fieldLowerCamel) {
         this.fieldLowerCamel = fieldLowerCamel;
@@ -207,7 +232,7 @@ public class TestEntity implements Serializable {
      *
      * @param field_not_having_default_value the value for t_test.field_not_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_not_having_default_value(String field_not_having_default_value) {
         this.field_not_having_default_value = field_not_having_default_value;
@@ -218,7 +243,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.deleted
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public Boolean getDeleted() {
         return deleted;
@@ -229,7 +254,7 @@ public class TestEntity implements Serializable {
      *
      * @param group the value for t_test.group
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setGroup(String group) {
         this.group = group;
@@ -240,10 +265,18 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_boolean
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public Boolean getField_boolean() {
         return field_boolean;
+    }
+
+    /**
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public TestEntity withField_tinyint(Boolean field_tinyint) {
+        this.setField_tinyint(field_tinyint);
+        return this;
     }
 
     /**
@@ -251,7 +284,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.select
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getSelect() {
         return select;
@@ -262,7 +295,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.FIELD_UPPER_UNDERSCORE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getFIELD_UPPER_UNDERSCORE() {
         return FIELD_UPPER_UNDERSCORE;
@@ -273,7 +306,7 @@ public class TestEntity implements Serializable {
      *
      * @param id the value for t_test.id
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setId(Integer id) {
         this.id = id;
@@ -284,7 +317,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.id
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public Integer getId() {
         return id;
@@ -295,14 +328,14 @@ public class TestEntity implements Serializable {
      *
      * @param name the value for t_test.name
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withFieldUpperCamel(String fieldUpperCamel) {
         this.setFieldUpperCamel(fieldUpperCamel);
@@ -310,7 +343,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withFieldLowerCamel(String fieldLowerCamel) {
         this.setFieldLowerCamel(fieldLowerCamel);
@@ -318,7 +351,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withDeleted(Boolean deleted) {
         this.setDeleted(deleted);
@@ -330,7 +363,7 @@ public class TestEntity implements Serializable {
      *
      * @param field_boolean the value for t_test.field_boolean
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_boolean(Boolean field_boolean) {
         this.field_boolean = field_boolean;
@@ -341,14 +374,14 @@ public class TestEntity implements Serializable {
      *
      * @param drop the value for t_test.drop
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setDrop(String drop) {
         this.drop = drop;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withSelect(String select) {
         this.setSelect(select);
@@ -360,7 +393,7 @@ public class TestEntity implements Serializable {
      *
      * @param select the value for t_test.select
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setSelect(String select) {
         this.select = select;
@@ -371,14 +404,14 @@ public class TestEntity implements Serializable {
      *
      * @param field_int the value for t_test.field_int
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_int(Integer field_int) {
         this.field_int = field_int;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_not_having_default_value(String field_not_having_default_value) {
         this.setField_not_having_default_value(field_not_having_default_value);
@@ -386,7 +419,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_having_default_value(String field_having_default_value) {
         this.setField_having_default_value(field_having_default_value);
@@ -394,7 +427,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_int(Integer field_int) {
         this.setField_int(field_int);
@@ -402,7 +435,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     @Override
     public int hashCode() {
@@ -426,7 +459,20 @@ public class TestEntity implements Serializable {
         result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
         result = prime * result + ((getField_having_default_value() == null) ? 0 : getField_having_default_value().hashCode());
         result = prime * result + ((getField_not_having_default_value() == null) ? 0 : getField_not_having_default_value().hashCode());
+        result = prime * result + ((getField_tinyint() == null) ? 0 : getField_tinyint().hashCode());
+        result = prime * result + ((getField_tinyint4() == null) ? 0 : getField_tinyint4().hashCode());
         return result;
+    }
+
+    /**
+     * This method sets the value of the database column t_test.field_tinyint
+     *
+     * @param field_tinyint the value for t_test.field_tinyint
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public void setField_tinyint(Boolean field_tinyint) {
+        this.field_tinyint = field_tinyint;
     }
 
     /**
@@ -434,7 +480,7 @@ public class TestEntity implements Serializable {
      *
      * @param field_double the value for t_test.field_double
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_double(Double field_double) {
         this.field_double = field_double;
@@ -445,7 +491,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getField_having_default_value() {
         return field_having_default_value;
@@ -456,14 +502,14 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.drop
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getDrop() {
         return drop;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withGroup(String group) {
         this.setGroup(group);
@@ -471,7 +517,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withName(String name) {
         this.setName(name);
@@ -483,7 +529,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.group
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getGroup() {
         return group;
@@ -494,7 +540,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test._fieldTest
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String get_fieldTest() {
         return _fieldTest;
@@ -505,14 +551,14 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_int
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public Integer getField_int() {
         return field_int;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity with_field_test2(String _field_test2) {
         this.set_field_test2(_field_test2);
@@ -524,14 +570,25 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_double
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public Double getField_double() {
         return field_double;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * This method returns the value of the database column t_test.field_tinyint
+     *
+     * @return the value of t_test.field_tinyint
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public Boolean getField_tinyint() {
+        return field_tinyint;
+    }
+
+    /**
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withField_test_(String field_test_) {
         this.setField_test_(field_test_);
@@ -539,7 +596,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withDrop(String drop) {
         this.setDrop(drop);
@@ -547,7 +604,7 @@ public class TestEntity implements Serializable {
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withSINGLE(String SINGLE) {
         this.setSINGLE(SINGLE);
@@ -555,11 +612,22 @@ public class TestEntity implements Serializable {
     }
 
     /**
+     * This method returns the value of the database column t_test.field_tinyint4
+     *
+     * @return the value of t_test.field_tinyint4
+     *
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public Byte getField_tinyint4() {
+        return field_tinyint4;
+    }
+
+    /**
      * This method sets the value of the database column t_test.field_having_default_value
      *
      * @param field_having_default_value the value for t_test.field_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_having_default_value(String field_having_default_value) {
         this.field_having_default_value = field_having_default_value;
@@ -570,7 +638,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.FieldUpperCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getFieldUpperCamel() {
         return fieldUpperCamel;
@@ -581,14 +649,14 @@ public class TestEntity implements Serializable {
      *
      * @param SINGLE the value for t_test.SINGLE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setSINGLE(String SINGLE) {
         this.SINGLE = SINGLE;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     @Override
     public boolean equals(Object that) {
@@ -602,7 +670,7 @@ public class TestEntity implements Serializable {
             return false;
         }
         TestEntity other = (TestEntity) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId())) && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName())) && (this.getField_int() == null ? other.getField_int() == null : this.getField_int().equals(other.getField_int())) && (this.getField_boolean() == null ? other.getField_boolean() == null : this.getField_boolean().equals(other.getField_boolean())) && (this.getField_double() == null ? other.getField_double() == null : this.getField_double().equals(other.getField_double())) && (this.get_fieldTest() == null ? other.get_fieldTest() == null : this.get_fieldTest().equals(other.get_fieldTest())) && (this.get_field_test2() == null ? other.get_field_test2() == null : this.get_field_test2().equals(other.get_field_test2())) && (this.getField_test_() == null ? other.getField_test_() == null : this.getField_test_().equals(other.getField_test_())) && (this.getFieldLowerCamel() == null ? other.getFieldLowerCamel() == null : this.getFieldLowerCamel().equals(other.getFieldLowerCamel())) && (this.getFieldUpperCamel() == null ? other.getFieldUpperCamel() == null : this.getFieldUpperCamel().equals(other.getFieldUpperCamel())) && (this.getSINGLE() == null ? other.getSINGLE() == null : this.getSINGLE().equals(other.getSINGLE())) && (this.getFIELD_UPPER_UNDERSCORE() == null ? other.getFIELD_UPPER_UNDERSCORE() == null : this.getFIELD_UPPER_UNDERSCORE().equals(other.getFIELD_UPPER_UNDERSCORE())) && (this.getGroup() == null ? other.getGroup() == null : this.getGroup().equals(other.getGroup())) && (this.getSelect() == null ? other.getSelect() == null : this.getSelect().equals(other.getSelect())) && (this.getDrop() == null ? other.getDrop() == null : this.getDrop().equals(other.getDrop())) && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted())) && (this.getField_having_default_value() == null ? other.getField_having_default_value() == null : this.getField_having_default_value().equals(other.getField_having_default_value())) && (this.getField_not_having_default_value() == null ? other.getField_not_having_default_value() == null : this.getField_not_having_default_value().equals(other.getField_not_having_default_value()));
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId())) && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName())) && (this.getField_int() == null ? other.getField_int() == null : this.getField_int().equals(other.getField_int())) && (this.getField_boolean() == null ? other.getField_boolean() == null : this.getField_boolean().equals(other.getField_boolean())) && (this.getField_double() == null ? other.getField_double() == null : this.getField_double().equals(other.getField_double())) && (this.get_fieldTest() == null ? other.get_fieldTest() == null : this.get_fieldTest().equals(other.get_fieldTest())) && (this.get_field_test2() == null ? other.get_field_test2() == null : this.get_field_test2().equals(other.get_field_test2())) && (this.getField_test_() == null ? other.getField_test_() == null : this.getField_test_().equals(other.getField_test_())) && (this.getFieldLowerCamel() == null ? other.getFieldLowerCamel() == null : this.getFieldLowerCamel().equals(other.getFieldLowerCamel())) && (this.getFieldUpperCamel() == null ? other.getFieldUpperCamel() == null : this.getFieldUpperCamel().equals(other.getFieldUpperCamel())) && (this.getSINGLE() == null ? other.getSINGLE() == null : this.getSINGLE().equals(other.getSINGLE())) && (this.getFIELD_UPPER_UNDERSCORE() == null ? other.getFIELD_UPPER_UNDERSCORE() == null : this.getFIELD_UPPER_UNDERSCORE().equals(other.getFIELD_UPPER_UNDERSCORE())) && (this.getGroup() == null ? other.getGroup() == null : this.getGroup().equals(other.getGroup())) && (this.getSelect() == null ? other.getSelect() == null : this.getSelect().equals(other.getSelect())) && (this.getDrop() == null ? other.getDrop() == null : this.getDrop().equals(other.getDrop())) && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted())) && (this.getField_having_default_value() == null ? other.getField_having_default_value() == null : this.getField_having_default_value().equals(other.getField_having_default_value())) && (this.getField_not_having_default_value() == null ? other.getField_not_having_default_value() == null : this.getField_not_having_default_value().equals(other.getField_not_having_default_value())) && (this.getField_tinyint() == null ? other.getField_tinyint() == null : this.getField_tinyint().equals(other.getField_tinyint())) && (this.getField_tinyint4() == null ? other.getField_tinyint4() == null : this.getField_tinyint4().equals(other.getField_tinyint4()));
     }
 
     /**
@@ -610,7 +678,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_test_
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getField_test_() {
         return field_test_;
@@ -621,7 +689,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.name
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getName() {
         return name;
@@ -632,10 +700,18 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test._field_test2
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String get_field_test2() {
         return _field_test2;
+    }
+
+    /**
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
+     */
+    public TestEntity withField_tinyint4(Byte field_tinyint4) {
+        this.setField_tinyint4(field_tinyint4);
+        return this;
     }
 
     /**
@@ -643,14 +719,14 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.field_not_having_default_value
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getField_not_having_default_value() {
         return field_not_having_default_value;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     @Override
     public String toString() {
@@ -676,6 +752,8 @@ public class TestEntity implements Serializable {
         sb.append(", deleted=").append(deleted);
         sb.append(", field_having_default_value=").append(field_having_default_value);
         sb.append(", field_not_having_default_value=").append(field_not_having_default_value);
+        sb.append(", field_tinyint=").append(field_tinyint);
+        sb.append(", field_tinyint4=").append(field_tinyint4);
         sb.append("]");
         return sb.toString();
     }
@@ -685,7 +763,7 @@ public class TestEntity implements Serializable {
      *
      * @param deleted the value for t_test.deleted
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
@@ -696,7 +774,7 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.SINGLE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getSINGLE() {
         return SINGLE;
@@ -707,7 +785,7 @@ public class TestEntity implements Serializable {
      *
      * @param FIELD_UPPER_UNDERSCORE the value for t_test.FIELD_UPPER_UNDERSCORE
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setFIELD_UPPER_UNDERSCORE(String FIELD_UPPER_UNDERSCORE) {
         this.FIELD_UPPER_UNDERSCORE = FIELD_UPPER_UNDERSCORE;
@@ -718,14 +796,14 @@ public class TestEntity implements Serializable {
      *
      * @return the value of t_test.fieldLowerCamel
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public String getFieldLowerCamel() {
         return fieldLowerCamel;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withFIELD_UPPER_UNDERSCORE(String FIELD_UPPER_UNDERSCORE) {
         this.setFIELD_UPPER_UNDERSCORE(FIELD_UPPER_UNDERSCORE);
@@ -737,7 +815,7 @@ public class TestEntity implements Serializable {
      *
      * @param _field_test2 the value for t_test._field_test2
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void set_field_test2(String _field_test2) {
         this._field_test2 = _field_test2;
@@ -748,14 +826,14 @@ public class TestEntity implements Serializable {
      *
      * @param _fieldTest the value for t_test._fieldTest
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void set_fieldTest(String _fieldTest) {
         this._fieldTest = _fieldTest;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity with_fieldTest(String _fieldTest) {
         this.set_fieldTest(_fieldTest);
@@ -767,14 +845,14 @@ public class TestEntity implements Serializable {
      *
      * @param field_test_ the value for t_test.field_test_
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public void setField_test_(String field_test_) {
         this.field_test_ = field_test_;
     }
 
     /**
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public TestEntity withId(Integer id) {
         this.setId(id);
@@ -784,7 +862,7 @@ public class TestEntity implements Serializable {
     /**
      * corresponding to the database table t_test
      *
-     * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+     * @mbg.generated Wed Oct 17 20:45:24 CST 2018
      */
     public enum Column {
 
@@ -805,80 +883,82 @@ public class TestEntity implements Serializable {
         drop("drop", "drop", "VARCHAR", true),
         deleted("deleted", "deleted", "BIT", false),
         field_having_default_value("field_having_default_value", "field_having_default_value", "VARCHAR", false),
-        field_not_having_default_value("field_not_having_default_value", "field_not_having_default_value", "VARCHAR", false);
+        field_not_having_default_value("field_not_having_default_value", "field_not_having_default_value", "VARCHAR", false),
+        field_tinyint("field_tinyint", "field_tinyint", "BIT", false),
+        field_tinyint4("field_tinyint4", "field_tinyint4", "TINYINT", false);
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private static final String BEGINNING_DELIMITER = "`";
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private static final String ENDING_DELIMITER = "`";
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private final String column;
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private final boolean isColumnNameDelimited;
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private final String javaProperty;
 
         /**
          * Corresponding to the database table t_test
          *
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         private final String jdbcType;
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String value() {
             return this.column;
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String getValue() {
             return this.column;
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String getJavaProperty() {
             return this.javaProperty;
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String getJdbcType() {
             return this.jdbcType;
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         Column(String column, String javaProperty, String jdbcType, boolean isColumnNameDelimited) {
             this.column = column;
@@ -888,21 +968,21 @@ public class TestEntity implements Serializable {
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String desc() {
             return this.getEscapedColumnName() + " DESC";
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String asc() {
             return this.getEscapedColumnName() + " ASC";
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public static Column[] excludes(Column... excludes) {
             ArrayList<Column> columns = new ArrayList<>(Arrays.asList(Column.values()));
@@ -913,7 +993,7 @@ public class TestEntity implements Serializable {
         }
 
         /**
-         * @mbg.generated Sat Oct 06 21:47:03 CST 2018
+         * @mbg.generated Wed Oct 17 20:45:24 CST 2018
          */
         public String getEscapedColumnName() {
             if (this.isColumnNameDelimited) {

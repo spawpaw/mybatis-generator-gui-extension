@@ -3,7 +3,7 @@
 <mapper namespace="com.spawpaw.mybatis.generator.gui.dao.TestDao">
   <resultMap id="BaseResultMap" type="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -23,10 +23,12 @@
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="field_having_default_value" jdbcType="VARCHAR" property="field_having_default_value" />
     <result column="field_not_having_default_value" jdbcType="VARCHAR" property="field_not_having_default_value" />
+    <result column="field_tinyint" jdbcType="BIT" property="field_tinyint" />
+    <result column="field_tinyint4" jdbcType="TINYINT" property="field_tinyint4" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -58,7 +60,7 @@
   </sql>
   <sql id="Update_By_Example_Where_Clause">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     <where>
       <foreach collection="example.oredCriteria" item="criteria" separator="or">
@@ -90,15 +92,16 @@
   </sql>
   <sql id="Base_Column_List">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     id, `name`, field_int, field_boolean, field_double, _fieldTest, _field_test2, field_test_, 
     fieldLowerCamel, FieldUpperCamel, SINGLE, FIELD_UPPER_UNDERSCORE, `group`, `select`, 
-    `drop`, deleted, field_having_default_value, field_not_having_default_value
+    `drop`, deleted, field_having_default_value, field_not_having_default_value, field_tinyint, 
+    field_tinyint4
   </sql>
   <select id="selectByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample" resultMap="BaseResultMap">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     select
     <if test="distinct">
@@ -123,7 +126,7 @@
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     select 
     <include refid="Base_Column_List" />
@@ -132,14 +135,14 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     delete from `t_test`
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     delete from `t_test`
     <if test="_parameter != null">
@@ -148,7 +151,7 @@
   </delete>
   <insert id="insert" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
@@ -158,19 +161,19 @@
       field_test_, fieldLowerCamel, FieldUpperCamel, 
       SINGLE, FIELD_UPPER_UNDERSCORE, `group`, 
       `select`, `drop`, deleted, 
-      field_having_default_value, field_not_having_default_value
-      )
+      field_having_default_value, field_not_having_default_value, 
+      field_tinyint, field_tinyint4)
     values (#{name,jdbcType=VARCHAR}, #{field_int,jdbcType=INTEGER}, #{field_boolean,jdbcType=BIT}, 
       #{field_double,jdbcType=DOUBLE}, #{_fieldTest,jdbcType=VARCHAR}, #{_field_test2,jdbcType=VARCHAR}, 
       #{field_test_,jdbcType=VARCHAR}, #{fieldLowerCamel,jdbcType=VARCHAR}, #{fieldUpperCamel,jdbcType=VARCHAR}, 
       #{SINGLE,jdbcType=VARCHAR}, #{FIELD_UPPER_UNDERSCORE,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
       #{select,jdbcType=VARCHAR}, #{drop,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}, 
-      #{field_having_default_value,jdbcType=VARCHAR}, #{field_not_having_default_value,jdbcType=VARCHAR}
-      )
+      #{field_having_default_value,jdbcType=VARCHAR}, #{field_not_having_default_value,jdbcType=VARCHAR}, 
+      #{field_tinyint,jdbcType=BIT}, #{field_tinyint4,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
@@ -228,6 +231,12 @@
       <if test="field_not_having_default_value != null">
         field_not_having_default_value,
       </if>
+      <if test="field_tinyint != null">
+        field_tinyint,
+      </if>
+      <if test="field_tinyint4 != null">
+        field_tinyint4,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
@@ -281,11 +290,17 @@
       <if test="field_not_having_default_value != null">
         #{field_not_having_default_value,jdbcType=VARCHAR},
       </if>
+      <if test="field_tinyint != null">
+        #{field_tinyint,jdbcType=BIT},
+      </if>
+      <if test="field_tinyint4 != null">
+        #{field_tinyint4,jdbcType=TINYINT},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestExample" resultType="java.lang.Long">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     select count(*) from `t_test`
     <if test="_parameter != null">
@@ -294,7 +309,7 @@
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     update `t_test`
     <set>
@@ -352,6 +367,12 @@
       <if test="record.field_not_having_default_value != null">
         field_not_having_default_value = #{record.field_not_having_default_value,jdbcType=VARCHAR},
       </if>
+      <if test="record.field_tinyint != null">
+        field_tinyint = #{record.field_tinyint,jdbcType=BIT},
+      </if>
+      <if test="record.field_tinyint4 != null">
+        field_tinyint4 = #{record.field_tinyint4,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -359,7 +380,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     update `t_test`
     set id = #{record.id,jdbcType=INTEGER},
@@ -379,14 +400,16 @@
       `drop` = #{record.drop,jdbcType=VARCHAR},
       deleted = #{record.deleted,jdbcType=BIT},
       field_having_default_value = #{record.field_having_default_value,jdbcType=VARCHAR},
-      field_not_having_default_value = #{record.field_not_having_default_value,jdbcType=VARCHAR}
+      field_not_having_default_value = #{record.field_not_having_default_value,jdbcType=VARCHAR},
+      field_tinyint = #{record.field_tinyint,jdbcType=BIT},
+      field_tinyint4 = #{record.field_tinyint4,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     update `t_test`
     <set>
@@ -441,12 +464,18 @@
       <if test="field_not_having_default_value != null">
         field_not_having_default_value = #{field_not_having_default_value,jdbcType=VARCHAR},
       </if>
+      <if test="field_tinyint != null">
+        field_tinyint = #{field_tinyint,jdbcType=BIT},
+      </if>
+      <if test="field_tinyint4 != null">
+        field_tinyint4 = #{field_tinyint4,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.spawpaw.mybatis.generator.gui.entity.TestEntity">
     <!--
-      WARNING - @mbg.generated  This element was generated on Sat Oct 06 21:47:03 CST 2018. by MyBatis Generator, do not modify.
+      WARNING - @mbg.generated  This element was generated on Wed Oct 17 20:45:24 CST 2018. by MyBatis Generator, do not modify.
     -->
     update `t_test`
     set `name` = #{name,jdbcType=VARCHAR},
@@ -465,7 +494,9 @@
       `drop` = #{drop,jdbcType=VARCHAR},
       deleted = #{deleted,jdbcType=BIT},
       field_having_default_value = #{field_having_default_value,jdbcType=VARCHAR},
-      field_not_having_default_value = #{field_not_having_default_value,jdbcType=VARCHAR}
+      field_not_having_default_value = #{field_not_having_default_value,jdbcType=VARCHAR},
+      field_tinyint = #{field_tinyint,jdbcType=BIT},
+      field_tinyint4 = #{field_tinyint4,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
