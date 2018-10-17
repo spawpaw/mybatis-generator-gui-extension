@@ -39,9 +39,9 @@ public class DatabaseConfigEditorController extends BaseController implements In
             databaseConfig.test();
             lb_msg.setText(Constants.getI18nStr("ui.connectSuccess"));
         } catch (SQLException e) {
+            e.printStackTrace();
             lb_msg.setText("");
             showMessage(String.format("%s:\n%s", Constants.getI18nStr("ui.connectFailureMsg"), e.getMessage()));
-            e.printStackTrace();
         }
     }
 

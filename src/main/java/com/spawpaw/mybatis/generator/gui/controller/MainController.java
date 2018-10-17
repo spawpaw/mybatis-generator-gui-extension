@@ -185,8 +185,8 @@ public class MainController extends BaseController implements Initializable {
                         try {
                             databaseConfigHashMap.get(selectedItem).connect();
                         } catch (SQLException e) {
-                            showMessage(Constants.getI18nStr("ui.connectFailureMsg") + "\n" + e.getMessage());
                             e.printStackTrace();
+                            showMessage(Constants.getI18nStr("ui.connectFailureMsg") + "\n" + e.getMessage());
                         }
                         selectedDatabaseConfig = databaseConfigHashMap.get(selectedItem);
                         selectedProjectConfig.selectedTable.setValue("");
