@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
  */
 public class TableColumnEditorController extends BaseController implements Initializable {
 
+    transient org.slf4j.Logger log = LoggerFactory.getLogger(BaseController.class);
     //    public TextField tf_filter;
     public TableView<TableColumnMetaData> table_view;
     public TableColumn<TableColumnMetaData, Boolean> c_checked;
@@ -35,6 +37,7 @@ public class TableColumnEditorController extends BaseController implements Initi
         c_checked.setCellValueFactory(new PropertyValueFactory<>("checked"));
         c_column_name.setCellValueFactory(new PropertyValueFactory<>("columnName"));
         c_jdbc_type.setCellValueFactory(new PropertyValueFactory<>("jdbcType"));
+        c_java_type.setCellValueFactory(new PropertyValueFactory<>("javaType"));
         c_property_name.setCellValueFactory(new PropertyValueFactory<>("propertyName"));
         c_type_handler.setCellValueFactory(new PropertyValueFactory<>("typeHandler"));
 
