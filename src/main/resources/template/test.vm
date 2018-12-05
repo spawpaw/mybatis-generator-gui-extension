@@ -1,35 +1,45 @@
 
-table.actualName            :${table.actualName}
-table.entityPackage         :${table.entityPackage}
-table.entityName            :${table.entityName}
-table.entityLowerCamel      :${table.entityLowerCamel}
-table.exampleName           :${table.exampleName}
-table.exampleLowerCamel     :${table.exampleLowerCamel}
-table.mapperPackage         :${table.mapperPackage}
-table.mapperName            :${table.mapperName}
-table.mapperLowerCamel      :${table.mapperLowerCamel}
+## SCVXGenerator的示例用法
+## 使用velocity模板引擎，所以使用的时候参考一下velocity的用法
+
+## 获取表相关的信息
+table.actualName            :${table.actualName}                    ## 表的实际名称
+table.entityPackage         :${table.entityPackage}                 ## 实体所在包
+table.entityName            :${table.entityName}                    ## 实体名称
+table.entityLowerCamel      :${table.entityLowerCamel}              ## 实体小骆驼峰形式
+table.exampleName           :${table.exampleName}                   ## ...
+table.exampleLowerCamel     :${table.exampleLowerCamel}             ##
+table.mapperPackage         :${table.mapperPackage}                 ##
+table.mapperName            :${table.mapperName}                    ##
+table.mapperLowerCamel      :${table.mapperLowerCamel}              ##
+
+## 表中的字段
 columns:
-#foreach($column in $table.columns)
-    column:${column.actualName}
-        actualName               :${column.actualName}
-        fieldName                :${column.fieldName}
-        fieldType                :${column.fieldType}
-        getterName               :${column.getterName}
-        setterName               :${column.setterName}
-        betweenMethod            :${column.betweenMethod}
-        notBetweenMethod         :${column.notBetweenMethod}
-        equalMethod              :${column.equalMethod}
-        notEqualMethod           :${column.notEqualMethod}
-        greaterThanMethod        :${column.greaterThanMethod}
-        greaterThenOrEqualMethod :${column.greaterThenOrEqualMethod}
-        lessThanMethod           :${column.lessThanMethod}
-        lessThanOrEqualMethod    :${column.lessThanOrEqualMethod}
-        inMethod                 :${column.inMethod}
-        notInMethod              :${column.notInMethod}
-        likeMethod               :${column.likeMethod}
-        notLikeMethod            :${column.notLikeMethod}
-        isNullMethod             :${column.isNullMethod}
-        notNullMethod            :${column.notNullMethod}
+#foreach($column in $table.columns)                                 ## 遍历表中的字段
+    column:${column.actualName}                                       ## 列的真实名称
+        actualName               :${column.actualName}                ##
+        fieldName                :${column.fieldName}                 ## 列对应java实体的字段名称
+        fieldType                :${column.fieldType}                 ## 类型
+        getterName               :${column.getterName}                ## getter
+        setterName               :${column.setterName}                ## setter
+        betweenMethod            :${column.betweenMethod}             ## andXxxBetween方法名
+        notBetweenMethod         :${column.notBetweenMethod}          ## ...
+        equalMethod              :${column.equalMethod}               ##
+        notEqualMethod           :${column.notEqualMethod}            ##
+        greaterThanMethod        :${column.greaterThanMethod}         ##
+        greaterThenOrEqualMethod :${column.greaterThenOrEqualMethod}  ##
+        lessThanMethod           :${column.lessThanMethod}            ##
+        lessThanOrEqualMethod    :${column.lessThanOrEqualMethod}     ##
+        inMethod                 :${column.inMethod}                  ##
+        notInMethod              :${column.notInMethod}               ##
+        likeMethod               :${column.likeMethod}                ##
+        notLikeMethod            :${column.notLikeMethod}             ##
+        isNullMethod             :${column.isNullMethod}              ##
+        notNullMethod            :${column.notNullMethod}             ##
+
+        ##当表或字段中的注释包含行如'#key(value1,)'形式的注释时,将会被解析成可在本模版中使用的变量，字段将会自动继承表的属性
+        ## 可使用 $column.contains(key)来验证是否存在指定的键
+        ## 具体解析方式请参考com.spawpaw.mybatis.generator.gui.entity.ConfigMatcher，也可以直接运行其main方法
         key-values:
         #foreach($key in $column.keySet())
             key:$key       ->   $!column.get($key)
