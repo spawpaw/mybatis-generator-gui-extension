@@ -38,7 +38,7 @@ columns:
         notNullMethod            :${column.notNullMethod}             ##
 
         ##当表或字段中的注释包含行如'#key(value1,)'形式的注释时,将会被解析成可在本模版中使用的变量，字段将会自动继承表的属性
-        ## 可使用 $column.contains(key)来验证是否存在指定的键
+        ## 可使用 $!column.contains(key)来验证是否存在指定的键
         ## 具体解析方式请参考com.spawpaw.mybatis.generator.gui.entity.ConfigMatcher，也可以直接运行其main方法
         key-values:
         #foreach($key in $column.keySet())
