@@ -12,7 +12,7 @@ import java.sql.Driver;
  */
 public enum DatabaseType {
     //数据库类型枚举
-    MySQL("com.mysql.cj.jdbc.Driver", "jdbc:mysql://%s:%s/%s?useUnicode=true&useSSL=false&characterEncoding=%s&serverTimezone=UTC", "MySql"),
+    MySQL("com.mysql.cj.jdbc.Driver", "jdbc:mysql://%s:%s/%s?useUnicode=true&useSSL=false&characterEncoding=%s&serverTimezone=UTC&allowPublicKeyRetrieval=true", "MySql"),
 
 
     //如遇错误，尝试在$ORACLE_HOME\NETWORK\ADMIN\sqlnet.ora中配置：
@@ -43,11 +43,12 @@ public enum DatabaseType {
 
     private String driverClazz;
     private String connectStrFormat;
-    private String sqlStatement;//获取自增主键的sqlStatement，如果不是MBG支持的数据库，则使用JDBC
+    private String sqlStatement;
 
     /**
      * @param driver           Driver的类名
      * @param connectStrFormat connect string的格式化字符串
+     * @param sqlStatement     获取自增主键的sqlStatement，如果不是MBG支持的数据库，则使用JDBC
      */
     DatabaseType(String driver, String connectStrFormat, String sqlStatement) {
         this.driverClazz = driver;
