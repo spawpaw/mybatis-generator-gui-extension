@@ -152,7 +152,7 @@ public class DatabaseConfig implements Serializable {
         //获取每个表中的字段信息
         for (String tableName : tmpList) {
             //生成表的基本信息（每个字段的名称、类型）
-            rs = meta.getColumns(null, null, tableName, null);
+            rs = meta.getColumns(dbName.getValue().isEmpty() ? null : dbName.getValue(), null, tableName, null);
             while (rs.next()) {
                 TableColumnMetaData columnMetaData = new TableColumnMetaData();
                 columnMetaData.setColumnName(rs.getString("COLUMN_NAME"));
