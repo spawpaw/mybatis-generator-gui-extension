@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created By spawpaw@hotmail.com  2018-03-22
+ * 匹配表/字段中形如 #key(value,...) 的注释，添加到模版的变量中
  *
  * @author BenBenShang spawpaw@hotmail.com
  */

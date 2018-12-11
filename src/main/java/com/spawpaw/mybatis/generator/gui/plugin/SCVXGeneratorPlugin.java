@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created By spawpaw@hotmail.com  2018-03-22
+ * Service, Controller, View 以及其他层代码的生成插件
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
@@ -57,8 +57,8 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
 
         //输出测试数据
         String content;
-//        content = renderTemplateAsString("test.vm", templateContext);
-//        log.info("hierarchical table structure: {}", content);
+        content = renderTemplateAsString("test.vm", templateContext);
+        log.info("hierarchical table structure: {}", content);
 
         // : 2018/3/22 保存到指定目录
         List<TemplateConfig> configs = new Yaml().loadAs(scvxConfigYml, ConfigWrapper.class).getTemplateConfig();
