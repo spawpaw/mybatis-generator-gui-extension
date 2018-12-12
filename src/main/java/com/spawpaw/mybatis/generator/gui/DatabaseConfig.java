@@ -51,6 +51,16 @@ public class DatabaseConfig implements Serializable {
         return DatabaseType.valueOf(databaseType.getValue()).getDriverClazzName();
     }
 
+    public String catalog() throws SQLException {
+        log.info("catalog:{}", getConnection().getCatalog());
+        return getConnection().getCatalog();
+    }
+
+    public String schema() throws SQLException {
+        log.info("schema:{}", getConnection().getSchema());
+        return getConnection().getSchema();
+    }
+
     public String connectionUrl() {
         return DatabaseType.valueOf(databaseType.getValue()).getConnectStr(
                 host.getValue(),
@@ -104,7 +114,7 @@ public class DatabaseConfig implements Serializable {
         DatabaseMetaData meta = connection.getMetaData();
         ResultSet rs;
 
-        String _catlog = null;
+        String _catalog = null;
         String _schemaPattern = null;
         String _tableNamePattern = null;
         String[] types = {"TABLE", "VIEW"};
@@ -112,52 +122,52 @@ public class DatabaseConfig implements Serializable {
         //获取表列表
         switch (DatabaseType.valueOf(databaseType.getValue())) {
             case MySQL:
-                _catlog = connection.getCatalog();
+                _catalog = connection.getCatalog();
                 _schemaPattern = dbName.getValue().isEmpty() ? null : dbName.getValue();
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             case Oracle:
             case Oracle_SID:
             case Oracle_ServiceName:
             case Oracle_TNSName:
             case Oracle_TNSEntryString:
-                _catlog = null;
+                _catalog = null;
                 _schemaPattern = userName.getValue().toUpperCase();
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             case SQLServer:
             case SQLServer_InstanceBased:
-                _catlog = dbName.getValue();
+                _catalog = dbName.getValue();
                 _tableNamePattern = tableNamePattern.getValue();
                 sql = "select name as TABLE_NAME from sysobjects  where xtype='u' or xtype='v' ";
                 rs = connection.createStatement().executeQuery(sql);
                 break;
             case PostgreSQL:
-                _catlog = null;
+                _catalog = null;
                 _schemaPattern = "%";
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             case DB2MF:
             case DB2:
-                _catlog = null;
+                _catalog = null;
                 _schemaPattern = "jence_user";
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             case SYBASE:
-                _catlog = null;
+                _catalog = null;
                 _schemaPattern = null;
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             case INFORMIX:
-                _catlog = null;
+                _catalog = null;
                 _schemaPattern = null;
                 _tableNamePattern = tableNamePattern.getValue();
-                rs = meta.getTables(_catlog, _schemaPattern, _tableNamePattern, types);
+                rs = meta.getTables(_catalog, _schemaPattern, _tableNamePattern, types);
                 break;
             default:
                 throw new RuntimeException(Constants.getI18nStr("msg.unsupportedDatabase"));
@@ -171,7 +181,7 @@ public class DatabaseConfig implements Serializable {
         //获取每个表中的字段信息
         for (String tableName : tmpList) {
             //生成表的基本信息（每个字段的名称、类型）
-            rs = meta.getColumns(_catlog, _schemaPattern, tableName, null);
+            rs = meta.getColumns(_catalog, _schemaPattern, tableName, null);
             while (rs.next()) {
                 TableColumnMetaData columnMetaData = new TableColumnMetaData();
                 columnMetaData.setColumnName(rs.getString("COLUMN_NAME"));

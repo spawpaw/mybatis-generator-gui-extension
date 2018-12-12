@@ -43,7 +43,7 @@ public class MBGRunner {
     }
 
 
-    public String generate() {
+    public String generate() throws SQLException {
         config = new Configuration();
         //default model type
         if (projectConfig.defaultModelType.getValue().equalsIgnoreCase("CONDITIONAL"))
@@ -136,6 +136,8 @@ public class MBGRunner {
 
         //========================================================================================================table
         TableConfiguration tableConfiguration = new TableConfiguration(context);
+        tableConfiguration.setCatalog(databaseConfig.catalog());
+        tableConfiguration.setSchema(databaseConfig.schema());
         tableConfiguration.setTableName(projectConfig.selectedTable.getValue());
         tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ", ""));
         tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ", ""));
