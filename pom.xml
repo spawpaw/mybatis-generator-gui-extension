@@ -18,6 +18,22 @@
 
         <!--java version,8 or 9 (you must install jdk 1.8u60+)-->
         <java.language.level>8</java.language.level>
+        <snake-yaml.version>1.20</snake-yaml.version>
+        <javaparser-core.version>3.6.0</javaparser-core.version>
+        <mybatis-generator-plugin.version>1.2.12</mybatis-generator-plugin.version>
+        <logback-classic.version>1.2.3</logback-classic.version>
+        <velocity.version>1.7</velocity.version>
+        <fx-gson.version>3.1.0</fx-gson.version>
+        <gson.version>2.8.2</gson.version>
+        <mybatis-generator-core.version>1.3.6</mybatis-generator-core.version>
+        <guava.version>23.2-jre</guava.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
+        <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
+        <mysql-connector-java.version>8.0.12</mysql-connector-java.version>
+        <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
+        <postgresql.version>42.2.1</postgresql.version>
+        <mssql-jdbc.version>6.2.2.jre8</mssql-jdbc.version>
     </properties>
 
     <repositories>
@@ -56,58 +72,58 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.20</version>
+            <version>${snake-yaml.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.javaparser/javaparser-core -->
         <dependency>
             <groupId>com.github.javaparser</groupId>
             <artifactId>javaparser-core</artifactId>
-            <version>3.6.0</version>
+            <version>${javaparser-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.itfsw</groupId>
             <artifactId>mybatis-generator-plugin</artifactId>
-            <version>1.2.9</version>
+            <version>${mybatis-generator-plugin.version}</version>
         </dependency>
 
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <version>${logback-classic.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
-            <version>1.7</version>
+            <version>${velocity.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.hildan.fxgson/fx-gson -->
         <dependency>
             <groupId>org.hildan.fxgson</groupId>
             <artifactId>fx-gson</artifactId>
-            <version>3.1.0</version>
+            <version>${fx-gson.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.2</version>
+            <version>${gson.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
         <dependency>
             <groupId>org.mybatis.generator</groupId>
             <artifactId>mybatis-generator-core</artifactId>
-            <version>1.3.6</version>
+            <version>${mybatis-generator-core.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>23.2-jre</version>
+            <version>${guava.version}</version>
         </dependency>
         <!--=================================================================================================== 测试 -->
         <!-- junit -->
@@ -121,35 +137,35 @@
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>3.4.6</version>
+            <version>${mybatis.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>1.0.0.Final</version>
+            <version>${hibernate-jpa-2.1-api.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>5.3.6.Final</version>
+            <version>${hibernate-validator.version}</version>
             <scope>test</scope>
         </dependency>
         <!--=====================================================================================================DAO -->
 
         <!-- mysql数据库驱动 -->
         <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>5.1.45</version>-->
+        <!--<groupId>mysql</groupId>-->
+        <!--<artifactId>mysql-connector-java</artifactId>-->
+        <!--<version>5.1.45</version>-->
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.12</version>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
 
         <!--使用第三方托管的ojdbc（辣鸡oracle...-->
@@ -157,7 +173,7 @@
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
-            <version>12.1.0.1-atlassian-hosted</version>
+            <version>${ojdbc6.version}</version>
         </dependency>
 
 
@@ -165,14 +181,14 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.1</version>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>6.2.2.jre8</version>
+            <version>${mssql-jdbc.version}</version>
         </dependency>
 
 
