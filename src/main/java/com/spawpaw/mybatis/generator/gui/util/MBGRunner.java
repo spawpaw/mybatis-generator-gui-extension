@@ -136,8 +136,8 @@ public class MBGRunner {
 
         //========================================================================================================table
         TableConfiguration tableConfiguration = new TableConfiguration(context);
-//        tableConfiguration.setCatalog(databaseConfig.catalog());
-//        tableConfiguration.setSchema(databaseConfig.schema());
+        tableConfiguration.setCatalog(databaseConfig.catalog());
+        tableConfiguration.setSchema(databaseConfig.schema());
         tableConfiguration.setTableName(projectConfig.selectedTable.getValue());
         tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ", ""));
         tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ", ""));
@@ -155,6 +155,7 @@ public class MBGRunner {
         tableConfiguration.setDeleteByExampleStatementEnabled(projectConfig.enableDeleteByExample.getValue());
         tableConfiguration.setCountByExampleStatementEnabled(projectConfig.enableCountByExample.getValue());
         tableConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());//使用小骆驼峰替代原列名
+        tableConfiguration.addProperty("ignoreQualifiersAtRuntime", "true");//使用小骆驼峰替代原列名
 
         if (!projectConfig.enableVirtualPrimaryKeyPlugin.getValue().isEmpty())
             tableConfiguration.addProperty("virtualKeyColumns", projectConfig.enableVirtualPrimaryKeyPlugin.getValue());
