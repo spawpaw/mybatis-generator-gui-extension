@@ -136,8 +136,8 @@ public class MBGRunner {
 
         //========================================================================================================table
         TableConfiguration tableConfiguration = new TableConfiguration(context);
-        tableConfiguration.setCatalog(databaseConfig.catalog());
-        tableConfiguration.setSchema(databaseConfig.schema());
+//        tableConfiguration.setCatalog(databaseConfig.catalog());
+//        tableConfiguration.setSchema(databaseConfig.schema());
         tableConfiguration.setTableName(projectConfig.selectedTable.getValue());
         tableConfiguration.setDomainObjectName(projectConfig.entityObjName.getValue().replace(" ", ""));
         tableConfiguration.setMapperName(projectConfig.daoObjName.getValue().replace(" ", ""));
