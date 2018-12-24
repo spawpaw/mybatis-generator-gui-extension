@@ -36,6 +36,8 @@ public class ConfigMatcher extends HashMap<String, String> {
      * @param remarks 表或字段的注释
      */
     public void init(String remarks) {
+        if (remarks == null)
+            return;
         // 按指定模式在字符串查找
         Pattern r = Pattern.compile(configPattern);
         Matcher m = r.matcher(remarks);
