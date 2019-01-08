@@ -201,6 +201,7 @@ public class DatabaseConfig implements Serializable {
     public void close() {
         if (rootItem != null)
             rootItem.getChildren().clear();
+        tableConfigs = null;
     }
 
 
