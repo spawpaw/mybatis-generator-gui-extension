@@ -97,6 +97,8 @@ public class MBGRunner {
                 jdbcConnectionConfiguration.addProperty("remarksReporting", "true");//获取Oracle的表注释
                 break;
             default:
+                jdbcConnectionConfiguration.addProperty("remarksReporting", "true");
+                jdbcConnectionConfiguration.addProperty("useInformationSchema", "true");
                 break;
         }
         context.setJdbcConnectionConfiguration(jdbcConnectionConfiguration);
