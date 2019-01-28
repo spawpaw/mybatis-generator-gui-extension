@@ -83,6 +83,9 @@ public class ProjectConfig {
     public SimpleStringProperty daoObjName = new SimpleStringProperty("");
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @ExportToTab(tabName = SHORTCUT, index = 1)
+    @Config(bundle = "project.tableAlias", type = ConfigType.TextField)
+    @AdvancedConfig
+    public SimpleStringProperty tableAlias = new SimpleStringProperty("");
     @Config(bundle = "project.autoDelimitKeywords", testRegex = "\n`\n\"", type = ConfigType.ComboBox)
     public SimpleStringProperty autoDelimitKeywords = new SimpleStringProperty("");
     @ExportToTab(tabName = SHORTCUT, index = 2)
@@ -305,24 +308,24 @@ public class ProjectConfig {
     @Config(bundle = "project.scvxGenerator.configYml", type = ConfigType.TextArea)
     public StringProperty scvxConfigYml = new SimpleStringProperty(
             "templateConfig:\n" +
-            "\n" +
-            "  # REST-ful Controller\n" +
-            "  - template: java/restController.vm\n" +
-            "    destDir: src/main/java\n" +
-            "    destPackage: ${basePackage}.controller\n" +
-            "    destFileName: ${entityName}RestController.java\n" +
-            "\n" +
-            "  # 生成html表单\n" +
-            "  - template: html/index.vm\n" +
-            "    destDir: src/main/resources\n" +
-            "    destPackage: templates\n" +
-            "    destFileName: index.html\n" +
-            "\n" +
-            "  # 生成html列表\n" +
-            "  - template: html/list.vm\n" +
-            "    destDir: src/main/resources\n" +
-            "    destPackage: templates\n" +
-            "    destFileName: list.html\n");
+                    "\n" +
+                    "  # REST-ful Controller\n" +
+                    "  - template: java/restController.vm\n" +
+                    "    destDir: src/main/java\n" +
+                    "    destPackage: ${basePackage}.controller\n" +
+                    "    destFileName: ${entityName}RestController.java\n" +
+                    "\n" +
+                    "  # 生成html表单\n" +
+                    "  - template: html/index.vm\n" +
+                    "    destDir: src/main/resources\n" +
+                    "    destPackage: templates\n" +
+                    "    destFileName: index.html\n" +
+                    "\n" +
+                    "  # 生成html列表\n" +
+                    "  - template: html/list.vm\n" +
+                    "    destDir: src/main/resources\n" +
+                    "    destPackage: templates\n" +
+                    "    destFileName: list.html\n");
 
     /*===方法s========================================================================================================*/
 

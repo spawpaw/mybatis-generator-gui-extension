@@ -8,6 +8,7 @@ import com.spawpaw.mybatis.generator.gui.entity.TableColumnMetaData;
 import com.spawpaw.mybatis.generator.gui.enums.DatabaseType;
 import com.spawpaw.mybatis.generator.gui.enums.DeclaredPlugins;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleStringProperty;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.*;
 import org.mybatis.generator.exception.InvalidConfigurationException;
@@ -20,6 +21,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -36,6 +38,7 @@ public class MBGRunner {
     private HashMap<String, HashMap<String, String>> pluginConfigs = new HashMap<>();
     private Configuration config;
     private Context context;
+    private final Predicate<SimpleStringProperty> notEmptyStringPropertyPredicate = (Predicate<SimpleStringProperty>) simpleStringProperty -> !simpleStringProperty.getValue().isEmpty();
 
     public MBGRunner(ProjectConfig projectConfig, DatabaseConfig databaseConfig) {
         this.projectConfig = projectConfig;
@@ -158,6 +161,8 @@ public class MBGRunner {
         tableConfiguration.setCountByExampleStatementEnabled(projectConfig.enableCountByExample.getValue());
         tableConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());//使用小骆驼峰替代原列名
         tableConfiguration.addProperty("ignoreQualifiersAtRuntime", "true");//使用小骆驼峰替代原列名
+        Optional.of(projectConfig.tableAlias).filter(notEmptyStringPropertyPredicate)
+                .ifPresent((tableAlias) -> tableConfiguration.addProperty("alias", projectConfig.tableAlias.getValue()));
 
         if (!projectConfig.enableVirtualPrimaryKeyPlugin.getValue().isEmpty())
             tableConfiguration.addProperty("virtualKeyColumns", projectConfig.enableVirtualPrimaryKeyPlugin.getValue());
