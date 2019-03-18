@@ -16,6 +16,8 @@ table.exampleLowerCamel     :${table.exampleLowerCamel}
 table.mapperPackage         :${table.mapperPackage}
 table.mapperName            :${table.mapperName}
 table.mapperLowerCamel      :${table.mapperLowerCamel}
+## 表的SQL定义（目前仅支持MYSQL）
+table.ddl                   :${table.ddl}
 
 ## 表中的字段
 columns:
@@ -48,6 +50,8 @@ likeMethod               :${column.likeMethod}
 notLikeMethod            :${column.notLikeMethod}
 isNullMethod             :${column.isNullMethod}
 notNullMethod            :${column.notNullMethod}
+## 字段的SQL定义（目前仅支持MYSQL）
+ddl                      :${column.ddl}
 
 ##当表或字段中的注释包含行如'#key(value1,)'形式的注释时,将会被解析成可在本模版中使用的变量，字段将会自动继承表的属性
 ## 可使用 $!column.contains(key)来验证是否存在指定的键

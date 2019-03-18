@@ -2,6 +2,7 @@ package com.spawpaw.mybatis.generator.gui.entity;
 
 import com.spawpaw.mybatis.generator.gui.util.ExampleUtil;
 import com.spawpaw.mybatis.generator.gui.util.JavaBeansUtil;
+import com.spawpaw.mybatis.generator.gui.util.RegexpUtil;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.Field;
@@ -66,7 +67,13 @@ public class Column extends ConfigMatcher {
         this.notLikeMethod = ExampleUtil.getSetNotLikeMethod(introspectedColumn).getName();
         this.notNullMethod = ExampleUtil.getSetNotNullMethod(introspectedColumn).getName();
         this.nullMethod = ExampleUtil.getSetNullMethod(introspectedColumn).getName();
-
+        //获取ddl
+        String ddl = RegexpUtil.findMatches(
+                "(?:`" + actualName + "` *)"
+                , "(.*)"
+                , "(?:\n)"
+                , parent.get("ddl")).replaceAll(",$", "");//去除末尾逗号
+        this.put("ddl", ddl);
         if (contains("index"))
             index = Integer.valueOf(get("index"));
         if (contains("disable"))

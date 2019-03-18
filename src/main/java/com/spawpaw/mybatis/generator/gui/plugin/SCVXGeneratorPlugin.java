@@ -46,8 +46,9 @@ public class SCVXGeneratorPlugin extends PluginAdapter {
         log.info(">>>> generating extra files...");
         // : 2018/3/22 将 introspectedTable 转化为对象
         Map<String, String> map = new HashMap<>();
-        for (Object o : properties.keySet()) {
-            map.put(o.toString(), properties.getProperty(o.toString()));
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            map.put(entry.getKey().toString(), entry.getValue().toString());
+            log.info("property:[{}];value:[{}]", entry.getKey().toString(), entry.getValue().toString());
         }
         Table table = new Table(context, introspectedTable, map);
         // : 2018/3/22 初始化context

@@ -47,6 +47,7 @@ public class Table extends ConfigMatcher {
         mapperName = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
         mapperLowerCamel = Utils.getLowerCamelCase(mapperName);
 
+        put("ddl", context.getProperty("ddls." + actualName));
         for (IntrospectedColumn introspectedColumn : introspectedTable.getAllColumns()) {
             columns.add(new Column(context, introspectedTable, introspectedColumn, this));
         }

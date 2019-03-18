@@ -58,6 +58,10 @@ public class MBGRunner {
         context.setId("mybatis generator gui extension");//id
         context.setTargetRuntime("MyBatis3");//targetRuntime
         context.addProperty("javaFileEncoding", projectConfig.javaFileEncoding.getValue());
+        for (Map.Entry<String, String> tableDDL : databaseConfig.tableDDLs.entrySet()) {
+            context.addProperty("ddls." + tableDDL.getKey(), tableDDL.getValue());
+            log.info("add config [{}:{}] to context", "ddls." + tableDDL.getKey(), tableDDL.getValue());
+        }
 
         //=====================================================================================================加载插件
         //initialize plugin data

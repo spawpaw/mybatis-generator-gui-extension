@@ -47,6 +47,9 @@ public class DatabaseConfig implements Serializable {
     public SimpleStringProperty encoding = new SimpleStringProperty("utf8");
     private transient TreeItem<String> rootItem;
 
+    //table->tableDDL
+    public Map<String, String> tableDDLs = new HashMap<>();
+
     public String driver() {
         return DatabaseType.valueOf(databaseType.getValue()).getDriverClazzName();
     }
@@ -174,6 +177,17 @@ public class DatabaseConfig implements Serializable {
         }
         while (rs.next()) {
             tableConfigs.put(rs.getString("TABLE_NAME"), new ArrayList<>());
+
+            //针对MYSQL，增加获取DDL的功能
+            if (DatabaseType.MySQL.equals(DatabaseType.valueOf(databaseType.getValue()))) {
+                ResultSet tableNameRs = connection.createStatement().executeQuery("SHOW CREATE TABLE " + rs.getString("TABLE_NAME") + ";");
+                while (tableNameRs.next()) {
+                    String tableName = tableNameRs.getString("table");
+                    String tableDDL = tableNameRs.getString("create table");
+                    tableDDLs.put(tableName, tableDDL);
+                    log.info("table:{};  tableDDLs:{}", tableName, tableDDL);
+                }
+            }
         }
 
         List<String> tmpList = new ArrayList<>(tableConfigs.keySet());
