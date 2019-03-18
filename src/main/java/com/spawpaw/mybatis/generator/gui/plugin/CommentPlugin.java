@@ -1,32 +1,23 @@
 package com.spawpaw.mybatis.generator.gui.plugin;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Set;
-
-import javax.xml.bind.DatatypeConverter;
-
+import com.spawpaw.mybatis.generator.gui.util.RegexpUtil;
+import com.spawpaw.mybatis.generator.gui.util.Utils;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.MyBatisGenerator;
-import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
-import org.mybatis.generator.api.dom.java.InnerClass;
-import org.mybatis.generator.api.dom.java.InnerEnum;
-import org.mybatis.generator.api.dom.java.JavaElement;
-import org.mybatis.generator.api.dom.java.Method;
-import org.mybatis.generator.api.dom.java.Parameter;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
 import org.mybatis.generator.internal.util.StringUtility;
 
-import com.spawpaw.mybatis.generator.gui.util.Utils;
+import javax.xml.bind.DatatypeConverter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Set;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -45,10 +36,12 @@ public class CommentPlugin implements CommentGenerator {
     private String fileHeader = "";
     private boolean enableMbgGenerated = true;
     private boolean enableCorrespondingTable = true;
+    private Properties properties;
 
     @Override
     public void addConfigurationProperties(Properties properties) {
         Utils.injectFieldsFromProperties(this, properties);
+        this.properties = properties;
     }
 
     @Override
@@ -433,4 +426,41 @@ public class CommentPlugin implements CommentGenerator {
         return buffer.toString();
     }
 
+    /**
+     * 获取表的DDL
+     */
+    private String getTableDDL(IntrospectedTable introspectedTable) {
+        if (properties == null) {
+            return "";
+        }
+        String actualName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
+        return (String) properties.get("ddls." + actualName);
+    }
+
+    /**
+     * 获取字段的DDL
+     */
+    private String getColumnDDL(IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        String tableDDL = getTableDDL(introspectedTable);
+        if (tableDDL == null || tableDDL.isEmpty()) {
+            return "";
+        }
+        String actualName = introspectedColumn.getActualColumnName();
+        //获取ddl
+        return RegexpUtil
+                .findMatches(
+                        "(?:`" + actualName + "` *)"
+                        , "(.*)"
+                        , "(?:\n)"
+                        , tableDDL
+                )
+                .replaceAll(",$", "");
+    }
+
+    // TODO: 获取表DDL中声明的其他属性（索引、CHARSET、ENGINE等）, 本质上就是用正则表达式匹配特定字符串。
+    //  如果要获取更多信息，则需要读取information_schema,具体做法可参照上一次commit(24cfe4984d8d9b069e468a630bb88cab4a1c8dfd)
+    private String getTableIndex(IntrospectedTable introspectedTable) {
+        String tableDDL = getTableDDL(introspectedTable);
+        return "";
+    }
 }
