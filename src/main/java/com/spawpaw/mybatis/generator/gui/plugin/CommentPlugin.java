@@ -14,10 +14,7 @@ import org.mybatis.generator.internal.util.StringUtility;
 
 import javax.xml.bind.DatatypeConverter;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created By spawpaw@hotmail.com 2018.1.20
@@ -457,10 +454,21 @@ public class CommentPlugin implements CommentGenerator {
                 .replaceAll(",$", "");
     }
 
-    // TODO: 获取表DDL中声明的其他属性（索引、CHARSET、ENGINE等）, 本质上就是用正则表达式匹配特定字符串。
-    //  如果要获取更多信息，则需要读取information_schema,具体做法可参照上一次commit(24cfe4984d8d9b069e468a630bb88cab4a1c8dfd)
-    private String getTableIndex(IntrospectedTable introspectedTable) {
+    // 获取表的所有索引名称
+    private List<String> getTableIndexes(IntrospectedTable introspectedTable) {
         String tableDDL = getTableDDL(introspectedTable);
-        return "";
+        return RegexpUtil.findAllMatches("(?:KEY *`)", "([^`]*)", "(?:`)", tableDDL);
+    }
+
+    private String getTableIndexType(IntrospectedTable introspectedTable, String indexName) {
+        String actualName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
+        String tableDDL = getTableDDL(introspectedTable);
+        return RegexpUtil.findMatches("(?:[ ^]`)", "([a-zA-Z0-9]*)", "(?: *KEY *`" + actualName + "`)", tableDDL);
+    }
+
+    private List<String> getTableIndexColumns(IntrospectedTable introspectedTable, String indexName) {
+        String actualName = introspectedTable.getFullyQualifiedTable().getIntrospectedTableName();
+        String tableDDL = getTableDDL(introspectedTable);
+        return RegexpUtil.findAllMatches("(?:" + actualName + "` *\\()", "([^`]*)", "(?:\\))", tableDDL);
     }
 }
