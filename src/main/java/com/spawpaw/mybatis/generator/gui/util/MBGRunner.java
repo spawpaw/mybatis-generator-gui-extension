@@ -166,8 +166,9 @@ public class MBGRunner {
         tableConfiguration.addProperty("useActualColumnNames", projectConfig.useActualColumnNames.getValue().toString());//使用小骆驼峰替代原列名
         tableConfiguration.addProperty("ignoreQualifiersAtRuntime", "true");//使用小骆驼峰替代原列名
         Optional.of(projectConfig.tableAlias).filter(notEmptyStringPropertyPredicate)
-                .ifPresent((tableAlias) -> tableConfiguration.addProperty("alias", projectConfig.tableAlias.getValue()));
-
+                .ifPresent((tableAlias) -> {
+                    tableConfiguration.setAlias(tableAlias.getValue());
+                });
         if (!projectConfig.enableVirtualPrimaryKeyPlugin.getValue().isEmpty())
             tableConfiguration.addProperty("virtualKeyColumns", projectConfig.enableVirtualPrimaryKeyPlugin.getValue());
 
