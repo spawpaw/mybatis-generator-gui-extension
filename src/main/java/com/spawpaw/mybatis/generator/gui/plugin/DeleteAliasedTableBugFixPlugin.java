@@ -48,7 +48,6 @@ public class DeleteAliasedTableBugFixPlugin extends PluginAdapter {
             Element elem = element.getElements().get(i);
             String formattedContent = elem.getFormattedContent(0);
             if (formattedContent.contains("delete from")) {
-                // TODO: 2019/7/14 改成DELETE alias FROM table_name alias 或改成 DELETE  FROM table_name
                 element.getElements().remove(i);
                 String sql;
                 if ("DELETE_ALIAS_FROM_TABLE_ALIAS".equals(fixType)) {
