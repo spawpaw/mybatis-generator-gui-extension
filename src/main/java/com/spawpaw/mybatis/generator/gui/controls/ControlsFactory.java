@@ -33,9 +33,6 @@ public class ControlsFactory {
             case ChoiceBox:
                 control = new ChoiceBoxConfig();
                 break;
-            case TextField:
-                control = new TextFieldControl();
-                break;
             case DirChooser:
                 control = new DirectoryChooserControl();
                 break;

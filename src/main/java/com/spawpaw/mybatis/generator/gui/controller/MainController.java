@@ -194,6 +194,11 @@ public class MainController extends BaseController implements Initializable {
                 } else {
                     selectedDatabaseConfig = databaseConfigHashMap.get(tv_connections.getSelectionModel().getSelectedItem().getParent());
                     selectedProjectConfig.selectedTable.setValue(tv_connections.getSelectionModel().getSelectedItem().getValue());
+
+                    //noinspection RedundantIfStatement
+                    if (selectedDatabaseConfig.databaseType.getValue().equalsIgnoreCase("MySQL")) {
+                        selectedProjectConfig.selectedDatabaseDoesNotSupportAlias = true;
+                    } else selectedProjectConfig.selectedDatabaseDoesNotSupportAlias = false;
                 }
             });
 

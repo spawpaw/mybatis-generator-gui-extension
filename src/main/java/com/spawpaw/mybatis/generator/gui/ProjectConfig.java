@@ -102,6 +102,15 @@ public class ProjectConfig {
     public BooleanProperty enableLogicDeletePlugin = new SimpleBooleanProperty(false); // 逻辑删除列
 
     @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
+    @ExportToTab(tabName = SHORTCUT, index = 2)
+    @EnablePlugin(DeclaredPlugins.DeleteAliasedTableBugFixPlugin)
+    @ExportToPlugin(plugin = DeclaredPlugins.DeleteAliasedTableBugFixPlugin, key = "fixType")
+    @Config(bundle = "project.deleteAliasedTableBugFixPlugin", type = ConfigType.ChoiceBox, testRegex = "DONT_FIX|DELETE_ALIAS_FROM_TABLE_ALIAS|DELETE_FROM_TABLE")
+    public SimpleStringProperty fixMySQLAliasBug = new SimpleStringProperty("DONT_FIX");
+
+    public boolean selectedDatabaseDoesNotSupportAlias = false;
+
+    @ExportToTab(tabName = DATA_ACCESS_OBJECT, index = 1)
     @AdvancedConfig
     @Config(bundle = "plugin.logicalDeletePlugin.logicalDeleteColumn", type = ConfigType.TextField)
     @ExportToPlugin(plugin = DeclaredPlugins.LogicalDeletePlugin)
@@ -362,6 +371,15 @@ public class ProjectConfig {
             if (newValue) {
                 enableModelColumnPlugin.setValue(true);
                 enableExampleEnhancedPlugin.setValue(true);
+            }
+        });
+        tableAlias.addListener((observable, oldValue, newValue) -> {
+            if (!newValue.isEmpty()) {
+                if (selectedDatabaseDoesNotSupportAlias && "DONT_FIX".equalsIgnoreCase(fixMySQLAliasBug.getValue())) {
+                    fixMySQLAliasBug.setValue("DELETE_ALIAS_FROM_TABLE_ALIAS");
+                }
+            } else {
+                fixMySQLAliasBug.setValue("DONT_FIX");
             }
         });
     }
