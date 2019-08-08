@@ -204,6 +204,8 @@
                     <target>1.${java.language.level}</target>
                 </configuration>
             </plugin>
+
+            <!--fat jar-->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -225,6 +227,19 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <!--native app for windows-->
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.8.3</version>
+                <configuration>
+                    <mainClass>${exec.mainClass}</mainClass>
+                    <vendor>spawpaw@hotmail.com</vendor>
+                    <verbose>false</verbose>
+                    <jfxMainAppJarName>${project.artifactId}.jar</jfxMainAppJarName>
+                </configuration>
             </plugin>
         </plugins>
     </build>

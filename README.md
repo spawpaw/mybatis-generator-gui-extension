@@ -56,20 +56,13 @@
 - `指定后缀`： 可修改如下项目的后缀：`dao包`、`实体包`、`Mapper`、`Example`、`实体`。
 ## 如何使用
 
-> 运行前请确保您的JDK版本为1.8u40以上  
-> 推荐使用git克隆仓库到本地，这样当本项目更新时直接pull即可
+> 运行前请确保您的JDK版本为1.8u40以上   
+> 前三种方式需要先下载源代码
 
-### 方法一：下载源代码
-
-1. 点击右上角**Clone or download**，或用`git命令`拷贝代码仓库：`git clone https://github.com/spawpaw/mybatis-generator-gui-extension.git`
-
-2. 用IDE将源代码导入为Maven项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可
-
-
-### 方法二：下载jar包
-
-可以执行`mvn: package` 自助构建  
-或者[选择版本进行下载](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)  
+`源码运行`: 用IDE将源代码导入为Maven项目，然后直接运行`com.spawpaw.mybatis.generator.gui.GeneratorGuiRunner`即可  
+`自助打包jar`: 执行 `mvn package`  
+`自助打包exe` :  执行 `mvn package jfx:native`  
+`直接下载jar包`: [选择版本进行下载](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)   
 
 ## 二次开发 && 贡献 && 交流 ([进入帮助页面](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki))
 
