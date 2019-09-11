@@ -180,7 +180,7 @@ public class DatabaseConfig implements Serializable {
 
             //针对MYSQL，增加获取DDL的功能
             if (DatabaseType.MySQL.equals(DatabaseType.valueOf(databaseType.getValue()))) {
-                ResultSet tableNameRs = connection.createStatement().executeQuery("SHOW CREATE TABLE " + rs.getString("TABLE_NAME") + ";");
+                ResultSet tableNameRs = connection.createStatement().executeQuery("SHOW CREATE TABLE `" + rs.getString("TABLE_NAME") + "`;");
                 while (tableNameRs.next()) {
                     String tableName = tableNameRs.getString("table");
                     String tableDDL = tableNameRs.getString("create table");
