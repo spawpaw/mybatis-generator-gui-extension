@@ -17,7 +17,7 @@ import java.util.List;
  */
 public abstract class AbstractControl<T> {
     protected static final int MIN_WIDTH_LEFT = 150;
-    protected static final int MIN_WIDTH_RIGHT = 150;
+    protected static final int MIN_WIDTH_RIGHT = 350;
     private static List<AbstractControl> controls = new ArrayList<>();
     protected String _testRegex = "";
     protected String _onValidateFailure = "";
