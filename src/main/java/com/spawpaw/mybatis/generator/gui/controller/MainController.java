@@ -124,16 +124,16 @@ public class MainController extends BaseController implements Initializable {
                     defaultTargetLayer = targetTabs;
                 }
                 if (field.get(selectedProjectConfig) instanceof Property) {
-                    for (ExportToTab l : targetTabs) {
+                    for (ExportToTab exportToTab : targetTabs) {
                         HBox layout = ControlsFactory.getLayout(config, (Property) field.get(selectedProjectConfig));
                         layout.setPadding(new Insets(1, 0, 1, 0));
                         if (field.getAnnotation(AdvancedConfig.class) != null) {
                             layout.visibleProperty().bindBidirectional(btn_show_advanced_settings.selectedProperty());
                             layout.managedProperty().bindBidirectional(btn_show_advanced_settings.selectedProperty());
                         }
-                        if (!configs.containsKey(l.tabName()))
-                            configs.put(l.tabName(), new ArrayList<>());
-                        configs.get(l.tabName()).add(new ConfigWrapper(layout, l.index()));
+                        if (!configs.containsKey(exportToTab.tabName()))
+                            configs.put(exportToTab.tabName(), new ArrayList<>());
+                        configs.get(exportToTab.tabName()).add(new ConfigWrapper(layout, exportToTab.index()));
 //                        System.out.println(String.format("将%-36s加入tab: %s", field.getName(), l.tabName()));
                     }
                 } else {
