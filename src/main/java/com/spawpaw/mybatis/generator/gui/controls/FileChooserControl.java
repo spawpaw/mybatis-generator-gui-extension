@@ -13,7 +13,7 @@ import java.io.File;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class FileChooserControl extends IControl<String> {
+public class FileChooserControl extends AbstractControl<String> {
     Label label = new Label();
     TextField textField = new TextField();
     Button button = new Button();

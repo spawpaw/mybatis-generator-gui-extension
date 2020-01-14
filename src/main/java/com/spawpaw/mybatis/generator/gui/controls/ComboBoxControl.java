@@ -11,7 +11,7 @@ import java.util.Arrays;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class ComboBoxControl extends IControl<String> {
+public class ComboBoxControl extends AbstractControl<String> {
     protected ComboBox<String> comboBox = new ComboBox<>();
     protected Label label = new Label();
 

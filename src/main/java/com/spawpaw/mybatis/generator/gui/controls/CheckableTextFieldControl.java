@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class CheckableTextFieldControl extends IControl<String> {
+public class CheckableTextFieldControl extends AbstractControl<String> {
     protected CheckBox checkBox = new CheckBox();
     protected TextField textField = new TextField();
 

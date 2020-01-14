@@ -1,6 +1,6 @@
 package com.spawpaw.mybatis.generator.gui.util;
 
-import com.spawpaw.mybatis.generator.gui.controls.IControl;
+import com.spawpaw.mybatis.generator.gui.controls.AbstractControl;
 import javafx.geometry.Insets;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public class Constants {
     //当前系统的语言，为国际化准备
     public static void setLocale(Locale locale) {
         SPECIFIED_LOCALE = locale;
-        IControl.refreshLabels();
+        AbstractControl.refreshLabels();
     }
 
     public static String getI18nStr(String s) {

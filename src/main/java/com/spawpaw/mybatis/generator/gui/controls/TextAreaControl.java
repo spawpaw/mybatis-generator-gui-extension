@@ -8,7 +8,7 @@ import javafx.scene.control.TextArea;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class TextAreaControl extends IControl<String> {
+public class TextAreaControl extends AbstractControl<String> {
     protected TextArea textArea;
     protected Label label;
 

@@ -7,7 +7,7 @@ import javafx.scene.control.CheckBox;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class CheckBoxControl extends IControl<Boolean> {
+public class CheckBoxControl extends AbstractControl<Boolean> {
     CheckBox checkBox;
 
     @Override
