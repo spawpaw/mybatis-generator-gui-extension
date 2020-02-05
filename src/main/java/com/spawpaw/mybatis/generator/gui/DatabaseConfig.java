@@ -181,16 +181,20 @@ public class DatabaseConfig implements Serializable {
             //针对MYSQL，增加获取DDL的功能
             if (DatabaseType.MySQL.equals(DatabaseType.valueOf(databaseType.getValue()))) {
                 ResultSet tableNameRs = connection.createStatement().executeQuery("SHOW CREATE TABLE " + rs.getString("TABLE_NAME") + ";");
-                try {
-                    while (tableNameRs.next()) {
+                while (tableNameRs.next()) {
+                    if (existsColumn(tableNameRs, "table")) {
                         String tableName = tableNameRs.getString("table");
                         String tableDDL = tableNameRs.getString("create table");
                         tableDDLs.put(tableName, tableDDL);
                         log.info("table:{};  tableDDLs:{}", tableName, tableDDL);
+                    } else if (existsColumn(tableNameRs, "view")) {
+                        String viewName = tableNameRs.getString("view");
+                        String viewDDL = tableNameRs.getString("create view");
+                        tableDDLs.put(viewName, viewDDL);
+                        log.info("viewName:{};  view DDL:{}", viewName, viewDDL);
+                    } else {
+                        log.error("the row is neither table nor view.");
                     }
-                } catch (SQLException e) {
-                    // TODO: read view's DDL
-                    log.error("failed reading table DDL, if it's  a view, ignore this error", e);
                 }
             }
         }
@@ -214,6 +218,17 @@ public class DatabaseConfig implements Serializable {
             rootItem.setExpanded(true);
         }
         connection.close();
+    }
+
+    private boolean existsColumn(ResultSet rs, String columnName) {
+        try {
+            if (rs.findColumn(columnName) > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        return false;
     }
 
     //关闭连接,清空ListView
