@@ -15,10 +15,10 @@ import java.util.List;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public abstract class IControl<T> {
+public abstract class AbstractControl<T> {
     protected static final int MIN_WIDTH_LEFT = 150;
-    protected static final int MIN_WIDTH_RIGHT = 150;
-    private static List<IControl> controls = new ArrayList<>();
+    protected static final int MIN_WIDTH_RIGHT = 350;
+    private static List<AbstractControl> controls = new ArrayList<>();
     protected String _testRegex = "";
     protected String _onValidateFailure = "";
     protected StringProperty labelTextProperty = new SimpleStringProperty("");
@@ -34,7 +34,7 @@ public abstract class IControl<T> {
     private String _helpText = "";
     private String _visibleGroup = "";
 
-    protected IControl() {
+    protected AbstractControl() {
         tooltip.textProperty().bindBidirectional(helpTextProperty);
         tooltip.setStyle("-fx-font-size:14");
         onValidateFailureToolTip.textProperty().bindBidirectional(onValidateFailureTextProperty);
@@ -46,7 +46,7 @@ public abstract class IControl<T> {
      * 刷新所有控件的label
      */
     public static void refreshLabels() {
-        for (IControl control : controls) {
+        for (AbstractControl control : controls) {
             control.refreshLabel();
         }
     }

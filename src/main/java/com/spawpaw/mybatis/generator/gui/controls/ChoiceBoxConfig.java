@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class ChoiceBoxConfig extends IControl<String> {
+public class ChoiceBoxConfig extends AbstractControl<String> {
     Label label;
     ChoiceBox<String> choiceBox;
     List<String> candidates;

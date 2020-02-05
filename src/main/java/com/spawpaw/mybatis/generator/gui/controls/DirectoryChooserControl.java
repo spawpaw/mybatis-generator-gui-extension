@@ -14,7 +14,7 @@ import java.io.File;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class DirectoryChooserControl extends IControl<String> {
+public class DirectoryChooserControl extends AbstractControl<String> {
     Label label = new Label();
     TextField textField = new TextField();
     Button button = new Button();

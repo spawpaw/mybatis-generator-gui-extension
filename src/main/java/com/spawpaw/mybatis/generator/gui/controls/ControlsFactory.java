@@ -19,7 +19,7 @@ public class ControlsFactory {
 //            log.info("发现隐藏的配置项, 如要在界面中显示，请为Property添加@Config注解");
             return new HBox();
         }
-        IControl control;
+        AbstractControl control;
         switch (config.type()) {
             case ComboBox:
                 control = new ComboBoxControl();

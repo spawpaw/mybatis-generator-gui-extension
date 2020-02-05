@@ -77,4 +77,14 @@ QQ交流群：171209016
 ## 其他
 如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   ο(=•ω＜=)ρ⌒★
 
+#### 您的项目适合使用本工具吗？
+
+先来看一下您的项目是否有如下需求：
+- **需要根据表结构生成其他代码**：比如service、controller甚至是前端的代码。
+- **要求对SQL高度可控**：DBA需要审查SQL脚本或需要使用自动化工具对**所有**SQL脚本进行检查。
+
+如果有上面任意一项需求，那么使用本工具是没有任何问题的。
+但是如果你追求快速的开发，简洁的代码，建议使用[Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)、[mybatis-plus](https://github.com/baomidou/mybatis-plus) 、 [通用Mapper](https://github.com/abel533/Mapper)，
+这些项目提供了更优雅的方式来实现简单的CRUD、Example查询，毕竟大部分项目在大部分情况下很少遇到手写复杂代码的情况，会触及性能问题的代码也很少（即使有也很容易定位），。
+
 [捐赠](./wiki/donate.md) （[捐助者列表](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki/sponsors)）

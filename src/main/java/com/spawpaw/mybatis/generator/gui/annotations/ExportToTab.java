@@ -17,6 +17,9 @@ import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.BASIC_SETTIN
 @Repeatable(ExportToTabs.class)
 public @interface ExportToTab {
 
+    /**
+     * tab的名字，可以使用i18n资源中的key
+     */
     String tabName() default BASIC_SETTINGS;
 
     int index() default 1000;

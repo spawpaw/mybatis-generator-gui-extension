@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class TextFieldControl extends IControl<String> {
+public class TextFieldControl extends AbstractControl<String> {
     protected TextField textField;
     protected Label label;
 

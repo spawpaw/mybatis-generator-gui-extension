@@ -8,7 +8,7 @@ import javafx.scene.control.TextArea;
  *
  * @author BenBenShang spawpaw@hotmail.com
  */
-public class CheckableTextAreaControl extends IControl<String> {
+public class CheckableTextAreaControl extends AbstractControl<String> {
     protected TextArea textArea = new TextArea();
     CheckBox checkBox = new CheckBox();
 
