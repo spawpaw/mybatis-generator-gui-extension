@@ -64,7 +64,7 @@
 `自助打包exe` :  执行 `mvn package jfx:native`  
 `直接下载jar包`: [选择版本进行下载](https://github.com/spawpaw/mybatis-generator-gui-extension/releases)   
 
-## 二次开发 && 贡献 && 交流 ([进入帮助页面](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki))
+## 二次开发 && 交流 ([进入帮助页面](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki))
 
 - 如果您开发了自己的MBG插件，只需几行代码便可将其暴露到图形界面中，无需了解整个项目的构造。（参见[四步将Plugin的配置暴露到图形化界面中](./wiki/IntegrationOfYourPlugin.md)）
 
@@ -73,6 +73,16 @@
 
 项目地址 https://github.com/spawpaw/mybatis-generator-gui-extension  
 QQ交流群：171209016
+
+## 贡献代码
+#### 1.创建issue（工单）
+在本项目的issue页，创建一个issue，描述你所要添加的功能。
+#### 2.fork本仓库
+将本仓库fork到你自己的账户，并将你的代码提交。  
+#### 3.发起PR
+提交完成后，你将会在你的仓库中看到`PullRequest`按钮，点击发起PR然后按照提示操作就可以了。
+
+tips: 在commit时可以使用`#<issue-id>`来关联issue
 
 ## 其他
 如果您觉得本软件对您有帮助，请别忘记给这个项目一个`star`   ο(=•ω＜=)ρ⌒★
@@ -85,6 +95,6 @@ QQ交流群：171209016
 
 如果有上面任意一项需求，那么使用本工具是没有任何问题的。
 但是如果你追求快速的开发，简洁的代码，建议使用[Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)、[mybatis-plus](https://github.com/baomidou/mybatis-plus) 、 [通用Mapper](https://github.com/abel533/Mapper)，
-这些项目提供了更优雅的方式来实现简单的CRUD、Example查询，毕竟大部分项目在大部分情况下很少遇到手写复杂代码的情况，会触及性能问题的代码也很少（即使有也很容易定位），。
+这些项目提供了更优雅的方式来实现简单的CRUD、Example查询，毕竟大部分项目在大部分情况下很少遇到手写复杂代码的情况，会触及性能问题的代码也很少（即使有也很容易定位），通过本工具生成的大量代码反而可能会给维护带来一定麻烦。
 
 [捐赠](./wiki/donate.md) （[捐助者列表](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki/sponsors)）
