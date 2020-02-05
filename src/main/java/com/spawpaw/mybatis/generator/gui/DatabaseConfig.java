@@ -181,11 +181,16 @@ public class DatabaseConfig implements Serializable {
             //针对MYSQL，增加获取DDL的功能
             if (DatabaseType.MySQL.equals(DatabaseType.valueOf(databaseType.getValue()))) {
                 ResultSet tableNameRs = connection.createStatement().executeQuery("SHOW CREATE TABLE " + rs.getString("TABLE_NAME") + ";");
-                while (tableNameRs.next()) {
-                    String tableName = tableNameRs.getString("table");
-                    String tableDDL = tableNameRs.getString("create table");
-                    tableDDLs.put(tableName, tableDDL);
-                    log.info("table:{};  tableDDLs:{}", tableName, tableDDL);
+                try {
+                    while (tableNameRs.next()) {
+                        String tableName = tableNameRs.getString("table");
+                        String tableDDL = tableNameRs.getString("create table");
+                        tableDDLs.put(tableName, tableDDL);
+                        log.info("table:{};  tableDDLs:{}", tableName, tableDDL);
+                    }
+                } catch (SQLException e) {
+                    // TODO: read view's DDL
+                    log.error("failed reading table DDL, if it's  a view, ignore this error", e);
                 }
             }
         }
