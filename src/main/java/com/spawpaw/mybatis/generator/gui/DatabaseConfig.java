@@ -33,7 +33,7 @@ public class DatabaseConfig implements Serializable {
     public SimpleStringProperty databaseType = new SimpleStringProperty("MySQL");
     @Config(bundle = "database.dbName")
     public SimpleStringProperty dbName = new SimpleStringProperty("");
-    @Config(bundle = "database.tableNamePattern", testRegex = "%", type = ConfigType.ComboBox)
+    @Config(bundle = "database.tableNamePattern")
     public SimpleStringProperty tableNamePattern = new SimpleStringProperty("%");
     @Config(bundle = "database.host")
     public SimpleStringProperty host = new SimpleStringProperty("localhost");
