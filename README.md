@@ -97,4 +97,8 @@ tips: 在commit时可以使用`#<issue-id>`来关联issue
 但是如果你追求快速的开发，简洁的代码，建议使用[Spring Data JPA](https://github.com/spring-projects/spring-data-jpa)、[mybatis-plus](https://github.com/baomidou/mybatis-plus) 、 [通用Mapper](https://github.com/abel533/Mapper)，
 这些项目提供了更优雅的方式来实现简单的CRUD、Example查询，毕竟大部分项目在大部分情况下很少遇到手写复杂代码的情况，会触及性能问题的代码也很少（即使有也很容易定位），通过本工具生成的大量代码反而可能会给维护带来一定麻烦。
 
+打个小广告，近期要找工作的同学可以找我内推~ 邮箱：cwh736@qq.com。可以先把简历发我，我可以给些建议~
+
+**字节跳动内推链接**：https://job.toutiao.com/s/JGCe4nh
+
 [捐赠](./wiki/donate.md) （[捐助者列表](https://github.com/spawpaw/mybatis-generator-gui-extension/wiki/sponsors)）

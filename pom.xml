@@ -29,7 +29,7 @@
         <guava.version>24.1.1-jre</guava.version>
         <mybatis.version>3.4.6</mybatis.version>
         <hibernate-jpa-2.1-api.version>1.0.0.Final</hibernate-jpa-2.1-api.version>
-        <hibernate-validator.version>5.3.6.Final</hibernate-validator.version>
+        <hibernate-validator.version>7.0.0.Final</hibernate-validator.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
         <postgresql.version>42.2.1</postgresql.version>
@@ -130,7 +130,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>4.13</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
