@@ -108,11 +108,17 @@ tips: 在commit时可以使用`#<issue-id>`来关联issue
 有换工作意向的同学可将简历发送到如下邮箱:
 |公司|邮箱|内推链接|职级及方向|
 |:----|:----|:----|:----|
-|阿里巴巴| shangbenben@alibaba-inc.com | |P5~P7 前后端、测试、Java开发；<br>集团CTO线财务方向可部门直推。也可内推其他部门。|
+|阿里巴巴| shangbenben@alibaba-inc.com | [阿里巴巴/集团CTO线/CFO产品技术部 - 产品-平台型 P6-P7 杭州](https://talent.alibaba.com/off-campus-position/811942?trace=qrcode_share)<br>[阿里巴巴/集团CTO线/CFO产品技术部 - Java高级开发工程师-财资技术 P5-P7 上海](https://talent.alibaba.com/off-campus-position/714176?trace=qrcode_share)  <br>[阿里巴巴/集团CTO线/CFO产品技术部 - 高级测试开发工程师 杭州](https://talent.alibaba.com/off-campus-position/714174?trace=qrcode_share)  <br> |P5~P7 产品、前后端、测试、Java开发；<br>集团CTO线财务方向可部门直推。也可内推其他部门。|
 |字节跳动| chenwenhang@bytedance.com |https://job.toutiao.com/s/JGCe4nh||
+
+
+
+
 
 - 邮件主题格式： `[内推][期望岗位方向][工作年限（从正式工作开始）] 姓名 电话` 例如：`[内推][Java开发][2年] 张三 13800000000`  
 - 邮件内容： 可以写几句话介绍自己（比如有些限于篇幅不好写在简历里的，不写也行）。简历放在附件中，必须是pdf格式。
 - 社招最好本科学历，基本功扎实，两年以上工作经验。如果过往成果显著，也可适当放宽要求。
 - 可以直接在内推链接中投递；也可以先将简历发到邮箱，我们提供一些建议后再投递。
 - 由于工作忙，可能会集中到晚上回复，望理解。
+
+
