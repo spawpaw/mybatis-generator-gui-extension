@@ -32,7 +32,7 @@
         <hibernate-validator.version>7.0.0.Final</hibernate-validator.version>
         <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <ojdbc6.version>12.1.0.1-atlassian-hosted</ojdbc6.version>
-        <postgresql.version>42.2.25</postgresql.version>
+        <postgresql.version>42.4.1</postgresql.version>
         <mssql-jdbc.version>6.2.2.jre8</mssql-jdbc.version>
     </properties>
 
