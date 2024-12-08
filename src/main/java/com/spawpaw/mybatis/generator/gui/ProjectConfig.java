@@ -21,9 +21,7 @@ import static com.spawpaw.mybatis.generator.gui.util.Constants.tabs.*;
 public class ProjectConfig {
     public StringProperty selectedTable = new SimpleStringProperty("");
     /****基本配置******************************************************************************************************/
-//    @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
-//    @Config(bundle = "project.savedName", helpText = "保存的名称")
-//    public SimpleStringProperty savedName = new SimpleStringProperty("untitled");
+
     @ExportToTab(tabName = tabs.BASIC_SETTINGS, index = 1)
     @ExportToTab(tabName = SHORTCUT, index = 1)
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
