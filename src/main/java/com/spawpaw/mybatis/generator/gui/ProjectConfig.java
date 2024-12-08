@@ -261,9 +261,8 @@ public class ProjectConfig {
     @EnablePlugin(DeclaredPlugins.SerializablePlugin)
     @Config(bundle = "project.implementsSerializable", type = ConfigType.CheckBox)
     public SimpleBooleanProperty implementsSerializable = new SimpleBooleanProperty(true);
+
     @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
-
-
     @ExportToTab(tabName = tabs.COMMENT)
     @Config(bundle = "project.enableComment", type = ConfigType.CheckBox)
     public BooleanProperty enableComment = new SimpleBooleanProperty(true);
@@ -275,13 +274,14 @@ public class ProjectConfig {
     public BooleanProperty enableCorrespondingTable = new SimpleBooleanProperty(false);
     @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
     @Config(bundle = "project.fileHeader", type = ConfigType.TextArea)
-    public SimpleStringProperty fileHeader = new SimpleStringProperty("/**\n" +
-            " * Created By MBG-GUI-EXTENSION https://github.com/spawpaw/mybatis-generator-gui-extension\n" +
-            " * Description:\n" +
-            " * ${tableComment}\n" +
-            " *\n" +
-            " * @author \n" +
-            " */");
+    public SimpleStringProperty fileHeader = new SimpleStringProperty("/**\n" + " * Created By MBG-GUI-EXTENSION https://github.com/spawpaw/mybatis-generator-gui-extension\n" + " * Description:\n" + " * ${tableComment}\n" + " *\n" + " * @author \n" + " */");
+
+    @ExportToTab(tabName = DOMAIN_OBJECT, index = 10)
+    @ExportToPlugin(plugin = DeclaredPlugins.CommentPlugin)
+    @Config(bundle = "project.customClassImports", type = ConfigType.TextArea)
+    public SimpleStringProperty customClassImports = new SimpleStringProperty("");
+    @Config(bundle = "project.customClassAnnotations", type = ConfigType.TextArea)
+    public SimpleStringProperty customClassAnnotations = new SimpleStringProperty("");
 
 
     @ExportToTab(tabName = tabs.CACHE)
@@ -313,26 +313,7 @@ public class ProjectConfig {
     public BooleanProperty enableSCVXGeneratorPlugin = new SimpleBooleanProperty(false);
     @ExportToPlugin(plugin = DeclaredPlugins.SCVXGeneratorPlugin)
     @Config(bundle = "project.scvxGenerator.configYml", type = ConfigType.TextArea)
-    public StringProperty scvxConfigYml = new SimpleStringProperty(
-            "templateConfig:\n" +
-                    "\n" +
-                    "  # REST-ful Controller\n" +
-                    "  - template: java/restController.vm\n" +
-                    "    destDir: src/main/java\n" +
-                    "    destPackage: ${basePackage}.controller\n" +
-                    "    destFileName: ${entityName}RestController.java\n" +
-                    "\n" +
-                    "  # 生成html表单\n" +
-                    "  - template: html/index.vm\n" +
-                    "    destDir: src/main/resources\n" +
-                    "    destPackage: templates\n" +
-                    "    destFileName: index.html\n" +
-                    "\n" +
-                    "  # 生成html列表\n" +
-                    "  - template: html/list.vm\n" +
-                    "    destDir: src/main/resources\n" +
-                    "    destPackage: templates\n" +
-                    "    destFileName: list.html\n");
+    public StringProperty scvxConfigYml = new SimpleStringProperty("templateConfig:\n" + "\n" + "  # REST-ful Controller\n" + "  - template: java/restController.vm\n" + "    destDir: src/main/java\n" + "    destPackage: ${basePackage}.controller\n" + "    destFileName: ${entityName}RestController.java\n" + "\n" + "  # 生成html表单\n" + "  - template: html/index.vm\n" + "    destDir: src/main/resources\n" + "    destPackage: templates\n" + "    destFileName: index.html\n" + "\n" + "  # 生成html列表\n" + "  - template: html/list.vm\n" + "    destDir: src/main/resources\n" + "    destPackage: templates\n" + "    destFileName: list.html\n");
 
     /*===方法s========================================================================================================*/
 
@@ -416,8 +397,7 @@ public class ProjectConfig {
         if (s.replaceAll("[A-Z]+", "").equals(s) && s.contains("_"))
             return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s);
         //如果不包含下划线
-        if (!s.contains("_") && s.length() > 2)
-            return s.toUpperCase().charAt(0) + s.substring(1);
+        if (!s.contains("_") && s.length() > 2) return s.toUpperCase().charAt(0) + s.substring(1);
         //如果不全为大写，且包含下划线
         return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, s.toLowerCase());
     }

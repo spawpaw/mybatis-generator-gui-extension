@@ -33,6 +33,8 @@ public class CommentPlugin implements CommentGenerator {
     private String fileHeader = "";
     private boolean enableMbgGenerated = true;
     private boolean enableCorrespondingTable = true;
+    private String customClassImports = "";
+    private String customClassAnnotations = "";
     private Properties properties;
 
     @Override
@@ -399,6 +401,24 @@ public class CommentPlugin implements CommentGenerator {
         imports.add(new FullyQualifiedJavaType("javax.annotation.Generated")); //$NON-NLS-1$
         String comment = "Source Table: " + introspectedTable.getFullyQualifiedTable().toString(); //$NON-NLS-1$
         innerClass.addAnnotation(getGeneratedAnnotation(comment));
+        if (customClassImports != null && !customClassImports.isEmpty()) {
+            String[] annotations = customClassImports.split("\n");
+            for (String annotation : annotations) {
+                if (annotation.isEmpty()) {
+                    continue;
+                }
+                imports.add(new FullyQualifiedJavaType(annotation.replace(";$", ""))); //$NON-NLS-1$
+            }
+        }
+        if (customClassAnnotations != null && !customClassAnnotations.isEmpty()) {
+            String[] annotations = customClassAnnotations.split("\n");
+            for (String annotation : annotations) {
+                if (annotation.isEmpty()) {
+                    continue;
+                }
+                innerClass.addAnnotation(getGeneratedAnnotation(annotation));
+            }
+        }
     }
 
     private String getGeneratedAnnotation(String comment) {
